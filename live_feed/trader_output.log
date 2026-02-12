@@ -200,3 +200,110 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 14:48:01] Tick #3
+  No data (market may be closed)
+[2026-02-12 14:56:14] Tick #4
+  >>> ENTER SHORT SPREAD: ADBE/NVDA @ z=+2.91
+      SHORT 3 ADBE @ $258.50 = $775.50
+      BUY  11 NVDA @ $188.55 = $2,074.05
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 14:56:15
+======================================================================
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.91
+  Prices: ADBE = $258.50  |  NVDA = $188.55
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 3 shares of ADBE @ $258.50 = $775.50
+    BUY  11 shares of NVDA @ $188.55 = $2,074.05
+    Long:  $2,074.05
+    Short: $775.50
+    Net:   $1,298.55
+    Entry Z: +2.91  |  Entry time: 2026-02-12 14:56:14
+    MTM PnL: $0.00
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -1.97
+  Prices: KO = $79.88  |  PG = $162.59
+  Status: FLAT — watching (ranked target)
+  If z hits -2.0 → Buy 1 shares KO ($79.88)
+                    Short 1 shares PG ($162.59)
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +1.80
+  Prices: MSFT = $405.97  |  GOOG = $310.75
+  Status: FLAT — watching (ranked target)
+  If z hits +2.0 → Short 1 shares MSFT ($405.97)
+                    Buy 1 shares GOOG ($310.75)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.74
+  Prices: COST = $1008.12  |  WMT = $134.12
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,008.12)
+                    Buy 1 shares WMT ($134.12)
+
+  PAIR: BAC / JPM  (Financials)
+  Z-Score: +1.63
+  Prices: BAC = $52.83  |  JPM = $303.79
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BAC ($52.83)
+                    Buy 1 shares JPM ($303.79)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.45
+  Prices: OXY = $45.55  |  VLO = $196.77
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares OXY ($45.55)
+                    Buy 1 shares VLO ($196.77)
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.45
+  Prices: ABBV = $227.57  |  BMY = $60.59
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ABBV ($227.57)
+                    Buy 1 shares BMY ($60.59)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.23
+  Prices: XOM = $151.16  |  CVX = $183.52
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($151.16)
+                    Short 1 shares CVX ($183.52)
+
+  PAIR: WMT / TGT  (Consumer Discretionary)
+  Z-Score: +1.17
+  Prices: WMT = $134.12  |  TGT = $112.76
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares WMT ($134.12)
+                    Buy 1 shares TGT ($112.76)
+
+  PAIR: SBUX / MCD  (Consumer Discretionary)
+  Z-Score: -1.08
+  Prices: SBUX = $97.04  |  MCD = $331.73
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares SBUX ($97.04)
+                    Short 1 shares MCD ($331.73)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 1/10
+  Total long:   $2,074.05
+  Total short:  $775.50
+  Gross exposure: $2,849.55 / $5,000 max
+  Net exposure:   $1,298.55 (target: $0)
+  Account size:   $10,000
+======================================================================
+
