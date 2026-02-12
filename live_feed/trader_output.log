@@ -1046,3 +1046,120 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 15:26:26] Tick #10
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:26:30
+======================================================================
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.68
+  Prices: ADBE = $261.75  |  NVDA = $187.62
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $261.75 = $523.50
+    BUY  6 shares of NVDA @ $187.62 = $1,125.72
+    Long:  $1,125.72
+    Short: $523.50
+    Net:   $602.22
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-3.48
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -2.52
+  Prices: AEP = $127.69  |  SO = $93.05
+  Status: ACTIVE — LONG SPREAD
+    BUY  4 shares of AEP @ $127.69 = $510.76
+    SHORT 10 shares of SO @ $93.05 = $930.50
+    Long:  $510.76
+    Short: $930.50
+    Net:   $-419.74
+    Entry Z: -2.85  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-0.83
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +2.22
+  Prices: ABBV = $229.02  |  BMY = $60.24
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ABBV @ $229.02 = $458.04
+    BUY  7 shares of BMY @ $60.24 = $421.71
+    Long:  $421.71
+    Short: $458.04
+    Net:   $-36.33
+    Entry Z: +2.16  |  Entry time: 2026-02-12 15:22:16
+    MTM PnL: $-0.75
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +2.18
+  Prices: CRM = $183.92  |  QCOM = $138.10
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of CRM @ $183.92 = $367.84
+    BUY  6 shares of QCOM @ $138.10 = $828.57
+    Long:  $828.57
+    Short: $367.84
+    Net:   $460.73
+    Entry Z: +2.28  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-0.38
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -1.60
+  Prices: KO = $79.88  |  PG = $162.66
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares KO ($79.88)
+                    Short 1 shares PG ($162.66)
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: +1.59
+  Prices: DHR = $216.56  |  UNH = $285.32
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares DHR ($216.56)
+                    Buy 1 shares UNH ($285.32)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.58
+  Prices: XOM = $150.64  |  CVX = $183.53
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($150.64)
+                    Short 1 shares CVX ($183.53)
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.53
+  Prices: ISRG = $479.97  |  JNJ = $246.26
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($479.97)
+                    Buy 1 shares JNJ ($246.26)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.52
+  Prices: OXY = $45.53  |  VLO = $196.47
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares OXY ($45.53)
+                    Buy 1 shares VLO ($196.47)
+
+  PAIR: BAC / JPM  (Financials)
+  Z-Score: +1.40
+  Prices: BAC = $52.72  |  JPM = $302.99
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BAC ($52.72)
+                    Buy 1 shares JPM ($302.99)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 4/10
+  Total long:   $2,886.76
+  Total short:  $2,279.88
+  Gross exposure: $5,166.65 / $5,000 max
+  Net exposure:   $606.88 (target: $0)
+  Account size:   $10,000
+======================================================================
+
