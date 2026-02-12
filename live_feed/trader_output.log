@@ -2010,3 +2010,125 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 15:34:51] Tick #18
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:34:52
+======================================================================
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -3.17
+  Prices: AEP = $127.32  |  SO = $93.13
+  Status: ACTIVE — LONG SPREAD
+    BUY  4 shares of AEP @ $127.32 = $509.28
+    SHORT 10 shares of SO @ $93.13 = $931.30
+    Long:  $509.28
+    Short: $931.30
+    Net:   $-422.02
+    Entry Z: -2.85  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-3.11
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +2.68
+  Prices: CRM = $184.89  |  QCOM = $138.21
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of CRM @ $184.89 = $369.78
+    BUY  6 shares of QCOM @ $138.21 = $829.26
+    Long:  $829.26
+    Short: $369.78
+    Net:   $459.48
+    Entry Z: +2.28  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-1.63
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.63
+  Prices: ADBE = $262.13  |  NVDA = $187.47
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $262.13 = $524.26
+    BUY  6 shares of NVDA @ $187.47 = $1,124.82
+    Long:  $1,124.82
+    Short: $524.26
+    Net:   $600.56
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-5.14
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -2.29
+  Prices: KO = $79.58  |  PG = $162.33
+  Status: ACTIVE — LONG SPREAD
+    BUY  5 shares of KO @ $79.58 = $397.90
+    SHORT 1 shares of PG @ $162.33 = $162.33
+    Long:  $397.90
+    Short: $162.33
+    Net:   $235.57
+    Entry Z: -2.16  |  Entry time: 2026-02-12 15:29:38
+    MTM PnL: $-0.53
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.80
+  Prices: EMR = $145.54  |  LMT = $639.34
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares EMR ($145.54)
+                    Short 1 shares LMT ($639.34)
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: +1.59
+  Prices: DHR = $216.46  |  UNH = $284.88
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares DHR ($216.46)
+                    Buy 1 shares UNH ($284.88)
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.36
+  Prices: ABBV = $228.22  |  BMY = $60.12
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ABBV @ $228.22 = $456.44
+    BUY  7 shares of BMY @ $60.12 = $420.88
+    Long:  $420.88
+    Short: $456.44
+    Net:   $-35.57
+    Entry Z: +2.16  |  Entry time: 2026-02-12 15:22:16
+    MTM PnL: $0.01
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.29
+  Prices: OXY = $45.51  |  VLO = $196.71
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares OXY ($45.51)
+                    Buy 1 shares VLO ($196.71)
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +1.24
+  Prices: MSFT = $403.98  |  GOOG = $308.94
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MSFT ($403.98)
+                    Buy 1 shares GOOG ($308.94)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.20
+  Prices: COST = $1006.45  |  WMT = $134.02
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,006.45)
+                    Buy 1 shares WMT ($134.02)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $3,282.14
+  Total short:  $2,444.11
+  Gross exposure: $5,726.25 / $5,000 max
+  Net exposure:   $838.02 (target: $0)
+  Account size:   $10,000
+======================================================================
+
