@@ -1888,3 +1888,125 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 15:33:48] Tick #17
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:33:50
+======================================================================
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -2.92
+  Prices: AEP = $127.35  |  SO = $93.04
+  Status: ACTIVE — LONG SPREAD
+    BUY  4 shares of AEP @ $127.35 = $509.40
+    SHORT 10 shares of SO @ $93.04 = $930.45
+    Long:  $509.40
+    Short: $930.45
+    Net:   $-421.05
+    Entry Z: -2.85  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-2.14
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.58
+  Prices: ADBE = $262.01  |  NVDA = $187.53
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $262.01 = $524.02
+    BUY  6 shares of NVDA @ $187.53 = $1,125.18
+    Long:  $1,125.18
+    Short: $524.02
+    Net:   $601.16
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-4.54
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +2.43
+  Prices: CRM = $184.64  |  QCOM = $138.23
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of CRM @ $184.64 = $369.28
+    BUY  6 shares of QCOM @ $138.23 = $829.38
+    Long:  $829.38
+    Short: $369.28
+    Net:   $460.10
+    Entry Z: +2.28  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-1.01
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -2.01
+  Prices: KO = $79.62  |  PG = $162.32
+  Status: ACTIVE — LONG SPREAD
+    BUY  5 shares of KO @ $79.62 = $398.12
+    SHORT 1 shares of PG @ $162.32 = $162.32
+    Long:  $398.12
+    Short: $162.32
+    Net:   $235.81
+    Entry Z: -2.16  |  Entry time: 2026-02-12 15:29:38
+    MTM PnL: $-0.29
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.77
+  Prices: EMR = $145.58  |  LMT = $639.34
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares EMR ($145.58)
+                    Short 1 shares LMT ($639.34)
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: +1.54
+  Prices: DHR = $216.34  |  UNH = $284.76
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares DHR ($216.34)
+                    Buy 1 shares UNH ($284.76)
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.39
+  Prices: ABBV = $228.27  |  BMY = $60.10
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ABBV @ $228.27 = $456.54
+    BUY  7 shares of BMY @ $60.10 = $420.71
+    Long:  $420.71
+    Short: $456.54
+    Net:   $-35.83
+    Entry Z: +2.16  |  Entry time: 2026-02-12 15:22:16
+    MTM PnL: $-0.25
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.38
+  Prices: OXY = $45.53  |  VLO = $196.70
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares OXY ($45.53)
+                    Buy 1 shares VLO ($196.70)
+
+  PAIR: BAC / JPM  (Financials)
+  Z-Score: +1.25
+  Prices: BAC = $52.67  |  JPM = $302.79
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BAC ($52.67)
+                    Buy 1 shares JPM ($302.79)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.24
+  Prices: COST = $1006.57  |  WMT = $133.95
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,006.57)
+                    Buy 1 shares WMT ($133.95)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $3,282.79
+  Total short:  $2,442.61
+  Gross exposure: $5,725.40 / $5,000 max
+  Net exposure:   $840.19 (target: $0)
+  Account size:   $10,000
+======================================================================
+
