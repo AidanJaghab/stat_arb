@@ -575,3 +575,123 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 15:22:16] Tick #6
+  >>> ENTER SHORT SPREAD: ABBV/BMY @ z=+2.16
+      SHORT 2 ABBV @ $228.84 = $457.68
+      BUY  7 BMY @ $60.30 = $422.10
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:22:18
+======================================================================
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -2.87
+  Prices: AEP = $127.62  |  SO = $93.06
+  Status: ACTIVE — LONG SPREAD
+    BUY  4 shares of AEP @ $127.62 = $510.50
+    SHORT 10 shares of SO @ $93.06 = $930.60
+    Long:  $510.50
+    Short: $930.60
+    Net:   $-420.10
+    Entry Z: -2.85  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-1.19
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.68
+  Prices: ADBE = $261.05  |  NVDA = $187.71
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $261.05 = $522.10
+    BUY  6 shares of NVDA @ $187.71 = $1,126.23
+    Long:  $1,126.23
+    Short: $522.10
+    Net:   $604.13
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-1.57
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +2.16
+  Prices: ABBV = $228.84  |  BMY = $60.30
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ABBV @ $228.84 = $457.68
+    BUY  7 shares of BMY @ $60.30 = $422.10
+    Long:  $422.10
+    Short: $457.68
+    Net:   $-35.58
+    Entry Z: +2.16  |  Entry time: 2026-02-12 15:22:16
+    MTM PnL: $0.00
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.94
+  Prices: CRM = $183.73  |  QCOM = $138.17
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of CRM @ $183.73 = $367.46
+    BUY  6 shares of QCOM @ $138.17 = $829.02
+    Long:  $829.02
+    Short: $367.46
+    Net:   $461.56
+    Entry Z: +2.28  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $0.45
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.63
+  Prices: COST = $1008.33  |  WMT = $134.27
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,008.33)
+                    Buy 1 shares WMT ($134.27)
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -1.63
+  Prices: KO = $79.86  |  PG = $162.60
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares KO ($79.86)
+                    Short 1 shares PG ($162.60)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.56
+  Prices: XOM = $150.69  |  CVX = $183.51
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($150.69)
+                    Short 1 shares CVX ($183.51)
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.56
+  Prices: ISRG = $480.28  |  JNJ = $246.16
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($480.28)
+                    Buy 1 shares JNJ ($246.16)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.51
+  Prices: OXY = $45.53  |  VLO = $196.55
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares OXY ($45.53)
+                    Buy 1 shares VLO ($196.55)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: +1.45
+  Prices: BSX = $74.47  |  PFE = $27.79
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BSX ($74.47)
+                    Buy 1 shares PFE ($27.79)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 4/10
+  Total long:   $2,887.85
+  Total short:  $2,277.84
+  Gross exposure: $5,165.69 / $5,000 max
+  Net exposure:   $610.01 (target: $0)
+  Account size:   $10,000
+======================================================================
+
