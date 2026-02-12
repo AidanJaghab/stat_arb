@@ -6,7 +6,7 @@ Loaded 23 pairs.
 
 Tracking 45 unique tickers across 23 pairs.
 
-[2026-02-12 14:05:55] Tick #1
+[2026-02-12 14:06:12] Tick #1
 
 ============================================================
   LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
@@ -19,43 +19,43 @@ Tracking 45 unique tickers across 23 pairs.
 
 
 ======================================================================
-  LIVE SIGNALS — 2026-02-12 14:05:57
+  LIVE SIGNALS — 2026-02-12 14:06:13
 ======================================================================
 
   PAIR: MSFT / GOOG  (Information Technology)
-  Z-Score: +1.84
-  Prices: MSFT = $405.19  |  GOOG = $311.46
+  Z-Score: +1.86
+  Prices: MSFT = $405.17  |  GOOG = $311.39
   Status: FLAT — watching (ranked target)
-  If z hits +2.0 → Short 1 shares MSFT ($405.19)
-                    Buy 1 shares GOOG ($311.46)
+  If z hits +2.0 → Short 1 shares MSFT ($405.17)
+                    Buy 1 shares GOOG ($311.39)
 
   PAIR: MA / V  (Information Technology)
-  Z-Score: -1.79
-  Prices: MA = $528.66  |  V = $325.36
+  Z-Score: -1.83
+  Prices: MA = $528.67  |  V = $325.47
   Status: FLAT — watching (ranked target)
-  If z hits -2.0 → Buy 1 shares MA ($528.66)
-                    Short 1 shares V ($325.36)
+  If z hits -2.0 → Buy 1 shares MA ($528.67)
+                    Short 1 shares V ($325.47)
 
   PAIR: XOM / CVX  (Energy)
-  Z-Score: -1.70
-  Prices: XOM = $150.99  |  CVX = $183.38
+  Z-Score: -1.66
+  Prices: XOM = $151.01  |  CVX = $183.37
   Status: FLAT — no trade (z within normal range)
-  If z hits -2.0 → Buy 1 shares XOM ($150.99)
-                    Short 1 shares CVX ($183.38)
+  If z hits -2.0 → Buy 1 shares XOM ($151.01)
+                    Short 1 shares CVX ($183.37)
 
   PAIR: CRM / QCOM  (Information Technology)
-  Z-Score: -1.38
-  Prices: CRM = $181.26  |  QCOM = $138.76
+  Z-Score: -1.43
+  Prices: CRM = $181.19  |  QCOM = $138.76
   Status: FLAT — no trade (z within normal range)
-  If z hits -2.0 → Buy 1 shares CRM ($181.26)
+  If z hits -2.0 → Buy 1 shares CRM ($181.19)
                     Short 1 shares QCOM ($138.76)
 
   PAIR: COST / WMT  (Consumer Staples)
   Z-Score: +1.27
-  Prices: COST = $1003.75  |  WMT = $133.32
+  Prices: COST = $1003.78  |  WMT = $133.34
   Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares COST ($1,003.75)
-                    Buy 1 shares WMT ($133.32)
+  If z hits +2.0 → Short 1 shares COST ($1,003.78)
+                    Buy 1 shares WMT ($133.34)
 
   PAIR: ABBV / BMY  (Health Care)
   Z-Score: +1.19
@@ -65,32 +65,32 @@ Tracking 45 unique tickers across 23 pairs.
                     Buy 1 shares BMY ($60.31)
 
   PAIR: TSLA / F  (Consumer Discretionary)
-  Z-Score: -1.00
-  Prices: TSLA = $416.52  |  F = $13.99
+  Z-Score: -1.02
+  Prices: TSLA = $416.45  |  F = $13.99
   Status: FLAT — no trade (z within normal range)
-  If z hits -2.0 → Buy 1 shares TSLA ($416.52)
+  If z hits -2.0 → Buy 1 shares TSLA ($416.45)
                     Short 1 shares F ($13.99)
 
-  PAIR: NSC / UNP  (Industrials)
+  PAIR: HD / LOW  (Consumer Discretionary)
   Z-Score: -0.94
-  Prices: NSC = $314.41  |  UNP = $261.68
+  Prices: HD = $390.42  |  LOW = $288.06
   Status: FLAT — no trade (z within normal range)
-  If z hits -2.0 → Buy 1 shares NSC ($314.41)
-                    Short 1 shares UNP ($261.68)
+  If z hits -2.0 → Buy 1 shares HD ($390.42)
+                    Short 1 shares LOW ($288.06)
 
   PAIR: WMT / TGT  (Consumer Discretionary)
   Z-Score: +0.90
-  Prices: WMT = $133.32  |  TGT = $112.60
+  Prices: WMT = $133.34  |  TGT = $112.62
   Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares WMT ($133.32)
-                    Buy 1 shares TGT ($112.60)
+  If z hits +2.0 → Short 1 shares WMT ($133.34)
+                    Buy 1 shares TGT ($112.62)
 
-  PAIR: HD / LOW  (Consumer Discretionary)
-  Z-Score: -0.76
-  Prices: HD = $390.58  |  LOW = $288.08
+  PAIR: BAC / JPM  (Financials)
+  Z-Score: +0.84
+  Prices: BAC = $52.51  |  JPM = $303.08
   Status: FLAT — no trade (z within normal range)
-  If z hits -2.0 → Buy 1 shares HD ($390.58)
-                    Short 1 shares LOW ($288.08)
+  If z hits +2.0 → Short 1 shares BAC ($52.51)
+                    Buy 1 shares JPM ($303.08)
 
 ======================================================================
   PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
