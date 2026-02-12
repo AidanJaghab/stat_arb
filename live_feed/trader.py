@@ -35,9 +35,9 @@ OUTPUT_LOG = PROJECT_ROOT / "live_feed" / "trader_output.log"
 ZSCORE_LOOKBACK = 60       # 60 x 5min = 5 hours rolling window
 ZSCORE_ENTRY = 2.0
 ZSCORE_EXIT = 0.5
-TOTAL_CAPITAL = 50_000     # total account size
+TOTAL_CAPITAL = 10_000     # total account size
 MAX_PAIRS = 10
-MAX_EXPOSURE_PER_PAIR = 2_500  # $2,500 per leg = $5,000 gross per pair, max $25k across 10 pairs
+MAX_EXPOSURE_PER_PAIR = 500  # $500 per leg = $1,000 gross per pair, max $10k across 10 pairs
 
 
 class PairPosition:
@@ -235,7 +235,7 @@ def format_signal_table(
     lines.append(f"  Active pairs: {active}/{len(positions)}")
     lines.append(f"  Total long:   ${total_long_dollars:,.2f}")
     lines.append(f"  Total short:  ${total_short_dollars:,.2f}")
-    lines.append(f"  Gross exposure: ${gross:,.2f} / $25,000 max")
+    lines.append(f"  Gross exposure: ${gross:,.2f} / $10,000 max")
     lines.append(f"  Net exposure:   ${net:,.2f} (target: $0)")
     lines.append(f"  Account size:   ${TOTAL_CAPITAL:,}")
     lines.append(f"{'='*70}\n")
