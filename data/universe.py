@@ -3,13 +3,20 @@ Fetch the top ~1000 US equity tickers (Russell 1000 proxy).
 Uses S&P 500 + S&P 400 MidCap from Wikipedia, plus additional large-caps.
 """
 
+import io
+
 import pandas as pd
+import requests
+
+_HEADERS = {"User-Agent": "stat-arb-bot/1.0 (educational project)"}
 
 
 def get_sp500_tickers() -> list[str]:
     """Scrape current S&P 500 constituents from Wikipedia."""
     url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    tables = pd.read_html(url)
+    resp = requests.get(url, headers=_HEADERS, timeout=15)
+    resp.raise_for_status()
+    tables = pd.read_html(io.StringIO(resp.text))
     df = tables[0]
     tickers = df["Symbol"].str.replace(".", "-", regex=False).tolist()
     return tickers
@@ -18,7 +25,9 @@ def get_sp500_tickers() -> list[str]:
 def get_sp400_tickers() -> list[str]:
     """Scrape current S&P 400 MidCap constituents from Wikipedia."""
     url = "https://en.wikipedia.org/wiki/List_of_S%26P_400_companies"
-    tables = pd.read_html(url)
+    resp = requests.get(url, headers=_HEADERS, timeout=15)
+    resp.raise_for_status()
+    tables = pd.read_html(io.StringIO(resp.text))
     df = tables[0]
     col = "Symbol" if "Symbol" in df.columns else "Ticker symbol"
     tickers = df[col].str.replace(".", "-", regex=False).tolist()
