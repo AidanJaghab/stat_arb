@@ -4406,3 +4406,125 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 15:56:36] Tick #39
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:56:38
+======================================================================
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -2.83
+  Prices: BSX = $74.01  |  PFE = $27.51
+  Status: FLAT — entry triggered (eligible)
+  If z hits -2.0 → Buy 1 shares BSX ($74.01)
+                    Short 1 shares PFE ($27.51)
+
+  PAIR: BX / KKR  (Financials)
+  Z-Score: -2.72
+  Prices: BX = $129.85  |  KKR = $101.00
+  Status: ACTIVE — LONG SPREAD
+    BUY  3 shares of BX @ $129.85 = $389.54
+    SHORT 4 shares of KKR @ $101.00 = $404.00
+    Long:  $389.54
+    Short: $404.00
+    Net:   $-14.46
+    Entry Z: -2.13  |  Entry time: 2026-02-12 15:50:23
+    MTM PnL: $-1.16
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -2.23
+  Prices: AEP = $126.40  |  SO = $92.59
+  Status: ACTIVE — LONG SPREAD
+    BUY  4 shares of AEP @ $126.40 = $505.62
+    SHORT 10 shares of SO @ $92.59 = $925.90
+    Long:  $505.62
+    Short: $925.90
+    Net:   $-420.28
+    Entry Z: -2.85  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-1.37
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.22
+  Prices: ADBE = $261.95  |  NVDA = $186.67
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $261.95 = $523.90
+    BUY  6 shares of NVDA @ $186.67 = $1,120.02
+    Long:  $1,120.02
+    Short: $523.90
+    Net:   $596.12
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-9.58
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -2.17
+  Prices: KO = $78.96  |  PG = $161.35
+  Status: ACTIVE — LONG SPREAD
+    BUY  5 shares of KO @ $78.96 = $394.82
+    SHORT 1 shares of PG @ $161.35 = $161.35
+    Long:  $394.82
+    Short: $161.35
+    Net:   $233.47
+    Entry Z: -2.16  |  Entry time: 2026-02-12 15:29:38
+    MTM PnL: $-2.63
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +2.17
+  Prices: CRM = $184.88  |  QCOM = $138.24
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of CRM @ $184.88 = $369.76
+    BUY  6 shares of QCOM @ $138.24 = $829.44
+    Long:  $829.44
+    Short: $369.76
+    Net:   $459.68
+    Entry Z: +2.28  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-1.43
+
+  PAIR: D / NEE  (Utilities)
+  Z-Score: -1.71
+  Prices: D = $65.13  |  NEE = $92.01
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares D ($65.13)
+                    Short 1 shares NEE ($92.01)
+
+  PAIR: GS / MS  (Financials)
+  Z-Score: -1.49
+  Prices: GS = $906.70  |  MS = $168.51
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares GS ($906.70)
+                    Short 1 shares MS ($168.51)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.40
+  Prices: EMR = $145.83  |  LMT = $636.47
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares EMR ($145.83)
+                    Short 1 shares LMT ($636.47)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: -1.32
+  Prices: COST = $997.30  |  WMT = $133.55
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares COST ($997.30)
+                    Short 1 shares WMT ($133.55)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $3,239.45
+  Total short:  $2,384.91
+  Gross exposure: $5,624.36 / $5,000 max
+  Net exposure:   $854.53 (target: $0)
+  Account size:   $10,000
+======================================================================
+
