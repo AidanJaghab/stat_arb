@@ -80,10 +80,7 @@ class DatabentoProvider(DataProvider):
 def get_provider(name: str = "yfinance") -> DataProvider:
     """Return the provider instance matching *name*."""
     providers = {
-        "yfinance": YFinanceProvider,
-        "databento": DatabentoProvider,
-        # "polygon": PolygonProvider,
-        # "alpaca":  AlpacaProvider,
+        "databento": DatabentoProvider
     }
     if name not in providers:
         raise ValueError(
