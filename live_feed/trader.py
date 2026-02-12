@@ -432,24 +432,45 @@ def weakest_active(active_positions: List[PairPosition], score_map: Dict[str, fl
 # -----------------------------
 # Formatting
 # -----------------------------
-def format_signal_table(
-    positions: List[PairPosition],
-    z_scores: Dict[str, float],
-    latest_prices: Dict[str, float],
-    score_map: Dict[str, float],
-    selected_targets: List[str],
+def format_signal_table_dynamic(
+    positions: list[PairPosition],
+    z_scores: dict,
+    latest_prices: dict,
+    allocs: dict,
+    targets: list[str],
+    total_capital: float,
+    max_gross: float,
 ) -> str:
-    lines: List[str] = []
+    """
+    Old-style output:
+    - Shows each pair with Z, prices
+    - Shows FLAT/watch/active status
+    - Shows "If z hits..." projected shares based on the pair's current allocation
+    - Summarizes portfolio gross/net
+    """
+    lines = []
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    lines.append(f"\n{'='*70}")
-    lines.append(f"  LIVE SIGNALS — {now}")
-    lines.append(f"{'='*70}")
-    lines.append(f"  Account: ${TOTAL_CAPITAL:,} | Max Gross: ${MAX_GROSS_EXPOSURE:,.0f} | Max Active: {MAX_ACTIVE_PAIRS}")
-    lines.append(f"  Entry: |z|>={ZSCORE_ENTRY}  Exit: |z|<={ZSCORE_EXIT}  Stop: |z|>={ZSCORE_STOP}  Pair Loss Stop: ${MAX_LOSS_PER_PAIR:,.0f}")
+    lines.append("\n" + "=" * 60)
+    lines.append("  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio")
+    lines.append(f"  Output log: {OUTPUT_LOG}")
+    lines.append("=" * 60)
 
-    total_long = 0.0
-    total_short = 0.0
+    lines.append(f"\nLoaded {len(positions)} pairs.\n")
+
+    # Count tickers for display
+    tickers = set()
+    for p in positions:
+        tickers.add(p.cfg.ticker_a)
+        tickers.add(p.cfg.ticker_b)
+    lines.append(f"Tracking {len(tickers)} unique tickers across {len(positions)} pairs.\n")
+
+    lines.append("\n" + "=" * 70)
+    lines.append(f"  LIVE SIGNALS — {now}")
+    lines.append("=" * 70)
+
+    total_long_dollars = 0.0
+    total_short_dollars = 0.0
 
     hidden = 0
     for pos in positions:
@@ -457,64 +478,108 @@ def format_signal_table(
         z = z_scores.get(label, 0.0)
         price_a = latest_prices.get(pos.cfg.ticker_a, 0.0)
         price_b = latest_prices.get(pos.cfg.ticker_b, 0.0)
-        sc = score_map.get(label, 0.0)
 
-        # Hide quiet flat pairs
-        if pos.signal == 0 and abs(z) < WATCHLIST_THRESHOLD and label not in selected_targets:
+        # Hide quiet flat pairs unless they're targets
+        if pos.signal == 0 and abs(z) < WATCHLIST_THRESHOLD and label not in targets:
             hidden += 1
             continue
 
         lines.append(f"\n  PAIR: {pos.cfg.ticker_a} / {pos.cfg.ticker_b}  ({pos.cfg.sector})")
-        lines.append(f"  Z-Score: {z:+.2f} | Score: {sc:.2f} | HedgeRatio: {pos.cfg.hedge_ratio:.4f}")
-        lines.append(f"  Prices: {pos.cfg.ticker_a}=${price_a:.2f} | {pos.cfg.ticker_b}=${price_b:.2f}")
+        lines.append(f"  Z-Score: {z:+.2f}")
+        lines.append(f"  Prices: {pos.cfg.ticker_a} = ${price_a:.2f}  |  {pos.cfg.ticker_b} = ${price_b:.2f}")
+
+        # Decide what gross to preview with
+        gross_alloc = float(allocs.get(label, MIN_GROSS_PER_PAIR))
+        dollars_leg = gross_alloc / 2.0
+
+        # Compute preview shares using hedge ratio sizing
+        shares_a = max(1, int(dollars_leg / max(price_a, 1e-9)))
+        shares_b = max(1, int((dollars_leg / max(price_b, 1e-9)) * abs(pos.cfg.hedge_ratio)))
 
         if pos.signal == 0:
-            status = "FLAT"
-            if label in selected_targets:
-                status = "RANKED TARGET (capital-ready)"
+            # Status label
+            if abs(z) < ZSCORE_ENTRY:
+                if label in targets:
+                    status = "FLAT — watching (ranked target)"
+                else:
+                    status = "FLAT — no trade (z within normal range)"
+            else:
+                status = "FLAT — entry triggered (eligible)"
 
-            if abs(z) >= ZSCORE_ENTRY:
-                status = "ENTRY TRIGGERED (awaiting allocation/constraints)"
+            lines.append(f"  Status: {status}")
 
-            pct = min(100.0, (abs(z) / ZSCORE_ENTRY) * 100.0) if ZSCORE_ENTRY else 0.0
-            lines.append(f"  Status: {status} — {pct:.0f}% to entry")
+            # Old-style “If z hits …” preview
+            if z >= 0:
+                lines.append(
+                    f"  If z hits +{ZSCORE_ENTRY:.1f} → Short {shares_a} shares {pos.cfg.ticker_a} "
+                    f"(${shares_a * price_a:,.2f})"
+                )
+                lines.append(
+                    f"                    Buy {shares_b} shares {pos.cfg.ticker_b} "
+                    f"(${shares_b * price_b:,.2f})"
+                )
+            else:
+                lines.append(
+                    f"  If z hits -{ZSCORE_ENTRY:.1f} → Buy {shares_a} shares {pos.cfg.ticker_a} "
+                    f"(${shares_a * price_a:,.2f})"
+                )
+                lines.append(
+                    f"                    Short {shares_b} shares {pos.cfg.ticker_b} "
+                    f"(${shares_b * price_b:,.2f})"
+                )
 
         else:
-            # Active position details
-            mtm = pos.last_pnl
-            side = "LONG SPREAD" if pos.signal == 1 else "SHORT SPREAD"
-            lines.append(f"  STATUS: ACTIVE — {side}")
-            lines.append(f"    Qty A: {pos.qty_a} | Qty B: {pos.qty_b} | Alloc Gross: ${pos.allocated_gross:,.0f}")
-            lines.append(f"    Entry: {pos.entry_time} @ z={pos.entry_z:+.2f}")
-            lines.append(f"    MTM PnL: ${mtm:,.2f}")
-
-            # Approx dollar exposure display
+            # Active trade display (uses actual entry sizes saved on pos)
             if pos.signal == 1:
-                long_d = pos.qty_a * price_a
-                short_d = pos.qty_b * price_b
+                lines.append("  Status: ACTIVE — LONG SPREAD")
+                long_dollars = pos.qty_a * price_a
+                short_dollars = pos.qty_b * price_b
+                lines.append(
+                    f"    BUY  {pos.qty_a} shares of {pos.cfg.ticker_a} @ ${price_a:.2f} "
+                    f"= ${pos.qty_a * price_a:,.2f}"
+                )
+                lines.append(
+                    f"    SHORT {pos.qty_b} shares of {pos.cfg.ticker_b} @ ${price_b:.2f} "
+                    f"= ${pos.qty_b * price_b:,.2f}"
+                )
             else:
-                long_d = pos.qty_b * price_b
-                short_d = pos.qty_a * price_a
+                lines.append("  Status: ACTIVE — SHORT SPREAD")
+                long_dollars = pos.qty_b * price_b
+                short_dollars = pos.qty_a * price_a
+                lines.append(
+                    f"    SHORT {pos.qty_a} shares of {pos.cfg.ticker_a} @ ${price_a:.2f} "
+                    f"= ${pos.qty_a * price_a:,.2f}"
+                )
+                lines.append(
+                    f"    BUY  {pos.qty_b} shares of {pos.cfg.ticker_b} @ ${price_b:.2f} "
+                    f"= ${pos.qty_b * price_b:,.2f}"
+                )
 
-            total_long += long_d
-            total_short += short_d
-            lines.append(f"    Long:  ${long_d:,.2f}")
-            lines.append(f"    Short: ${short_d:,.2f}")
-            lines.append(f"    Net:   ${long_d - short_d:,.2f}")
+            lines.append(f"    Long:  ${long_dollars:,.2f}")
+            lines.append(f"    Short: ${short_dollars:,.2f}")
+            lines.append(f"    Net:   ${long_dollars - short_dollars:,.2f}")
+            lines.append(f"    Entry Z: {pos.entry_z:+.2f}  |  Entry time: {pos.entry_time}")
+            lines.append(f"    MTM PnL: ${pos.last_pnl:,.2f}")
 
-    active = sum(1 for p in positions if p.is_active())
-    gross = total_long + total_short
-    net = total_long - total_short
+            total_long_dollars += long_dollars
+            total_short_dollars += short_dollars
 
-    lines.append(f"\n{'='*70}")
+    active = sum(1 for p in positions if p.signal != 0)
+    gross = total_long_dollars + total_short_dollars
+    net = total_long_dollars - total_short_dollars
+    watching = len(positions) - active - hidden
+
+    lines.append("\n" + "=" * 70)
     lines.append("  PORTFOLIO SUMMARY")
-    lines.append(f"{'='*70}")
-    lines.append(f"  Active pairs: {active}/{MAX_ACTIVE_PAIRS} | Quiet hidden: {hidden}")
-    lines.append(f"  Total long:   ${total_long:,.2f}")
-    lines.append(f"  Total short:  ${total_short:,.2f}")
-    lines.append(f"  Gross exposure: ${gross:,.2f} / ${MAX_GROSS_EXPOSURE:,.0f} max")
-    lines.append(f"  Net exposure:   ${net:,.2f} (target: ~$0)")
-    lines.append(f"{'='*70}\n")
+    lines.append("=" * 70)
+    lines.append(f"  Active pairs: {active}/{len(positions)}")
+    lines.append(f"  Total long:   ${total_long_dollars:,.2f}")
+    lines.append(f"  Total short:  ${total_short_dollars:,.2f}")
+    lines.append(f"  Gross exposure: ${gross:,.2f} / ${max_gross:,.0f} max")
+    lines.append(f"  Net exposure:   ${net:,.2f} (target: $0)")
+    lines.append(f"  Account size:   ${total_capital:,.0f}")
+    lines.append("=" * 70 + "\n")
+
     return "\n".join(lines)
 
 
