@@ -11,6 +11,7 @@ Usage:
 """
 
 import os
+import subprocess
 import sys
 import time
 from datetime import datetime
@@ -28,6 +29,8 @@ OUTPUT_DIR = Path(__file__).resolve().parent
 LATEST_FILE = OUTPUT_DIR / "prices_latest.csv"
 HISTORY_FILE = OUTPUT_DIR / "prices_history.csv"
 BATCH_SIZE = 100  # yfinance handles batches better than 1000 at once
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+GIT_REMOTE_URL = os.environ.get("GIT_REMOTE_URL", "")
 
 
 def fetch_current_prices(tickers: list[str]) -> pd.DataFrame:
@@ -86,6 +89,22 @@ def save_snapshot(row: pd.DataFrame) -> None:
         row.to_csv(HISTORY_FILE)
 
 
+def git_push(tick: int) -> None:
+    """Commit and push price data to GitHub."""
+    try:
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cmds = [
+            ["git", "add", "live_feed/prices_latest.csv", "live_feed/prices_history.csv"],
+            ["git", "commit", "-m", f"price update #{tick} — {now}"],
+            ["git", "push", "origin", "main"],
+        ]
+        for cmd in cmds:
+            subprocess.run(cmd, cwd=PROJECT_ROOT, capture_output=True, timeout=30)
+        print("  pushed to GitHub.", flush=True)
+    except Exception as e:
+        print(f"  git push failed: {e}", flush=True)
+
+
 def run_live_feed() -> None:
     """Main loop: fetch prices every 5 minutes."""
     print("=" * 50)
@@ -113,7 +132,8 @@ def run_live_feed() -> None:
         else:
             save_snapshot(row)
             n_prices = row.notna().sum(axis=1).iloc[0]
-            print(f"got {int(n_prices)}/{len(tickers)} prices, saved.")
+            print(f"got {int(n_prices)}/{len(tickers)} prices, saved.", flush=True)
+            git_push(tick)
 
         # Wait for next interval
         time.sleep(INTERVAL_SECONDS)
