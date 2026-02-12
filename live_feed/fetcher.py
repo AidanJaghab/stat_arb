@@ -1,24 +1,26 @@
 #!/usr/bin/env python3
 """
-Live price feed — fetches current prices for ~1000 stocks every 5 minutes.
+Live price feed — fetches current prices for ~1000 stocks every 5 minutes
+using the Databento API.
 
 Saves snapshots to live_feed/prices_latest.csv (overwritten each tick)
 and appends to live_feed/prices_history.csv (cumulative log).
+Auto-commits and pushes to GitHub after each tick.
 
 Usage:
-    python -m live_feed.fetcher          # run from stat_arb/
-    python live_feed/fetcher.py          # or directly
+    export DATABENTO_API_KEY="db-..."
+    python -m live_feed.fetcher
 """
 
 import os
 import subprocess
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
+import databento as db
 import pandas as pd
-import yfinance as yf
 
 # Add project root to path so we can import data.universe
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -28,44 +30,68 @@ INTERVAL_SECONDS = 300  # 5 minutes
 OUTPUT_DIR = Path(__file__).resolve().parent
 LATEST_FILE = OUTPUT_DIR / "prices_latest.csv"
 HISTORY_FILE = OUTPUT_DIR / "prices_history.csv"
-BATCH_SIZE = 100  # yfinance handles batches better than 1000 at once
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-GIT_REMOTE_URL = os.environ.get("GIT_REMOTE_URL", "")
 
 
-def fetch_current_prices(tickers: list[str]) -> pd.DataFrame:
+def get_databento_client() -> db.Historical:
+    """Initialize Databento client from env var."""
+    key = os.environ.get("DATABENTO_API_KEY")
+    if not key:
+        print("ERROR: Set DATABENTO_API_KEY environment variable.")
+        sys.exit(1)
+    return db.Historical(key)
+
+
+def fetch_current_prices(client: db.Historical, tickers: list[str]) -> pd.DataFrame:
     """
-    Fetch the latest price for each ticker.
+    Fetch the latest prices for all tickers via Databento.
     Returns a single-row DataFrame: columns = tickers, index = timestamp.
     """
+    now = datetime.utcnow()
+    start = (now - timedelta(minutes=10)).strftime("%Y-%m-%dT%H:%M")
+    end = now.strftime("%Y-%m-%dT%H:%M")
+
     all_prices = {}
 
-    # Fetch in batches to avoid API throttling
-    for i in range(0, len(tickers), BATCH_SIZE):
-        batch = tickers[i : i + BATCH_SIZE]
+    # Databento supports batched symbol queries
+    batch_size = 200
+    for i in range(0, len(tickers), batch_size):
+        batch = tickers[i : i + batch_size]
         try:
-            df = yf.download(
-                batch,
-                period="1d",
-                interval="1m",
-                auto_adjust=True,
-                progress=False,
+            data = client.timeseries.get_range(
+                dataset="XNAS.ITCH",
+                symbols=batch,
+                schema="ohlcv-1m",
+                start=start,
+                end=end,
             )
+            df = data.to_df()
             if df.empty:
                 continue
 
-            # Get the most recent price for each ticker
-            if isinstance(df.columns, pd.MultiIndex):
-                closes = df["Close"]
-            else:
-                closes = df
-
-            latest = closes.iloc[-1]
-            all_prices.update(latest.dropna().to_dict())
+            df = df.reset_index()
+            # Get the last close per symbol
+            latest = df.groupby("symbol")["close"].last()
+            all_prices.update(latest.to_dict())
 
         except Exception as e:
-            print(f"  Warning: batch {i}-{i+len(batch)} failed: {e}")
-            continue
+            # Try XNYS (NYSE) for tickers not on NASDAQ
+            try:
+                data = client.timeseries.get_range(
+                    dataset="XNYS.TRADES",
+                    symbols=batch,
+                    schema="ohlcv-1m",
+                    start=start,
+                    end=end,
+                )
+                df = data.to_df()
+                if not df.empty:
+                    df = df.reset_index()
+                    latest = df.groupby("symbol")["close"].last()
+                    all_prices.update(latest.to_dict())
+            except Exception as e2:
+                print(f"\n  Warning: batch {i}-{i+len(batch)} failed: {e2}", flush=True)
+                continue
 
     if not all_prices:
         return pd.DataFrame()
@@ -79,10 +105,8 @@ def fetch_current_prices(tickers: list[str]) -> pd.DataFrame:
 
 def save_snapshot(row: pd.DataFrame) -> None:
     """Save latest prices and append to history."""
-    # Overwrite latest
     row.to_csv(LATEST_FILE)
 
-    # Append to history
     if HISTORY_FILE.exists():
         row.to_csv(HISTORY_FILE, mode="a", header=False)
     else:
@@ -106,14 +130,17 @@ def git_push(tick: int) -> None:
 
 
 def run_live_feed() -> None:
-    """Main loop: fetch prices every 5 minutes."""
+    """Main loop: fetch prices every 5 minutes via Databento."""
     print("=" * 50)
-    print("  LIVE PRICE FEED")
+    print("  LIVE PRICE FEED (Databento)")
     print("=" * 50)
     print(f"  Interval: {INTERVAL_SECONDS}s ({INTERVAL_SECONDS // 60} min)")
     print(f"  Output:   {LATEST_FILE}")
     print(f"  History:  {HISTORY_FILE}")
     print()
+
+    client = get_databento_client()
+    print("Databento client initialized.")
 
     print("Fetching ticker universe...")
     tickers = get_top_universe(target=1000)
@@ -125,7 +152,7 @@ def run_live_feed() -> None:
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(f"[{now}] Tick #{tick} — fetching prices...", end=" ", flush=True)
 
-        row = fetch_current_prices(tickers)
+        row = fetch_current_prices(client, tickers)
 
         if row.empty:
             print("no data (market may be closed)")
@@ -135,7 +162,6 @@ def run_live_feed() -> None:
             print(f"got {int(n_prices)}/{len(tickers)} prices, saved.", flush=True)
             git_push(tick)
 
-        # Wait for next interval
         time.sleep(INTERVAL_SECONDS)
 
 
