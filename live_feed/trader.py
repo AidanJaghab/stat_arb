@@ -36,8 +36,9 @@ ZSCORE_LOOKBACK = 60       # 60 x 5min = 5 hours rolling window
 ZSCORE_ENTRY = 2.0
 ZSCORE_EXIT = 0.5
 TOTAL_CAPITAL = 10_000     # total account size
-MAX_PAIRS = 10
-MAX_EXPOSURE_PER_PAIR = 500  # $500 per leg = $1,000 gross per pair, max $10k across 10 pairs
+MAX_PAIRS = 25
+MAX_EXPOSURE_PER_PAIR = 500  # $500 per leg = $1,000 gross per pair
+WATCHLIST_THRESHOLD = 1.0  # only show pairs with |z| >= this
 
 
 class PairPosition:
@@ -176,26 +177,28 @@ def format_signal_table(
     total_long_dollars = 0
     total_short_dollars = 0
 
+    hidden = 0
     for pos in positions:
         label = f"{pos.ticker_a}/{pos.ticker_b}"
         z = z_scores.get(label, 0)
         price_a = latest_prices.get(pos.ticker_a, 0)
         price_b = latest_prices.get(pos.ticker_b, 0)
 
+        # Skip flat pairs with z-score below watchlist threshold
+        if pos.signal == 0 and abs(z) < WATCHLIST_THRESHOLD:
+            hidden += 1
+            continue
+
         lines.append(f"\n  PAIR: {pos.ticker_a} / {pos.ticker_b}  ({pos.sector})")
         lines.append(f"  Z-Score: {z:+.2f}")
         lines.append(f"  Prices: {pos.ticker_a} = ${price_a:.2f}  |  {pos.ticker_b} = ${price_b:.2f}")
 
         if pos.signal == 0:
-            # No active position — show what would happen at entry
-            if abs(z) < ZSCORE_EXIT:
-                lines.append(f"  Status: FLAT — no trade (z within normal range)")
-            else:
-                lines.append(f"  Status: FLAT — watching (z approaching entry)")
-
-            # Show projected trade at entry
+            # Watching — show projected trade
             shares_a = compute_shares(price_a, MAX_EXPOSURE_PER_PAIR)
             shares_b = compute_shares(price_b, MAX_EXPOSURE_PER_PAIR)
+            pct = abs(z) / ZSCORE_ENTRY * 100
+            lines.append(f"  Status: WATCHING ({pct:.0f}% to entry)")
             if z > 0:
                 lines.append(f"  If z hits +{ZSCORE_ENTRY:.1f} → Short {shares_a} shares {pos.ticker_a} (${shares_a * price_a:,.2f})")
                 lines.append(f"                    Buy {shares_b} shares {pos.ticker_b} (${shares_b * price_b:,.2f})")
@@ -227,12 +230,13 @@ def format_signal_table(
             total_short_dollars += short_dollars
 
     active = sum(1 for p in positions if p.signal != 0)
+    watching = len(positions) - active - hidden
     gross = total_long_dollars + total_short_dollars
     net = total_long_dollars - total_short_dollars
     lines.append(f"\n{'='*70}")
     lines.append(f"  PORTFOLIO SUMMARY")
     lines.append(f"{'='*70}")
-    lines.append(f"  Active pairs: {active}/{len(positions)}")
+    lines.append(f"  Active: {active}  |  Watching: {watching}  |  Quiet: {hidden}")
     lines.append(f"  Total long:   ${total_long_dollars:,.2f}")
     lines.append(f"  Total short:  ${total_short_dollars:,.2f}")
     lines.append(f"  Gross exposure: ${gross:,.2f} / $10,000 max")
