@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+"""
+Live price feed — fetches current prices for ~1000 stocks every 5 minutes.
+
+Saves snapshots to live_feed/prices_latest.csv (overwritten each tick)
+and appends to live_feed/prices_history.csv (cumulative log).
+
+Usage:
+    python -m live_feed.fetcher          # run from stat_arb/
+    python live_feed/fetcher.py          # or directly
+"""
+
+import os
+import sys
+import time
+from datetime import datetime
+from pathlib import Path
+
+import pandas as pd
+import yfinance as yf
+
+# Add project root to path so we can import data.universe
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from data.universe import get_top_universe
+
+INTERVAL_SECONDS = 300  # 5 minutes
+OUTPUT_DIR = Path(__file__).resolve().parent
+LATEST_FILE = OUTPUT_DIR / "prices_latest.csv"
+HISTORY_FILE = OUTPUT_DIR / "prices_history.csv"
+BATCH_SIZE = 100  # yfinance handles batches better than 1000 at once
+
+
+def fetch_current_prices(tickers: list[str]) -> pd.DataFrame:
+    """
+    Fetch the latest price for each ticker.
+    Returns a single-row DataFrame: columns = tickers, index = timestamp.
+    """
+    all_prices = {}
+
+    # Fetch in batches to avoid API throttling
+    for i in range(0, len(tickers), BATCH_SIZE):
+        batch = tickers[i : i + BATCH_SIZE]
+        try:
+            df = yf.download(
+                batch,
+                period="1d",
+                interval="1m",
+                auto_adjust=True,
+                progress=False,
+            )
+            if df.empty:
+                continue
+
+            # Get the most recent price for each ticker
+            if isinstance(df.columns, pd.MultiIndex):
+                closes = df["Close"]
+            else:
+                closes = df
+
+            latest = closes.iloc[-1]
+            all_prices.update(latest.dropna().to_dict())
+
+        except Exception as e:
+            print(f"  Warning: batch {i}-{i+len(batch)} failed: {e}")
+            continue
+
+    if not all_prices:
+        return pd.DataFrame()
+
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    row = pd.DataFrame([all_prices])
+    row.index = [timestamp]
+    row.index.name = "timestamp"
+    return row
+
+
+def save_snapshot(row: pd.DataFrame) -> None:
+    """Save latest prices and append to history."""
+    # Overwrite latest
+    row.to_csv(LATEST_FILE)
+
+    # Append to history
+    if HISTORY_FILE.exists():
+        row.to_csv(HISTORY_FILE, mode="a", header=False)
+    else:
+        row.to_csv(HISTORY_FILE)
+
+
+def run_live_feed() -> None:
+    """Main loop: fetch prices every 5 minutes."""
+    print("=" * 50)
+    print("  LIVE PRICE FEED")
+    print("=" * 50)
+    print(f"  Interval: {INTERVAL_SECONDS}s ({INTERVAL_SECONDS // 60} min)")
+    print(f"  Output:   {LATEST_FILE}")
+    print(f"  History:  {HISTORY_FILE}")
+    print()
+
+    print("Fetching ticker universe...")
+    tickers = get_top_universe(target=1000)
+    print(f"Tracking {len(tickers)} tickers.\n")
+
+    tick = 0
+    while True:
+        tick += 1
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(f"[{now}] Tick #{tick} — fetching prices...", end=" ", flush=True)
+
+        row = fetch_current_prices(tickers)
+
+        if row.empty:
+            print("no data (market may be closed)")
+        else:
+            save_snapshot(row)
+            n_prices = row.notna().sum(axis=1).iloc[0]
+            print(f"got {int(n_prices)}/{len(tickers)} prices, saved.")
+
+        # Wait for next interval
+        time.sleep(INTERVAL_SECONDS)
+
+
+if __name__ == "__main__":
+    run_live_feed()

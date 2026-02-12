@@ -9,3 +9,5 @@ build/
 venv/
 equity_curve.png
 .DS_Store
+live_feed/prices_latest.csv
+live_feed/prices_history.csv

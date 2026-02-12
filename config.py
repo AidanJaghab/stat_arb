@@ -3,16 +3,11 @@ Configuration for the stat-arb system.
 Edit these values or override them at runtime.
 """
 
+from data.universe import get_top_universe
+
 # --- Universe ---
-# Top liquid S&P 500 names (keep small for fast MVP; expand as needed)
-TICKERS = [
-    "AAPL", "MSFT", "AMZN", "GOOGL", "META", "NVDA", "TSLA", "BRK-B",
-    "JPM", "JNJ", "V", "UNH", "PG", "HD", "MA", "DIS", "BAC", "XOM",
-    "PFE", "CSCO", "ADBE", "CRM", "ABT", "CVX", "KO", "PEP", "TMO",
-    "COST", "AVGO", "MRK", "WMT", "LLY", "ACN", "MCD", "NEE", "LIN",
-    "TXN", "DHR", "PM", "BMY", "AMGN", "HON", "UPS", "CAT", "GS",
-    "LOW", "SBUX", "BLK", "ISRG", "MDT",
-]
+# Dynamically fetch top ~1000 US equities (S&P 500 + S&P 400 + extras)
+TICKERS = get_top_universe(target=1000)
 
 BENCHMARK = "SPY"
 
@@ -35,4 +30,4 @@ MAX_POSITION_WEIGHT = 0.05   # 5% of capital per leg
 MAX_GROSS_LEVERAGE = 4.0     # sum of |weights|
 
 # --- Data provider ---
-PROVIDER = "databento"        # swap to "polygon" or "alpaca" when ready
+PROVIDER = "databento"       # uses DATABENTO_API_KEY env var
