@@ -34,9 +34,9 @@ POSITIONS_FILE = PROJECT_ROOT / "live_feed" / "positions.csv"
 ZSCORE_LOOKBACK = 60       # 60 x 5min = 5 hours rolling window
 ZSCORE_ENTRY = 2.0
 ZSCORE_EXIT = 0.5
-TOTAL_CAPITAL = 1_000_000  # notional capital for sizing
+TOTAL_CAPITAL = 50_000     # total account size
 MAX_PAIRS = 10
-MAX_ALLOC_PER_PAIR = 0.10  # 10% gross per pair
+MAX_EXPOSURE_PER_PAIR = 2_500  # $2,500 per leg = $5,000 gross per pair, max $25k across 10 pairs
 
 
 class PairPosition:
@@ -173,14 +173,15 @@ def format_signal_table(positions: list[PairPosition], z_scores: dict) -> str:
         else:
             sig = "FLAT"
 
-        alloc = f"{MAX_ALLOC_PER_PAIR*100:.0f}%" if pos.signal != 0 else "—"
+        alloc = f"${MAX_EXPOSURE_PER_PAIR*2:,}" if pos.signal != 0 else "—"
         lines.append(f"  {label:<15} {z:>+8.2f} {sig:>15} {alloc:>8}")
 
     active = sum(1 for p in positions if p.signal != 0)
-    gross = active * MAX_ALLOC_PER_PAIR * 2 * 100
+    gross = active * MAX_EXPOSURE_PER_PAIR * 2
     lines.append(f"\n  Active pairs: {active}/{len(positions)}")
-    lines.append(f"  Gross exposure: {gross:.0f}%")
-    lines.append(f"  Net exposure: ~0% (market neutral)")
+    lines.append(f"  Gross exposure: ${gross:,} / $25,000 max")
+    lines.append(f"  Net exposure: ~$0 (market neutral)")
+    lines.append(f"  Account size: ${TOTAL_CAPITAL:,}")
     lines.append(f"{'='*70}\n")
     return "\n".join(lines)
 
