@@ -25,7 +25,7 @@ import yfinance as yf
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-INTERVAL_SECONDS = 300  # 5 minutes
+INTERVAL_SECONDS = 60  # 1 minute (fastest safe with yfinance free tier)
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SIGNALS_FILE = PROJECT_ROOT / "live_feed" / "signals.csv"
 POSITIONS_FILE = PROJECT_ROOT / "live_feed" / "positions.csv"
