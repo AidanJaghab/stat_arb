@@ -1163,3 +1163,120 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 15:27:31] Tick #11
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:27:34
+======================================================================
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.64
+  Prices: ADBE = $261.91  |  NVDA = $187.78
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $261.91 = $523.82
+    BUY  6 shares of NVDA @ $187.78 = $1,126.68
+    Long:  $1,126.68
+    Short: $523.82
+    Net:   $602.86
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-2.84
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -2.60
+  Prices: AEP = $127.60  |  SO = $93.02
+  Status: ACTIVE — LONG SPREAD
+    BUY  4 shares of AEP @ $127.60 = $510.40
+    SHORT 10 shares of SO @ $93.02 = $930.20
+    Long:  $510.40
+    Short: $930.20
+    Net:   $-419.80
+    Entry Z: -2.85  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-0.89
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +2.18
+  Prices: CRM = $184.04  |  QCOM = $138.16
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of CRM @ $184.04 = $368.08
+    BUY  6 shares of QCOM @ $138.16 = $828.96
+    Long:  $828.96
+    Short: $368.08
+    Net:   $460.88
+    Entry Z: +2.28  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-0.23
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.97
+  Prices: ABBV = $228.76  |  BMY = $60.20
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ABBV @ $228.76 = $457.53
+    BUY  7 shares of BMY @ $60.20 = $421.40
+    Long:  $421.40
+    Short: $457.53
+    Net:   $-36.13
+    Entry Z: +2.16  |  Entry time: 2026-02-12 15:22:16
+    MTM PnL: $-0.55
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -1.87
+  Prices: KO = $79.82  |  PG = $162.62
+  Status: FLAT — watching (ranked target)
+  If z hits -2.0 → Buy 1 shares KO ($79.82)
+                    Short 1 shares PG ($162.62)
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: +1.64
+  Prices: DHR = $216.66  |  UNH = $285.34
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares DHR ($216.66)
+                    Buy 1 shares UNH ($285.34)
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.53
+  Prices: ISRG = $480.10  |  JNJ = $246.20
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($480.10)
+                    Buy 1 shares JNJ ($246.20)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.50
+  Prices: XOM = $150.59  |  CVX = $183.40
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($150.59)
+                    Short 1 shares CVX ($183.40)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.45
+  Prices: COST = $1007.55  |  WMT = $134.24
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,007.55)
+                    Buy 1 shares WMT ($134.24)
+
+  PAIR: BAC / JPM  (Financials)
+  Z-Score: +1.43
+  Prices: BAC = $52.72  |  JPM = $302.97
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BAC ($52.72)
+                    Buy 1 shares JPM ($302.97)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 4/10
+  Total long:   $2,887.44
+  Total short:  $2,279.63
+  Gross exposure: $5,167.07 / $5,000 max
+  Net exposure:   $607.81 (target: $0)
+  Account size:   $10,000
+======================================================================
+
