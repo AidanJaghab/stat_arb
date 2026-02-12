@@ -1,0 +1,11 @@
+ticker_a,ticker_b,hedge_ratio,sector
+NSC,UNP,0.8285,Industrials
+KO,PG,0.4847,Consumer Staples
+BAC,JPM,0.1526,Financials
+HD,LOW,0.8665,Consumer Discretionary
+CRM,QCOM,1.7935,Information Technology
+EMR,LMT,0.1377,Industrials
+ADBE,QCOM,2.1299,Information Technology
+OXY,VLO,0.1614,Energy
+HD,SBUX,2.812,Consumer Discretionary
+AEP,SO,1.4748,Utilities
