@@ -4772,3 +4772,125 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 15:59:43] Tick #42
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:59:44
+======================================================================
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -3.33
+  Prices: BSX = $74.10  |  PFE = $27.46
+  Status: FLAT — entry triggered (eligible)
+  If z hits -2.0 → Buy 1 shares BSX ($74.10)
+                    Short 1 shares PFE ($27.46)
+
+  PAIR: BX / KKR  (Financials)
+  Z-Score: -2.66
+  Prices: BX = $129.94  |  KKR = $101.07
+  Status: ACTIVE — LONG SPREAD
+    BUY  3 shares of BX @ $129.94 = $389.82
+    SHORT 4 shares of KKR @ $101.07 = $404.28
+    Long:  $389.82
+    Short: $404.28
+    Net:   $-14.46
+    Entry Z: -2.13  |  Entry time: 2026-02-12 15:50:23
+    MTM PnL: $-1.16
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -2.37
+  Prices: EMR = $145.05  |  LMT = $636.58
+  Status: FLAT — entry triggered (eligible)
+  If z hits -2.0 → Buy 1 shares EMR ($145.05)
+                    Short 1 shares LMT ($636.58)
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -2.36
+  Prices: KO = $78.93  |  PG = $161.37
+  Status: ACTIVE — LONG SPREAD
+    BUY  5 shares of KO @ $78.93 = $394.63
+    SHORT 1 shares of PG @ $161.37 = $161.37
+    Long:  $394.63
+    Short: $161.37
+    Net:   $233.26
+    Entry Z: -2.16  |  Entry time: 2026-02-12 15:29:38
+    MTM PnL: $-2.84
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -2.30
+  Prices: AEP = $126.47  |  SO = $92.68
+  Status: ACTIVE — LONG SPREAD
+    BUY  4 shares of AEP @ $126.47 = $505.88
+    SHORT 10 shares of SO @ $92.68 = $926.75
+    Long:  $505.88
+    Short: $926.75
+    Net:   $-420.87
+    Entry Z: -2.85  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-1.96
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.23
+  Prices: ADBE = $262.62  |  NVDA = $186.96
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $262.62 = $525.24
+    BUY  6 shares of NVDA @ $186.96 = $1,121.73
+    Long:  $1,121.73
+    Short: $525.24
+    Net:   $596.49
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-9.21
+
+  PAIR: HD / LOW  (Consumer Discretionary)
+  Z-Score: +2.18
+  Prices: HD = $389.70  |  LOW = $285.18
+  Status: FLAT — entry triggered (eligible)
+  If z hits +2.0 → Short 1 shares HD ($389.70)
+                    Buy 1 shares LOW ($285.18)
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +2.17
+  Prices: CRM = $185.33  |  QCOM = $138.49
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of CRM @ $185.33 = $370.66
+    BUY  6 shares of QCOM @ $138.49 = $830.94
+    Long:  $830.94
+    Short: $370.66
+    Net:   $460.28
+    Entry Z: +2.28  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-0.83
+
+  PAIR: GS / MS  (Financials)
+  Z-Score: -1.71
+  Prices: GS = $905.35  |  MS = $168.31
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares GS ($905.35)
+                    Short 1 shares MS ($168.31)
+
+  PAIR: D / NEE  (Utilities)
+  Z-Score: -1.68
+  Prices: D = $65.15  |  NEE = $92.06
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares D ($65.15)
+                    Short 1 shares NEE ($92.06)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $3,243.00
+  Total short:  $2,388.30
+  Gross exposure: $5,631.29 / $5,000 max
+  Net exposure:   $854.70 (target: $0)
+  Account size:   $10,000
+======================================================================
+
