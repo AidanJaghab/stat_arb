@@ -103,3 +103,100 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 14:22:15] Tick #2
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 14:22:16
+======================================================================
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +1.94
+  Prices: MSFT = $405.08  |  GOOG = $310.76
+  Status: FLAT — watching (ranked target)
+  If z hits +2.0 → Short 1 shares MSFT ($405.08)
+                    Buy 1 shares GOOG ($310.76)
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +1.65
+  Prices: ADBE = $256.15  |  NVDA = $189.60
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ADBE ($256.15)
+                    Buy 1 shares NVDA ($189.60)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.58
+  Prices: OXY = $45.56  |  VLO = $196.54
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares OXY ($45.56)
+                    Buy 1 shares VLO ($196.54)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.27
+  Prices: XOM = $151.44  |  CVX = $183.60
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($151.44)
+                    Short 1 shares CVX ($183.60)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.26
+  Prices: COST = $1003.83  |  WMT = $133.31
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,003.83)
+                    Buy 1 shares WMT ($133.31)
+
+  PAIR: D / NEE  (Utilities)
+  Z-Score: -1.24
+  Prices: D = $65.45  |  NEE = $92.67
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares D ($65.45)
+                    Short 1 shares NEE ($92.67)
+
+  PAIR: BAC / JPM  (Financials)
+  Z-Score: +1.18
+  Prices: BAC = $52.78  |  JPM = $304.65
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BAC ($52.78)
+                    Buy 1 shares JPM ($304.65)
+
+  PAIR: MA / V  (Information Technology)
+  Z-Score: -1.05
+  Prices: MA = $531.00  |  V = $326.48
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares MA ($531.00)
+                    Short 1 shares V ($326.48)
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: -1.03
+  Prices: TSLA = $415.67  |  F = $13.99
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares TSLA ($415.67)
+                    Short 1 shares F ($13.99)
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: -0.96
+  Prices: CRM = $181.85  |  QCOM = $138.62
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares CRM ($181.85)
+                    Short 1 shares QCOM ($138.62)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 0/10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $5,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
