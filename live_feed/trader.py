@@ -29,6 +29,7 @@ INTERVAL_SECONDS = 300  # 5 minutes
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SIGNALS_FILE = PROJECT_ROOT / "live_feed" / "signals.csv"
 POSITIONS_FILE = PROJECT_ROOT / "live_feed" / "positions.csv"
+OUTPUT_LOG = PROJECT_ROOT / "live_feed" / "trader_output.log"
 
 # --- Strategy parameters ---
 ZSCORE_LOOKBACK = 60       # 60 x 5min = 5 hours rolling window
@@ -195,12 +196,20 @@ def log_signal(action: dict) -> None:
         row.to_csv(SIGNALS_FILE, index=False)
 
 
+def log(text: str) -> None:
+    """Write to both console and the output log file."""
+    print(text, flush=True)
+    with open(OUTPUT_LOG, "a") as f:
+        f.write(text + "\n")
+
+
 def git_push(msg: str) -> None:
     """Commit and push signal/position data."""
     try:
         files = [
             "live_feed/signals.csv",
             "live_feed/positions.csv",
+            "live_feed/trader_output.log",
         ]
         cmds = [
             ["git", "add"] + files,
@@ -215,12 +224,17 @@ def git_push(msg: str) -> None:
 
 def run_trader() -> None:
     """Main 5-minute trading loop."""
-    print("=" * 60)
-    print("  LIVE STAT-ARB TRADER (5-min)")
-    print("=" * 60)
+    # Clear output log on startup
+    with open(OUTPUT_LOG, "w") as f:
+        f.write("")
+
+    log("=" * 60)
+    log("  LIVE STAT-ARB TRADER (5-min)")
+    log(f"  Output log: {OUTPUT_LOG}")
+    log("=" * 60)
 
     pair_configs = load_pairs()
-    print(f"Loaded {len(pair_configs)} pairs.\n")
+    log(f"Loaded {len(pair_configs)} pairs.\n")
 
     # Initialize position trackers
     positions = []
@@ -231,24 +245,24 @@ def run_trader() -> None:
         all_tickers.update([p["ticker_a"], p["ticker_b"]])
 
     all_tickers = sorted(all_tickers)
-    print(f"Tracking {len(all_tickers)} unique tickers across {len(positions)} pairs.\n")
+    log(f"Tracking {len(all_tickers)} unique tickers across {len(positions)} pairs.\n")
 
     tick = 0
     while True:
         tick += 1
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"[{now}] Tick #{tick}", flush=True)
+        log(f"[{now}] Tick #{tick}")
 
         # Fetch latest 5-min data
         try:
             prices = fetch_5min_data(all_tickers)
         except Exception as e:
-            print(f"  Data fetch failed: {e}", flush=True)
+            log(f"  Data fetch failed: {e}")
             time.sleep(INTERVAL_SECONDS)
             continue
 
         if prices.empty:
-            print("  No data (market may be closed)", flush=True)
+            log("  No data (market may be closed)")
             time.sleep(INTERVAL_SECONDS)
             continue
 
@@ -268,11 +282,11 @@ def run_trader() -> None:
             if action:
                 actions.append(action)
                 log_signal(action)
-                print(f"  >>> {action['action']}: {action['pair']} @ z={z:+.2f}", flush=True)
+                log(f"  >>> {action['action']}: {action['pair']} @ z={z:+.2f}")
 
         # Print status table
         table = format_signal_table(positions, z_scores)
-        print(table, flush=True)
+        log(table)
 
         # Save current positions
         pos_data = []
