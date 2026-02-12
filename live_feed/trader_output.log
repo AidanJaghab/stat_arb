@@ -1,95 +1,113 @@
 ============================================================
-  LIVE STAT-ARB TRADER (5-min)
-  Output log: /Users/jakegreenfield/stat_arb/live_feed/trader_output.log
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio ($10k)
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
 ============================================================
-Loaded 10 pairs.
+Loaded 23 pairs.
 
-Tracking 18 unique tickers across 10 pairs.
+Tracking 45 unique tickers across 23 pairs.
 
-[2026-02-11 20:23:39] Tick #1
+[2026-02-11 22:58:11] Tick #1
+  >>> ENTER SHORT SPREAD: ADBE/NVDA @ z=+2.81
+      SHORT 2 ADBE @ $257.13 = $514.26
+      BUY  8 NVDA @ $190.03 = $1,520.24
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
 
 ======================================================================
-  LIVE SIGNALS — 2026-02-11 20:23:40
+  LIVE SIGNALS — 2026-02-11 22:58:12
 ======================================================================
 
-  PAIR: NSC / UNP  (Industrials)
-  Z-Score: +0.05
-  Prices: NSC = $317.24  |  UNP = $262.70
-  Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 7 shares NSC ($2,220.68)
-                    Buy 9 shares UNP ($2,364.30)
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.81
+  Prices: ADBE = $257.13  |  NVDA = $190.03
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $257.13 = $514.26
+    BUY  8 shares of NVDA @ $190.03 = $1,520.24
+    Long:  $1,520.24
+    Short: $514.26
+    Net:   $1,005.98
+    Entry Z: +2.81  |  Entry time: 2026-02-11 22:58:11
+    MTM PnL: $0.00
 
-  PAIR: KO / PG  (Consumer Staples)
-  Z-Score: +0.09
-  Prices: KO = $78.60  |  PG = $159.93
-  Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 31 shares KO ($2,436.60)
-                    Buy 15 shares PG ($2,398.95)
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: FLAT — watching (ranked target)
+  If z hits -2.0 → Buy 1 shares BSX ($73.46)
+                    Short 1 shares PFE ($27.72)
 
-  PAIR: BAC / JPM  (Financials)
-  Z-Score: +0.03
-  Prices: BAC = $53.83  |  JPM = $310.79
-  Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 46 shares BAC ($2,476.18)
-                    Buy 8 shares JPM ($2,486.32)
+  PAIR: WMT / TGT  (Consumer Discretionary)
+  Z-Score: -1.77
+  Prices: WMT = $128.76  |  TGT = $114.61
+  Status: FLAT — watching (ranked target)
+  If z hits -2.0 → Buy 1 shares WMT ($128.76)
+                    Short 1 shares TGT ($114.61)
 
-  PAIR: HD / LOW  (Consumer Discretionary)
-  Z-Score: +0.88
-  Prices: HD = $390.56  |  LOW = $287.06
-  Status: FLAT — watching (z approaching entry)
-  If z hits +2.0 → Short 6 shares HD ($2,343.36)
-                    Buy 8 shares LOW ($2,296.48)
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +1.77
+  Prices: TSLA = $428.15  |  F = $13.81
+  Status: FLAT — watching (ranked target)
+  If z hits +2.0 → Short 1 shares TSLA ($428.15)
+                    Buy 1 shares F ($13.81)
 
   PAIR: CRM / QCOM  (Information Technology)
   Z-Score: +1.76
   Prices: CRM = $184.91  |  QCOM = $141.02
-  Status: FLAT — watching (z approaching entry)
-  If z hits +2.0 → Short 13 shares CRM ($2,403.89)
-                    Buy 17 shares QCOM ($2,397.34)
+  Status: FLAT — watching (ranked target)
+  If z hits +2.0 → Short 1 shares CRM ($184.91)
+                    Buy 1 shares QCOM ($141.02)
+
+  PAIR: BX / KKR  (Financials)
+  Z-Score: +1.72
+  Prices: BX = $133.48  |  KKR = $105.05
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BX ($133.48)
+                    Buy 1 shares KKR ($105.05)
 
   PAIR: EMR / LMT  (Industrials)
   Z-Score: -1.64
   Prices: EMR = $154.67  |  LMT = $628.79
-  Status: FLAT — watching (z approaching entry)
-  If z hits -2.0 → Buy 16 shares EMR ($2,474.72)
-                    Short 3 shares LMT ($1,886.37)
-
-  PAIR: ADBE / QCOM  (Information Technology)
-  Z-Score: +0.87
-  Prices: ADBE = $257.13  |  QCOM = $141.02
-  Status: FLAT — watching (z approaching entry)
-  If z hits +2.0 → Short 9 shares ADBE ($2,314.17)
-                    Buy 17 shares QCOM ($2,397.34)
-
-  PAIR: OXY / VLO  (Energy)
-  Z-Score: -1.28
-  Prices: OXY = $47.24  |  VLO = $203.85
-  Status: FLAT — watching (z approaching entry)
-  If z hits -2.0 → Buy 52 shares OXY ($2,456.22)
-                    Short 12 shares VLO ($2,446.20)
-
-  PAIR: HD / SBUX  (Consumer Discretionary)
-  Z-Score: -0.15
-  Prices: HD = $390.56  |  SBUX = $99.12
   Status: FLAT — no trade (z within normal range)
-  If z hits -2.0 → Buy 6 shares HD ($2,343.36)
-                    Short 25 shares SBUX ($2,478.00)
+  If z hits -2.0 → Buy 1 shares EMR ($154.67)
+                    Short 1 shares LMT ($628.79)
 
-  PAIR: AEP / SO  (Utilities)
-  Z-Score: -1.14
-  Prices: AEP = $122.22  |  SO = $90.86
-  Status: FLAT — watching (z approaching entry)
-  If z hits -2.0 → Buy 20 shares AEP ($2,444.40)
-                    Short 27 shares SO ($2,453.22)
+  PAIR: MA / V  (Information Technology)
+  Z-Score: -1.53
+  Prices: MA = $537.43  |  V = $329.34
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares MA ($537.43)
+                    Short 1 shares V ($329.34)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: -1.37
+  Prices: COST = $977.73  |  WMT = $128.76
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares COST ($977.73)
+                    Short 1 shares WMT ($128.76)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.31
+  Prices: XOM = $155.55  |  CVX = $185.77
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($155.55)
+                    Short 1 shares CVX ($185.77)
 
 ======================================================================
-  PORTFOLIO SUMMARY
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
 ======================================================================
-  Active pairs: 0/10
-  Total long:   $0.00
-  Total short:  $0.00
-  Gross exposure: $0.00 / $25,000 max
-  Net exposure:   $0.00 (target: $0)
-  Account size:   $50,000
+  Active pairs: 1/10
+  Total long:   $1,520.24
+  Total short:  $514.26
+  Gross exposure: $2,034.50 / $5,000 max
+  Net exposure:   $1,005.98 (target: $0)
+  Account size:   $10,000
 ======================================================================
 
