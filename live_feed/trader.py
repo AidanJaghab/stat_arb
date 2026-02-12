@@ -154,35 +154,90 @@ def compute_zscore(spread: pd.Series, lookback: int = ZSCORE_LOOKBACK) -> float:
     return (spread.iloc[-1] - mean) / std
 
 
-def format_signal_table(positions: list[PairPosition], z_scores: dict) -> str:
-    """Format current pair status as a table."""
+def compute_shares(price: float, dollar_amount: float) -> int:
+    """Convert dollar amount to whole shares."""
+    if price <= 0:
+        return 0
+    return int(dollar_amount / price)
+
+
+def format_signal_table(
+    positions: list[PairPosition],
+    z_scores: dict,
+    latest_prices: dict,
+) -> str:
+    """Format current pair status with exact share counts and dollar amounts."""
     lines = []
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     lines.append(f"\n{'='*70}")
     lines.append(f"  LIVE SIGNALS — {now}")
     lines.append(f"{'='*70}")
-    lines.append(f"  {'Pair':<15} {'Z-Score':>8} {'Signal':>15} {'Alloc':>8}")
-    lines.append(f"  {'-'*15} {'-'*8} {'-'*15} {'-'*8}")
+
+    total_long_dollars = 0
+    total_short_dollars = 0
 
     for pos in positions:
         label = f"{pos.ticker_a}/{pos.ticker_b}"
         z = z_scores.get(label, 0)
-        if pos.signal == 1:
-            sig = f"LONG {pos.ticker_a}"
-        elif pos.signal == -1:
-            sig = f"LONG {pos.ticker_b}"
-        else:
-            sig = "FLAT"
+        price_a = latest_prices.get(pos.ticker_a, 0)
+        price_b = latest_prices.get(pos.ticker_b, 0)
 
-        alloc = f"${MAX_EXPOSURE_PER_PAIR*2:,}" if pos.signal != 0 else "—"
-        lines.append(f"  {label:<15} {z:>+8.2f} {sig:>15} {alloc:>8}")
+        lines.append(f"\n  PAIR: {pos.ticker_a} / {pos.ticker_b}  ({pos.sector})")
+        lines.append(f"  Z-Score: {z:+.2f}")
+        lines.append(f"  Prices: {pos.ticker_a} = ${price_a:.2f}  |  {pos.ticker_b} = ${price_b:.2f}")
+
+        if pos.signal == 0:
+            # No active position — show what would happen at entry
+            if abs(z) < ZSCORE_EXIT:
+                lines.append(f"  Status: FLAT — no trade (z within normal range)")
+            else:
+                lines.append(f"  Status: FLAT — watching (z approaching entry)")
+
+            # Show projected trade at entry
+            shares_a = compute_shares(price_a, MAX_EXPOSURE_PER_PAIR)
+            shares_b = compute_shares(price_b, MAX_EXPOSURE_PER_PAIR)
+            if z > 0:
+                lines.append(f"  If z hits +{ZSCORE_ENTRY:.1f} → Short {shares_a} shares {pos.ticker_a} (${shares_a * price_a:,.2f})")
+                lines.append(f"                    Buy {shares_b} shares {pos.ticker_b} (${shares_b * price_b:,.2f})")
+            else:
+                lines.append(f"  If z hits -{ZSCORE_ENTRY:.1f} → Buy {shares_a} shares {pos.ticker_a} (${shares_a * price_a:,.2f})")
+                lines.append(f"                    Short {shares_b} shares {pos.ticker_b} (${shares_b * price_b:,.2f})")
+        else:
+            # Active position — show exact shares
+            shares_a = compute_shares(price_a, MAX_EXPOSURE_PER_PAIR)
+            shares_b = compute_shares(price_b, MAX_EXPOSURE_PER_PAIR)
+            long_dollars = shares_a * price_a if pos.signal == 1 else shares_b * price_b
+            short_dollars = shares_b * price_b if pos.signal == 1 else shares_a * price_a
+
+            if pos.signal == 1:
+                lines.append(f"  ACTION: LONG SPREAD")
+                lines.append(f"    BUY  {shares_a} shares of {pos.ticker_a} @ ${price_a:.2f} = ${shares_a * price_a:,.2f}")
+                lines.append(f"    SHORT {shares_b} shares of {pos.ticker_b} @ ${price_b:.2f} = ${shares_b * price_b:,.2f}")
+            else:
+                lines.append(f"  ACTION: SHORT SPREAD")
+                lines.append(f"    SHORT {shares_a} shares of {pos.ticker_a} @ ${price_a:.2f} = ${shares_a * price_a:,.2f}")
+                lines.append(f"    BUY  {shares_b} shares of {pos.ticker_b} @ ${price_b:.2f} = ${shares_b * price_b:,.2f}")
+
+            lines.append(f"    Long:  ${long_dollars:,.2f}")
+            lines.append(f"    Short: ${short_dollars:,.2f}")
+            lines.append(f"    Net:   ${long_dollars - short_dollars:,.2f}")
+            lines.append(f"    Entry Z: {pos.entry_z:+.2f}  |  Entry time: {pos.entry_time}")
+
+            total_long_dollars += long_dollars
+            total_short_dollars += short_dollars
 
     active = sum(1 for p in positions if p.signal != 0)
-    gross = active * MAX_EXPOSURE_PER_PAIR * 2
-    lines.append(f"\n  Active pairs: {active}/{len(positions)}")
-    lines.append(f"  Gross exposure: ${gross:,} / $25,000 max")
-    lines.append(f"  Net exposure: ~$0 (market neutral)")
-    lines.append(f"  Account size: ${TOTAL_CAPITAL:,}")
+    gross = total_long_dollars + total_short_dollars
+    net = total_long_dollars - total_short_dollars
+    lines.append(f"\n{'='*70}")
+    lines.append(f"  PORTFOLIO SUMMARY")
+    lines.append(f"{'='*70}")
+    lines.append(f"  Active pairs: {active}/{len(positions)}")
+    lines.append(f"  Total long:   ${total_long_dollars:,.2f}")
+    lines.append(f"  Total short:  ${total_short_dollars:,.2f}")
+    lines.append(f"  Gross exposure: ${gross:,.2f} / $25,000 max")
+    lines.append(f"  Net exposure:   ${net:,.2f} (target: $0)")
+    lines.append(f"  Account size:   ${TOTAL_CAPITAL:,}")
     lines.append(f"{'='*70}\n")
     return "\n".join(lines)
 
@@ -280,12 +335,41 @@ def run_trader() -> None:
 
             action = pos.update(z, now)
             if action:
+                # Add share counts to the action
+                price_a = prices[pos.ticker_a].iloc[-1] if pos.ticker_a in prices.columns else 0
+                price_b = prices[pos.ticker_b].iloc[-1] if pos.ticker_b in prices.columns else 0
+                shares_a = compute_shares(price_a, MAX_EXPOSURE_PER_PAIR)
+                shares_b = compute_shares(price_b, MAX_EXPOSURE_PER_PAIR)
+                action["shares_a"] = shares_a
+                action["shares_b"] = shares_b
+                action["price_a"] = price_a
+                action["price_b"] = price_b
+
                 actions.append(action)
                 log_signal(action)
-                log(f"  >>> {action['action']}: {action['pair']} @ z={z:+.2f}")
+
+                if action["action"] == "EXIT":
+                    log(f"  >>> EXIT: {action['pair']} @ z={z:+.2f}")
+                    log(f"      Sell {shares_a} shares {pos.ticker_a}, Cover {shares_b} shares {pos.ticker_b}")
+                else:
+                    long_tk = action.get("long", "")
+                    short_tk = action.get("short", "")
+                    long_sh = shares_a if long_tk == pos.ticker_a else shares_b
+                    short_sh = shares_b if short_tk == pos.ticker_b else shares_a
+                    long_px = price_a if long_tk == pos.ticker_a else price_b
+                    short_px = price_b if short_tk == pos.ticker_b else price_a
+                    log(f"  >>> {action['action']}: {action['pair']} @ z={z:+.2f}")
+                    log(f"      BUY  {long_sh} shares of {long_tk} @ ${long_px:.2f} = ${long_sh * long_px:,.2f}")
+                    log(f"      SHORT {short_sh} shares of {short_tk} @ ${short_px:.2f} = ${short_sh * short_px:,.2f}")
+
+        # Get latest prices for share calculations
+        latest_prices = {}
+        for t in all_tickers:
+            if t in prices.columns:
+                latest_prices[t] = prices[t].iloc[-1]
 
         # Print status table
-        table = format_signal_table(positions, z_scores)
+        table = format_signal_table(positions, z_scores, latest_prices)
         log(table)
 
         # Save current positions
