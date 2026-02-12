@@ -440,11 +440,7 @@ Tracking 45 unique tickers across 23 pairs.
   Gross exposure: $3,893.40 / $5,000 max
   Net exposure:   $1,673.66 (target: $0)
   Account size:   $10,000
-===================================================[2026-02-12 15:10:15] Tick #5
-  >>> EXIT (Z-STOP): ADBE/NVDA @ z=+3.64
-  >>> ENTER SHORT SPREAD: ADBE/NVDA @ z=+3.64
-      SHORT 3 ADBE @ $261.15 = $783.45
-      BUY  11 NVDA @ $187.67 = $2,064.37
+===================================================[2026-02-12 15:10:15][2026-02-12 15:10:20] Tick #5
 
 ============================================================
   LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
@@ -457,97 +453,101 @@ Tracking 45 unique tickers across 23 pairs.
 
 
 ======================================================================
-  LIVE SIGNALS — 2026-02-12 15:10:18
+  LIVE SIGNALS — 2026-02-12 15:10:21
 ======================================================================
 
   PAIR: ADBE / NVDA  (Information Technology)
-  Z-Score: +3.64
-  Prices: ADBE = $261.15  |  NVDA = $187.67
+  Z-Score: +3.20
+  Prices: ADBE = $261.11  |  NVDA = $187.72
   Status: ACTIVE — SHORT SPREAD
-    SHORT 3 shares of ADBE @ $261.15 = $783.45
-    BUY  11 shares of NVDA @ $187.67 = $2,064.37
-    Long:  $2,064.37
-    Short: $783.45
-    Net:   $1,280.92
-    Entry Z: +3.64  |  Entry time: 2026-02-12 15:10:15
-    MTM PnL: $0.00
-
-  PAIR: ABBV / BMY  (Health Care)
-  Z-Score: +1.88
-  Prices: ABBV = $228.40  |  BMY = $60.40
-  Status: FLAT — watching (ranked target)
-  If z hits +2.0 → Short 1 shares ABBV ($228.40)
-                    Buy 1 shares BMY ($60.40)
+    SHORT 3 shares of ADBE @ $261.11 = $783.33
+    BUY  11 shares of NVDA @ $187.72 = $2,064.92
+    Long:  $2,064.92
+    Short: $783.33
+    Net:   $1,281.59
+    Entry Z: +3.72  |  Entry time: 2026-02-12 15:09:18
+    MTM PnL: $1.52
 
   PAIR: KO / PG  (Consumer Staples)
-  Z-Score: -1.85
-  Prices: KO = $79.92  |  PG = $162.71
+  Z-Score: -1.93
+  Prices: KO = $79.89  |  PG = $162.72
   Status: ACTIVE — LONG SPREAD
-    BUY  9 shares of KO @ $79.92 = $719.24
-    SHORT 2 shares of PG @ $162.71 = $325.42
-    Long:  $719.24
-    Short: $325.42
-    Net:   $393.81
-    Entry Z: -2.22  |  Entry time: 2026-02-12 15:06:06
-    MTM PnL: $0.49
+    BUY  9 shares of KO @ $79.89 = $719.05
+    SHORT 2 shares of PG @ $162.72 = $325.44
+    Long:  $719.05
+    Short: $325.44
+    Net:   $393.61
+    Entry Z: -2.23  |  Entry time: 2026-02-12 15:06:09
+    MTM PnL: $0.36
 
-  PAIR: AEP / SO  (Utilities)
-  Z-Score: -1.77
-  Prices: AEP = $127.75  |  SO = $92.65
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.87
+  Prices: ABBV = $228.38  |  BMY = $60.42
   Status: FLAT — watching (ranked target)
-  If z hits -2.0 → Buy 1 shares AEP ($127.75)
-                    Short 1 shares SO ($92.65)
-
-  PAIR: CRM / QCOM  (Information Technology)
-  Z-Score: +1.66
-  Prices: CRM = $183.58  |  QCOM = $138.40
-  Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares CRM ($183.58)
-                    Buy 1 shares QCOM ($138.40)
+  If z hits +2.0 → Short 1 shares ABBV ($228.38)
+                    Buy 1 shares BMY ($60.42)
 
   PAIR: COST / WMT  (Consumer Staples)
-  Z-Score: +1.63
-  Prices: COST = $1008.16  |  WMT = $134.30
+  Z-Score: +1.61
+  Prices: COST = $1008.15  |  WMT = $134.30
   Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares COST ($1,008.16)
+  If z hits +2.0 → Short 1 shares COST ($1,008.15)
                     Buy 1 shares WMT ($134.30)
 
-  PAIR: MSFT / GOOG  (Information Technology)
-  Z-Score: +1.61
-  Prices: MSFT = $405.01  |  GOOG = $309.73
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.59
+  Prices: AEP = $127.63  |  SO = $92.54
   Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares MSFT ($405.01)
-                    Buy 1 shares GOOG ($309.73)
+  If z hits -2.0 → Buy 1 shares AEP ($127.63)
+                    Short 1 shares SO ($92.54)
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +1.53
+  Prices: MSFT = $404.99  |  GOOG = $309.76
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MSFT ($404.99)
+                    Buy 1 shares GOOG ($309.76)
 
   PAIR: XOM / CVX  (Energy)
-  Z-Score: -1.47
-  Prices: XOM = $151.08  |  CVX = $183.70
+  Z-Score: -1.48
+  Prices: XOM = $151.00  |  CVX = $183.66
   Status: FLAT — no trade (z within normal range)
-  If z hits -2.0 → Buy 1 shares XOM ($151.08)
-                    Short 1 shares CVX ($183.70)
+  If z hits -2.0 → Buy 1 shares XOM ($151.00)
+                    Short 1 shares CVX ($183.66)
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.41
+  Prices: CRM = $183.50  |  QCOM = $138.45
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares CRM ($183.50)
+                    Buy 1 shares QCOM ($138.45)
 
   PAIR: OXY / VLO  (Energy)
-  Z-Score: +1.34
-  Prices: OXY = $45.57  |  VLO = $197.09
+  Z-Score: +1.35
+  Prices: OXY = $45.56  |  VLO = $197.02
   Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares OXY ($45.57)
-                    Buy 1 shares VLO ($197.09)
+  If z hits +2.0 → Short 1 shares OXY ($45.56)
+                    Buy 1 shares VLO ($197.02)
 
   PAIR: WMT / TGT  (Consumer Discretionary)
-  Z-Score: +1.28
-  Prices: WMT = $134.30  |  TGT = $112.82
+  Z-Score: +1.34
+  Prices: WMT = $134.30  |  TGT = $112.77
   Status: FLAT — no trade (z within normal range)
   If z hits +2.0 → Short 1 shares WMT ($134.30)
-                    Buy 1 shares TGT ($112.82)
+                    Buy 1 shares TGT ($112.77)
 
 ======================================================================
   PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
 ======================================================================
   Active pairs: 2/10
-  Total long:   $2,783.60
-  Total short:  $1,108.87
-  Gross exposure: $3,892.47 / $5,000 max
-  Net exposure:   $1,674.73 (target: $0)
+  Total long:   $2,783.97
+  Total short:  $1,108.77
+  Gross exposure: $3,892.74 / $5,000 max
+  Net exposure:   $1,675.21 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+ Net exposure:   $1,674.73 (target: $0)
   Account size:   $10,000
 ======================================================================
 
@@ -984,6 +984,113 @@ Tracking 45 unique tickers across 23 pairs.
   Total short:  $1,108.87
   Gross exposure: $3,892.47 / $5,000 max
   Net exposure:   $1,674.73 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-12 15:10:20] Tick #5
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:10:21
+======================================================================
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +3.20
+  Prices: ADBE = $261.11  |  NVDA = $187.72
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 3 shares of ADBE @ $261.11 = $783.33
+    BUY  11 shares of NVDA @ $187.72 = $2,064.92
+    Long:  $2,064.92
+    Short: $783.33
+    Net:   $1,281.59
+    Entry Z: +3.72  |  Entry time: 2026-02-12 15:09:18
+    MTM PnL: $1.52
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -1.93
+  Prices: KO = $79.89  |  PG = $162.72
+  Status: ACTIVE — LONG SPREAD
+    BUY  9 shares of KO @ $79.89 = $719.05
+    SHORT 2 shares of PG @ $162.72 = $325.44
+    Long:  $719.05
+    Short: $325.44
+    Net:   $393.61
+    Entry Z: -2.23  |  Entry time: 2026-02-12 15:06:09
+    MTM PnL: $0.36
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.87
+  Prices: ABBV = $228.38  |  BMY = $60.42
+  Status: FLAT — watching (ranked target)
+  If z hits +2.0 → Short 1 shares ABBV ($228.38)
+                    Buy 1 shares BMY ($60.42)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.61
+  Prices: COST = $1008.15  |  WMT = $134.30
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,008.15)
+                    Buy 1 shares WMT ($134.30)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.59
+  Prices: AEP = $127.63  |  SO = $92.54
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares AEP ($127.63)
+                    Short 1 shares SO ($92.54)
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +1.53
+  Prices: MSFT = $404.99  |  GOOG = $309.76
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MSFT ($404.99)
+                    Buy 1 shares GOOG ($309.76)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.48
+  Prices: XOM = $151.00  |  CVX = $183.66
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($151.00)
+                    Short 1 shares CVX ($183.66)
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.41
+  Prices: CRM = $183.50  |  QCOM = $138.45
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares CRM ($183.50)
+                    Buy 1 shares QCOM ($138.45)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.35
+  Prices: OXY = $45.56  |  VLO = $197.02
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares OXY ($45.56)
+                    Buy 1 shares VLO ($197.02)
+
+  PAIR: WMT / TGT  (Consumer Discretionary)
+  Z-Score: +1.34
+  Prices: WMT = $134.30  |  TGT = $112.77
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares WMT ($134.30)
+                    Buy 1 shares TGT ($112.77)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 2/10
+  Total long:   $2,783.97
+  Total short:  $1,108.77
+  Gross exposure: $3,892.74 / $5,000 max
+  Net exposure:   $1,675.21 (target: $0)
   Account size:   $10,000
 ======================================================================
 
