@@ -1,1 +1,1 @@
-from .provider import DataProvider, YFinanceProvider
+from .provider import DataProvider, YFinanceProvider, DatabentoProvider
