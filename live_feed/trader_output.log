@@ -6,27 +6,90 @@ Loaded 10 pairs.
 
 Tracking 18 unique tickers across 10 pairs.
 
-[2026-02-11 20:19:27] Tick #1
+[2026-02-11 20:23:39] Tick #1
 
 ======================================================================
-  LIVE SIGNALS — 2026-02-11 20:19:28
+  LIVE SIGNALS — 2026-02-11 20:23:40
 ======================================================================
-  Pair             Z-Score          Signal    Alloc
-  --------------- -------- --------------- --------
-  NSC/UNP            +0.05            FLAT        —
-  KO/PG              +0.09            FLAT        —
-  BAC/JPM            +0.03            FLAT        —
-  HD/LOW             +0.88            FLAT        —
-  CRM/QCOM           +1.76            FLAT        —
-  EMR/LMT            -1.64            FLAT        —
-  ADBE/QCOM          +0.87            FLAT        —
-  OXY/VLO            -1.28            FLAT        —
-  HD/SBUX            -0.15            FLAT        —
-  AEP/SO             -1.14            FLAT        —
 
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +0.05
+  Prices: NSC = $317.24  |  UNP = $262.70
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 7 shares NSC ($2,220.68)
+                    Buy 9 shares UNP ($2,364.30)
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: +0.09
+  Prices: KO = $78.60  |  PG = $159.93
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 31 shares KO ($2,436.60)
+                    Buy 15 shares PG ($2,398.95)
+
+  PAIR: BAC / JPM  (Financials)
+  Z-Score: +0.03
+  Prices: BAC = $53.83  |  JPM = $310.79
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 46 shares BAC ($2,476.18)
+                    Buy 8 shares JPM ($2,486.32)
+
+  PAIR: HD / LOW  (Consumer Discretionary)
+  Z-Score: +0.88
+  Prices: HD = $390.56  |  LOW = $287.06
+  Status: FLAT — watching (z approaching entry)
+  If z hits +2.0 → Short 6 shares HD ($2,343.36)
+                    Buy 8 shares LOW ($2,296.48)
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: FLAT — watching (z approaching entry)
+  If z hits +2.0 → Short 13 shares CRM ($2,403.89)
+                    Buy 17 shares QCOM ($2,397.34)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: FLAT — watching (z approaching entry)
+  If z hits -2.0 → Buy 16 shares EMR ($2,474.72)
+                    Short 3 shares LMT ($1,886.37)
+
+  PAIR: ADBE / QCOM  (Information Technology)
+  Z-Score: +0.87
+  Prices: ADBE = $257.13  |  QCOM = $141.02
+  Status: FLAT — watching (z approaching entry)
+  If z hits +2.0 → Short 9 shares ADBE ($2,314.17)
+                    Buy 17 shares QCOM ($2,397.34)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: FLAT — watching (z approaching entry)
+  If z hits -2.0 → Buy 52 shares OXY ($2,456.22)
+                    Short 12 shares VLO ($2,446.20)
+
+  PAIR: HD / SBUX  (Consumer Discretionary)
+  Z-Score: -0.15
+  Prices: HD = $390.56  |  SBUX = $99.12
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 6 shares HD ($2,343.36)
+                    Short 25 shares SBUX ($2,478.00)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: FLAT — watching (z approaching entry)
+  If z hits -2.0 → Buy 20 shares AEP ($2,444.40)
+                    Short 27 shares SO ($2,453.22)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
   Active pairs: 0/10
-  Gross exposure: $0 / $25,000 max
-  Net exposure: ~$0 (market neutral)
-  Account size: $50,000
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $25,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $50,000
 ======================================================================
 
