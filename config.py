@@ -35,4 +35,4 @@ MAX_POSITION_WEIGHT = 0.05   # 5% of capital per leg
 MAX_GROSS_LEVERAGE = 4.0     # sum of |weights|
 
 # --- Data provider ---
-PROVIDER = "yfinance"        # swap to "polygon" or "alpaca" when ready
+PROVIDER = "databento"        # swap to "polygon" or "alpaca" when ready
