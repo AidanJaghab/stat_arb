@@ -117,9 +117,114 @@ Tracking 45 unique tickers across 23 pairs.
   Gross exposure: $3,897.37 / $5,000 max
   Net exposure:   $1,679.22 (target: $0)
   Account size:   $10,000
-=====================================================================[2026-02-12 15:07:09] Tick #2
+=====================================================================[20[2026-02-12 15:07:12] Tick #2
 
 ============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:07:14
+======================================================================
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +3.48
+  Prices: ADBE = $261.49  |  NVDA = $188.10
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 3 shares of ADBE @ $261.49 = $784.47
+    BUY  11 shares of NVDA @ $188.10 = $2,069.10
+    Long:  $2,069.10
+    Short: $784.47
+    Net:   $1,284.63
+    Entry Z: +3.38  |  Entry time: 2026-02-12 15:06:09
+    MTM PnL: $-1.34
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -2.03
+  Prices: KO = $79.86  |  PG = $162.67
+  Status: ACTIVE — LONG SPREAD
+    BUY  9 shares of KO @ $79.86 = $718.78
+    SHORT 2 shares of PG @ $162.67 = $325.33
+    Long:  $718.78
+    Short: $325.33
+    Net:   $393.45
+    Entry Z: -2.23  |  Entry time: 2026-02-12 15:06:09
+    MTM PnL: $0.20
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.66
+  Prices: ABBV = $228.06  |  BMY = $60.46
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ABBV ($228.06)
+                    Buy 1 shares BMY ($60.46)
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +1.63
+  Prices: MSFT = $405.48  |  GOOG = $310.26
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MSFT ($405.48)
+                    Buy 1 shares GOOG ($310.26)
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.57
+  Prices: CRM = $183.69  |  QCOM = $138.49
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares CRM ($183.69)
+                    Buy 1 shares QCOM ($138.49)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.48
+  Prices: COST = $1007.27  |  WMT = $134.14
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,007.27)
+                    Buy 1 shares WMT ($134.14)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.40
+  Prices: OXY = $45.59  |  VLO = $197.12
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares OXY ($45.59)
+                    Buy 1 shares VLO ($197.12)
+
+  PAIR: BAC / JPM  (Financials)
+  Z-Score: +1.37
+  Prices: BAC = $52.87  |  JPM = $304.20
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BAC ($52.87)
+                    Buy 1 shares JPM ($304.20)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.36
+  Prices: XOM = $150.90  |  CVX = $183.41
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($150.90)
+                    Short 1 shares CVX ($183.41)
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.29
+  Prices: ISRG = $481.21  |  JNJ = $245.49
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($481.21)
+                    Buy 1 shares JNJ ($245.49)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 2/10
+  Total long:   $2,787.89
+  Total short:  $1,109.80
+  Gross exposure: $3,897.69 / $5,000 max
+  Net exposure:   $1,678.08 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+==========================================================
   LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
   Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
 ============================================================
@@ -224,6 +329,7 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 15:07:12] Tick #2
 
 ============================================================
   LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
@@ -236,32 +342,32 @@ Tracking 45 unique tickers across 23 pairs.
 
 
 ======================================================================
-  LIVE SIGNALS — 2026-02-12 15:07:10
+  LIVE SIGNALS — 2026-02-12 15:07:14
 ======================================================================
 
   PAIR: ADBE / NVDA  (Information Technology)
-  Z-Score: +3.45
-  Prices: ADBE = $261.37  |  NVDA = $188.10
+  Z-Score: +3.48
+  Prices: ADBE = $261.49  |  NVDA = $188.10
   Status: ACTIVE — SHORT SPREAD
-    SHORT 3 shares of ADBE @ $261.37 = $784.11
+    SHORT 3 shares of ADBE @ $261.49 = $784.47
     BUY  11 shares of NVDA @ $188.10 = $2,069.10
     Long:  $2,069.10
-    Short: $784.11
-    Net:   $1,284.99
-    Entry Z: +3.38  |  Entry time: 2026-02-12 15:06:06
-    MTM PnL: $-1.00
+    Short: $784.47
+    Net:   $1,284.63
+    Entry Z: +3.38  |  Entry time: 2026-02-12 15:06:09
+    MTM PnL: $-1.34
 
   PAIR: KO / PG  (Consumer Staples)
-  Z-Score: -2.07
-  Prices: KO = $79.86  |  PG = $162.68
+  Z-Score: -2.03
+  Prices: KO = $79.86  |  PG = $162.67
   Status: ACTIVE — LONG SPREAD
     BUY  9 shares of KO @ $79.86 = $718.78
-    SHORT 2 shares of PG @ $162.68 = $325.36
+    SHORT 2 shares of PG @ $162.67 = $325.33
     Long:  $718.78
-    Short: $325.36
-    Net:   $393.42
-    Entry Z: -2.22  |  Entry time: 2026-02-12 15:06:06
-    MTM PnL: $0.10
+    Short: $325.33
+    Net:   $393.45
+    Entry Z: -2.23  |  Entry time: 2026-02-12 15:06:09
+    MTM PnL: $0.20
 
   PAIR: ABBV / BMY  (Health Care)
   Z-Score: +1.66
@@ -271,62 +377,62 @@ Tracking 45 unique tickers across 23 pairs.
                     Buy 1 shares BMY ($60.46)
 
   PAIR: MSFT / GOOG  (Information Technology)
-  Z-Score: +1.58
-  Prices: MSFT = $405.34  |  GOOG = $310.26
+  Z-Score: +1.63
+  Prices: MSFT = $405.48  |  GOOG = $310.26
   Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares MSFT ($405.34)
+  If z hits +2.0 → Short 1 shares MSFT ($405.48)
                     Buy 1 shares GOOG ($310.26)
 
-  PAIR: COST / WMT  (Consumer Staples)
-  Z-Score: +1.51
-  Prices: COST = $1007.41  |  WMT = $134.14
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.57
+  Prices: CRM = $183.69  |  QCOM = $138.49
   Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares COST ($1,007.41)
+  If z hits +2.0 → Short 1 shares CRM ($183.69)
+                    Buy 1 shares QCOM ($138.49)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.48
+  Prices: COST = $1007.27  |  WMT = $134.14
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,007.27)
                     Buy 1 shares WMT ($134.14)
 
   PAIR: OXY / VLO  (Energy)
-  Z-Score: +1.48
-  Prices: OXY = $45.59  |  VLO = $197.01
+  Z-Score: +1.40
+  Prices: OXY = $45.59  |  VLO = $197.12
   Status: FLAT — no trade (z within normal range)
   If z hits +2.0 → Short 1 shares OXY ($45.59)
-                    Buy 1 shares VLO ($197.01)
-
-  PAIR: CRM / QCOM  (Information Technology)
-  Z-Score: +1.48
-  Prices: CRM = $183.61  |  QCOM = $138.49
-  Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares CRM ($183.61)
-                    Buy 1 shares QCOM ($138.49)
+                    Buy 1 shares VLO ($197.12)
 
   PAIR: BAC / JPM  (Financials)
-  Z-Score: +1.33
-  Prices: BAC = $52.87  |  JPM = $304.26
+  Z-Score: +1.37
+  Prices: BAC = $52.87  |  JPM = $304.20
   Status: FLAT — no trade (z within normal range)
   If z hits +2.0 → Short 1 shares BAC ($52.87)
-                    Buy 1 shares JPM ($304.26)
+                    Buy 1 shares JPM ($304.20)
 
   PAIR: XOM / CVX  (Energy)
-  Z-Score: -1.29
-  Prices: XOM = $150.89  |  CVX = $183.35
+  Z-Score: -1.36
+  Prices: XOM = $150.90  |  CVX = $183.41
   Status: FLAT — no trade (z within normal range)
-  If z hits -2.0 → Buy 1 shares XOM ($150.89)
-                    Short 1 shares CVX ($183.35)
+  If z hits -2.0 → Buy 1 shares XOM ($150.90)
+                    Short 1 shares CVX ($183.41)
 
   PAIR: ISRG / JNJ  (Health Care)
-  Z-Score: +1.24
-  Prices: ISRG = $481.13  |  JNJ = $245.45
+  Z-Score: +1.29
+  Prices: ISRG = $481.21  |  JNJ = $245.49
   Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 1 shares ISRG ($481.13)
-                    Buy 1 shares JNJ ($245.45)
+  If z hits +2.0 → Short 1 shares ISRG ($481.21)
+                    Buy 1 shares JNJ ($245.49)
 
 ======================================================================
   PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
 ======================================================================
   Active pairs: 2/10
   Total long:   $2,787.89
-  Total short:  $1,109.47
-  Gross exposure: $3,897.36 / $5,000 max
-  Net exposure:   $1,678.42 (target: $0)
+  Total short:  $1,109.80
+  Gross exposure: $3,897.69 / $5,000 max
+  Net exposure:   $1,678.08 (target: $0)
   Account size:   $10,000
 ======================================================================
 
