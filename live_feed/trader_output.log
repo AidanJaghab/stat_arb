@@ -3325,3 +3325,120 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 15:47:16] Tick #30
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-12 15:47:17
+======================================================================
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -2.76
+  Prices: AEP = $126.81  |  SO = $92.93
+  Status: ACTIVE — LONG SPREAD
+    BUY  4 shares of AEP @ $126.81 = $507.22
+    SHORT 10 shares of SO @ $92.93 = $929.30
+    Long:  $507.22
+    Short: $929.30
+    Net:   $-422.08
+    Entry Z: -2.85  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-3.17
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -2.65
+  Prices: KO = $79.14  |  PG = $161.80
+  Status: ACTIVE — LONG SPREAD
+    BUY  5 shares of KO @ $79.14 = $395.72
+    SHORT 1 shares of PG @ $161.80 = $161.80
+    Long:  $395.72
+    Short: $161.80
+    Net:   $233.92
+    Entry Z: -2.16  |  Entry time: 2026-02-12 15:29:38
+    MTM PnL: $-2.18
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +2.20
+  Prices: ADBE = $261.89  |  NVDA = $187.24
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $261.89 = $523.78
+    BUY  6 shares of NVDA @ $187.24 = $1,123.42
+    Long:  $1,123.42
+    Short: $523.78
+    Net:   $599.64
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-6.06
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.85
+  Prices: EMR = $145.66  |  LMT = $637.08
+  Status: FLAT — watching (ranked target)
+  If z hits -2.0 → Buy 1 shares EMR ($145.66)
+                    Short 1 shares LMT ($637.08)
+
+  PAIR: BX / KKR  (Financials)
+  Z-Score: -1.85
+  Prices: BX = $130.18  |  KKR = $100.86
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares BX ($130.18)
+                    Short 1 shares KKR ($100.86)
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: +1.81
+  Prices: DHR = $216.76  |  UNH = $283.12
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares DHR ($216.76)
+                    Buy 1 shares UNH ($283.12)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.47
+  Prices: BSX = $74.15  |  PFE = $27.61
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares BSX ($74.15)
+                    Short 1 shares PFE ($27.61)
+
+  PAIR: MA / V  (Information Technology)
+  Z-Score: -1.37
+  Prices: MA = $529.46  |  V = $325.78
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares MA ($529.46)
+                    Short 1 shares V ($325.78)
+
+  PAIR: D / NEE  (Utilities)
+  Z-Score: -1.21
+  Prices: D = $65.34  |  NEE = $92.24
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares D ($65.34)
+                    Short 1 shares NEE ($92.24)
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.17
+  Prices: CRM = $184.47  |  QCOM = $138.74
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of CRM @ $184.47 = $368.94
+    BUY  6 shares of QCOM @ $138.74 = $832.47
+    Long:  $832.47
+    Short: $368.94
+    Net:   $463.53
+    Entry Z: +2.28  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $2.42
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 4/10
+  Total long:   $2,858.84
+  Total short:  $1,983.82
+  Gross exposure: $4,842.66 / $5,000 max
+  Net exposure:   $875.02 (target: $0)
+  Account size:   $10,000
+======================================================================
+
