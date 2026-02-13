@@ -13219,3 +13219,122 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-13 10:56:32] Tick #127
+  No data (market may be closed)
+[2026-02-13 10:58:03] Tick #128
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-13 10:58:04
+======================================================================
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +2.08
+  Prices: TSLA = $419.17  |  F = $14.22
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 1 shares of TSLA @ $419.17 = $419.17
+    BUY  71 shares of F @ $14.22 = $1,009.27
+    Long:  $1,009.27
+    Short: $419.17
+    Net:   $590.09
+    Entry Z: +2.15  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.29
+
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +1.96
+  Prices: NSC = $316.87  |  UNP = $262.98
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of NSC @ $316.87 = $633.74
+    BUY  2 shares of UNP @ $262.98 = $525.95
+    Long:  $525.95
+    Short: $633.74
+    Net:   $-107.79
+    Entry Z: +2.07  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.06
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.72
+  Prices: OXY = $46.32  |  VLO = $199.71
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 14 shares of OXY @ $46.32 = $648.48
+    BUY  1 shares of VLO @ $199.71 = $199.71
+    Long:  $199.71
+    Short: $648.48
+    Net:   $-448.77
+    Entry Z: +2.16  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.93
+
+  PAIR: MA / V  (Information Technology)
+  Z-Score: +1.69
+  Prices: MA = $525.36  |  V = $318.82
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MA ($525.36)
+                    Buy 1 shares V ($318.82)
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.64
+  Prices: ISRG = $494.21  |  JNJ = $244.38
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($494.21)
+                    Buy 1 shares JNJ ($244.38)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: +1.51
+  Prices: BSX = $76.13  |  PFE = $27.84
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BSX ($76.13)
+                    Buy 1 shares PFE ($27.84)
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.44
+  Prices: ABBV = $234.33  |  BMY = $60.46
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ABBV ($234.33)
+                    Buy 1 shares BMY ($60.46)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.27
+  Prices: XOM = $149.35  |  CVX = $183.45
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($149.35)
+                    Short 1 shares CVX ($183.45)
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +1.11
+  Prices: ADBE = $264.27  |  NVDA = $184.10
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $264.27 = $528.54
+    BUY  6 shares of NVDA @ $184.10 = $1,104.63
+    Long:  $1,104.63
+    Short: $528.54
+    Net:   $576.09
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-29.61
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.09
+  Prices: COST = $1017.01  |  WMT = $133.83
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,017.01)
+                    Buy 1 shares WMT ($133.83)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $2,839.56
+  Total short:  $2,229.93
+  Gross exposure: $5,069.48 / $5,000 max
+  Net exposure:   $609.63 (target: $0)
+  Account size:   $10,000
+======================================================================
+
