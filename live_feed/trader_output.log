@@ -13338,3 +13338,120 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-13 10:59:06] Tick #129
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-13 10:59:07
+======================================================================
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +2.19
+  Prices: TSLA = $419.35  |  F = $14.22
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 1 shares of TSLA @ $419.35 = $419.35
+    BUY  71 shares of F @ $14.22 = $1,009.27
+    Long:  $1,009.27
+    Short: $419.35
+    Net:   $589.92
+    Entry Z: +2.15  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.12
+
+  PAIR: MA / V  (Information Technology)
+  Z-Score: +2.08
+  Prices: MA = $525.38  |  V = $318.30
+  Status: FLAT — entry triggered (eligible)
+  If z hits +2.0 → Short 1 shares MA ($525.38)
+                    Buy 1 shares V ($318.30)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.83
+  Prices: OXY = $46.32  |  VLO = $199.56
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 14 shares of OXY @ $46.32 = $648.48
+    BUY  1 shares of VLO @ $199.56 = $199.56
+    Long:  $199.56
+    Short: $648.48
+    Net:   $-448.92
+    Entry Z: +2.16  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.78
+
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +1.71
+  Prices: NSC = $316.35  |  UNP = $262.49
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of NSC @ $316.35 = $632.70
+    BUY  2 shares of UNP @ $262.49 = $524.99
+    Long:  $524.99
+    Short: $632.70
+    Net:   $-107.71
+    Entry Z: +2.07  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.14
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.68
+  Prices: ISRG = $494.09  |  JNJ = $244.54
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($494.09)
+                    Buy 1 shares JNJ ($244.54)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: +1.48
+  Prices: BSX = $76.10  |  PFE = $27.83
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BSX ($76.10)
+                    Buy 1 shares PFE ($27.83)
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.43
+  Prices: ABBV = $234.28  |  BMY = $60.51
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ABBV ($234.28)
+                    Buy 1 shares BMY ($60.51)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.43
+  Prices: XOM = $149.20  |  CVX = $183.45
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($149.20)
+                    Short 1 shares CVX ($183.45)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.16
+  Prices: COST = $1017.59  |  WMT = $133.96
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,017.59)
+                    Buy 1 shares WMT ($133.96)
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +1.11
+  Prices: ADBE = $264.16  |  NVDA = $184.05
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $264.16 = $528.32
+    BUY  6 shares of NVDA @ $184.05 = $1,104.30
+    Long:  $1,104.30
+    Short: $528.32
+    Net:   $575.98
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-29.72
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $2,838.12
+  Total short:  $2,228.85
+  Gross exposure: $5,066.97 / $5,000 max
+  Net exposure:   $609.27 (target: $0)
+  Account size:   $10,000
+======================================================================
+
