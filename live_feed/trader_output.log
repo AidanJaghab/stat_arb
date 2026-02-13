@@ -13811,3 +13811,115 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-13 11:03:16] Tick #133
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-13 11:03:18
+======================================================================
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +2.35
+  Prices: TSLA = $419.89  |  F = $14.28
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 1 shares of TSLA @ $419.89 = $419.89
+    BUY  71 shares of F @ $14.28 = $1,013.88
+    Long:  $1,013.88
+    Short: $419.89
+    Net:   $593.99
+    Entry Z: +2.15  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $4.19
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.93
+  Prices: OXY = $46.33  |  VLO = $199.54
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 14 shares of OXY @ $46.33 = $648.69
+    BUY  1 shares of VLO @ $199.54 = $199.54
+    Long:  $199.54
+    Short: $648.69
+    Net:   $-449.15
+    Entry Z: +2.16  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.55
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.72
+  Prices: ISRG = $494.17  |  JNJ = $244.73
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($494.17)
+                    Buy 1 shares JNJ ($244.73)
+
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +1.69
+  Prices: NSC = $316.34  |  UNP = $262.45
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of NSC @ $316.34 = $632.68
+    BUY  2 shares of UNP @ $262.45 = $524.90
+    Long:  $524.90
+    Short: $632.68
+    Net:   $-107.78
+    Entry Z: +2.07  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.07
+
+  PAIR: MA / V  (Information Technology)
+  Z-Score: +1.68
+  Prices: MA = $524.77  |  V = $318.14
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MA ($524.77)
+                    Buy 1 shares V ($318.14)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: +1.40
+  Prices: BSX = $76.03  |  PFE = $27.84
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BSX ($76.03)
+                    Buy 1 shares PFE ($27.84)
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.26
+  Prices: ABBV = $233.86  |  BMY = $60.53
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ABBV ($233.86)
+                    Buy 1 shares BMY ($60.53)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.20
+  Prices: XOM = $149.50  |  CVX = $183.60
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($149.50)
+                    Short 1 shares CVX ($183.60)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.17
+  Prices: COST = $1018.03  |  WMT = $134.07
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,018.03)
+                    Buy 1 shares WMT ($134.07)
+
+  PAIR: BAC / JPM  (Financials)
+  Z-Score: +1.13
+  Prices: BAC = $52.72  |  JPM = $303.22
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BAC ($52.72)
+                    Buy 1 shares JPM ($303.22)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $1,738.32
+  Total short:  $1,701.25
+  Gross exposure: $3,439.57 / $5,000 max
+  Net exposure:   $37.07 (target: $0)
+  Account size:   $10,000
+======================================================================
+
