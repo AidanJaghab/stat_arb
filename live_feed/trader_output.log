@@ -15571,3 +15571,120 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-13 11:18:58] Tick #148
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-13 11:19:00
+======================================================================
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +1.83
+  Prices: TSLA = $419.46  |  F = $14.23
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 1 shares of TSLA @ $419.46 = $419.46
+    BUY  71 shares of F @ $14.23 = $1,009.98
+    Long:  $1,009.98
+    Short: $419.46
+    Net:   $590.52
+    Entry Z: +2.15  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.72
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.48
+  Prices: ISRG = $494.43  |  JNJ = $244.44
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($494.43)
+                    Buy 1 shares JNJ ($244.44)
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: -1.46
+  Prices: DHR = $214.12  |  UNH = $290.00
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares DHR ($214.12)
+                    Short 1 shares UNH ($290.00)
+
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +1.22
+  Prices: NSC = $315.51  |  UNP = $261.64
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of NSC @ $315.51 = $631.02
+    BUY  2 shares of UNP @ $261.64 = $523.28
+    Long:  $523.28
+    Short: $631.02
+    Net:   $-107.74
+    Entry Z: +2.07  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.11
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +1.11
+  Prices: ADBE = $264.99  |  NVDA = $184.04
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $264.99 = $529.98
+    BUY  6 shares of NVDA @ $184.04 = $1,104.24
+    Long:  $1,104.24
+    Short: $529.98
+    Net:   $574.26
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-31.44
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.09
+  Prices: COST = $1018.19  |  WMT = $133.93
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,018.19)
+                    Buy 1 shares WMT ($133.93)
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -1.02
+  Prices: KO = $79.10  |  PG = $162.37
+  Status: ACTIVE — LONG SPREAD
+    BUY  5 shares of KO @ $79.10 = $395.48
+    SHORT 1 shares of PG @ $162.37 = $162.37
+    Long:  $395.48
+    Short: $162.37
+    Net:   $233.11
+    Entry Z: -2.16  |  Entry time: 2026-02-12 15:29:38
+    MTM PnL: $-3.00
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.01
+  Prices: XOM = $149.22  |  CVX = $183.22
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($149.22)
+                    Short 1 shares CVX ($183.22)
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +0.97
+  Prices: MSFT = $402.80  |  GOOG = $306.60
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MSFT ($402.80)
+                    Buy 1 shares GOOG ($306.60)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -0.92
+  Prices: AEP = $129.49  |  SO = $94.40
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares AEP ($129.49)
+                    Short 1 shares SO ($94.40)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $3,032.97
+  Total short:  $1,742.83
+  Gross exposure: $4,775.80 / $5,000 max
+  Net exposure:   $1,290.14 (target: $0)
+  Account size:   $10,000
+======================================================================
+
