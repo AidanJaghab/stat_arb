@@ -12840,3 +12840,148 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-12 20:30:00] Tick #116
+  No data (market may be closed)
+[2026-02-12 21:30:04] Tick #117
+  No data (market may be closed)
+[2026-02-13 00:06:25] Tick #118
+  No data (market may be closed)
+[2026-02-13 02:24:28] Tick #119
+  No data (market may be closed)
+[2026-02-13 05:05:37] Tick #120
+  No data (market may be closed)
+[2026-02-13 07:40:53] Tick #121
+  No data (market may be closed)
+[2026-02-13 10:03:02] Tick #122
+  No data (market may be closed)
+[2026-02-13 11:52:23] Tick #123
+  No data (market may be closed)
+[2026-02-13 11:53:23] Tick #124
+  >>> EXIT: CRM/QCOM @ z=+0.19
+  >>> EXIT: AEP/SO @ z=-0.48
+  >>> EXIT: BX/KKR @ z=-0.48
+  >>> ENTER SHORT SPREAD: NSC/UNP @ z=+2.07
+      SHORT 2 NSC @ $316.79 = $633.58
+      BUY  2 UNP @ $262.87 = $525.73
+  >>> ENTER SHORT SPREAD: OXY/VLO @ z=+2.16
+      SHORT 14 OXY @ $46.37 = $649.11
+      BUY  1 VLO @ $199.41 = $199.41
+  >>> ENTER SHORT SPREAD: TSLA/F @ z=+2.15
+      SHORT 1 TSLA @ $419.11 = $419.11
+      BUY  71 F @ $14.21 = $1,008.91
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-13 11:53:25
+======================================================================
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +2.16
+  Prices: OXY = $46.37  |  VLO = $199.41
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 14 shares of OXY @ $46.37 = $649.11
+    BUY  1 shares of VLO @ $199.41 = $199.41
+    Long:  $199.41
+    Short: $649.11
+    Net:   $-449.70
+    Entry Z: +2.16  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.00
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +2.15
+  Prices: TSLA = $419.11  |  F = $14.21
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 1 shares of TSLA @ $419.11 = $419.11
+    BUY  71 shares of F @ $14.21 = $1,008.91
+    Long:  $1,008.91
+    Short: $419.11
+    Net:   $589.80
+    Entry Z: +2.15  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.00
+
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +2.07
+  Prices: NSC = $316.79  |  UNP = $262.87
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of NSC @ $316.79 = $633.58
+    BUY  2 shares of UNP @ $262.87 = $525.73
+    Long:  $525.73
+    Short: $633.58
+    Net:   $-107.85
+    Entry Z: +2.07  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.00
+
+  PAIR: MA / V  (Information Technology)
+  Z-Score: +1.85
+  Prices: MA = $524.80  |  V = $318.19
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MA ($524.80)
+                    Buy 1 shares V ($318.19)
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.63
+  Prices: ISRG = $493.82  |  JNJ = $244.40
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($493.82)
+                    Buy 1 shares JNJ ($244.40)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.48
+  Prices: XOM = $149.21  |  CVX = $183.46
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($149.21)
+                    Short 1 shares CVX ($183.46)
+
+  PAIR: ABBV / BMY  (Health Care)
+  Z-Score: +1.41
+  Prices: ABBV = $234.09  |  BMY = $60.49
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ABBV ($234.09)
+                    Buy 1 shares BMY ($60.49)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: +1.33
+  Prices: BSX = $76.00  |  PFE = $27.82
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BSX ($76.00)
+                    Buy 1 shares PFE ($27.82)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.22
+  Prices: COST = $1017.75  |  WMT = $133.98
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,017.75)
+                    Buy 1 shares WMT ($133.98)
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +1.18
+  Prices: ADBE = $263.65  |  NVDA = $183.67
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $263.65 = $527.30
+    BUY  6 shares of NVDA @ $183.67 = $1,102.02
+    Long:  $1,102.02
+    Short: $527.30
+    Net:   $574.72
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-30.98
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $2,836.08
+  Total short:  $2,229.10
+  Gross exposure: $5,065.18 / $5,000 max
+  Net exposure:   $606.98 (target: $0)
+  Account size:   $10,000
+======================================================================
+
