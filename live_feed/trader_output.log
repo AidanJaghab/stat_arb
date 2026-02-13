@@ -15220,3 +15220,120 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-13 11:15:50] Tick #145
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-13 11:15:52
+======================================================================
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +2.38
+  Prices: TSLA = $420.28  |  F = $14.24
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 1 shares of TSLA @ $420.28 = $420.28
+    BUY  71 shares of F @ $14.24 = $1,011.04
+    Long:  $1,011.04
+    Short: $420.28
+    Net:   $590.76
+    Entry Z: +2.15  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.96
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.96
+  Prices: OXY = $46.37  |  VLO = $199.68
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 14 shares of OXY @ $46.37 = $649.18
+    BUY  1 shares of VLO @ $199.68 = $199.68
+    Long:  $199.68
+    Short: $649.18
+    Net:   $-449.50
+    Entry Z: +2.16  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.20
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.76
+  Prices: ISRG = $495.14  |  JNJ = $244.69
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($495.14)
+                    Buy 1 shares JNJ ($244.69)
+
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +1.54
+  Prices: NSC = $315.99  |  UNP = $262.06
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of NSC @ $315.99 = $631.99
+    BUY  2 shares of UNP @ $262.06 = $524.12
+    Long:  $524.12
+    Short: $631.99
+    Net:   $-107.87
+    Entry Z: +2.07  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $-0.02
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: +1.50
+  Prices: BSX = $76.36  |  PFE = $27.83
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BSX ($76.36)
+                    Buy 1 shares PFE ($27.83)
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +1.46
+  Prices: MSFT = $403.75  |  GOOG = $307.13
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MSFT ($403.75)
+                    Buy 1 shares GOOG ($307.13)
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: -1.38
+  Prices: DHR = $214.27  |  UNH = $290.10
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares DHR ($214.27)
+                    Short 1 shares UNH ($290.10)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.27
+  Prices: COST = $1019.22  |  WMT = $134.07
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,019.22)
+                    Buy 1 shares WMT ($134.07)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.08
+  Prices: XOM = $149.55  |  CVX = $183.61
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($149.55)
+                    Short 1 shares CVX ($183.61)
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -1.04
+  Prices: KO = $79.14  |  PG = $162.47
+  Status: ACTIVE — LONG SPREAD
+    BUY  5 shares of KO @ $79.14 = $395.72
+    SHORT 1 shares of PG @ $162.47 = $162.47
+    Long:  $395.72
+    Short: $162.47
+    Net:   $233.25
+    Entry Z: -2.16  |  Entry time: 2026-02-12 15:29:38
+    MTM PnL: $-2.85
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $2,130.56
+  Total short:  $1,863.92
+  Gross exposure: $3,994.48 / $5,000 max
+  Net exposure:   $266.65 (target: $0)
+  Account size:   $10,000
+======================================================================
+
