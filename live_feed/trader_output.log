@@ -15337,3 +15337,115 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-13 11:16:53] Tick #146
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-13 11:16:54
+======================================================================
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +1.91
+  Prices: TSLA = $419.63  |  F = $14.23
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 1 shares of TSLA @ $419.63 = $419.63
+    BUY  71 shares of F @ $14.23 = $1,010.68
+    Long:  $1,010.68
+    Short: $419.63
+    Net:   $591.05
+    Entry Z: +2.15  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $1.25
+
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +1.50
+  Prices: NSC = $315.93  |  UNP = $261.97
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of NSC @ $315.93 = $631.86
+    BUY  2 shares of UNP @ $261.97 = $523.94
+    Long:  $523.94
+    Short: $631.86
+    Net:   $-107.92
+    Entry Z: +2.07  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $-0.07
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.50
+  Prices: ISRG = $494.30  |  JNJ = $244.55
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($494.30)
+                    Buy 1 shares JNJ ($244.55)
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: -1.44
+  Prices: DHR = $214.18  |  UNH = $290.17
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares DHR ($214.18)
+                    Short 1 shares UNH ($290.17)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.36
+  Prices: OXY = $46.28  |  VLO = $199.76
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 14 shares of OXY @ $46.28 = $647.92
+    BUY  1 shares of VLO @ $199.76 = $199.76
+    Long:  $199.76
+    Short: $647.92
+    Net:   $-448.16
+    Entry Z: +2.16  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $1.53
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: +1.27
+  Prices: BSX = $76.27  |  PFE = $27.82
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BSX ($76.27)
+                    Buy 1 shares PFE ($27.82)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.20
+  Prices: COST = $1018.99  |  WMT = $134.04
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,018.99)
+                    Buy 1 shares WMT ($134.04)
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +1.15
+  Prices: MSFT = $403.07  |  GOOG = $306.68
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MSFT ($403.07)
+                    Buy 1 shares GOOG ($306.68)
+
+  PAIR: MA / V  (Information Technology)
+  Z-Score: +1.11
+  Prices: MA = $524.91  |  V = $318.89
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MA ($524.91)
+                    Buy 1 shares V ($318.89)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.08
+  Prices: XOM = $149.32  |  CVX = $183.39
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($149.32)
+                    Short 1 shares CVX ($183.39)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $1,734.38
+  Total short:  $1,699.41
+  Gross exposure: $3,433.79 / $5,000 max
+  Net exposure:   $34.97 (target: $0)
+  Account size:   $10,000
+======================================================================
+
