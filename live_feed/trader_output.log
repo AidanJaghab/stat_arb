@@ -15449,3 +15449,125 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-13 11:17:55] Tick #147
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-13 11:17:57
+======================================================================
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +1.94
+  Prices: TSLA = $419.70  |  F = $14.24
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 1 shares of TSLA @ $419.70 = $419.70
+    BUY  71 shares of F @ $14.24 = $1,011.04
+    Long:  $1,011.04
+    Short: $419.70
+    Net:   $591.34
+    Entry Z: +2.15  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $1.54
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: -1.57
+  Prices: DHR = $213.98  |  UNH = $289.92
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares DHR ($213.98)
+                    Short 1 shares UNH ($289.92)
+
+  PAIR: ISRG / JNJ  (Health Care)
+  Z-Score: +1.53
+  Prices: ISRG = $494.67  |  JNJ = $244.46
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares ISRG ($494.67)
+                    Buy 1 shares JNJ ($244.46)
+
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +1.24
+  Prices: NSC = $315.63  |  UNP = $261.77
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of NSC @ $315.63 = $631.26
+    BUY  2 shares of UNP @ $261.77 = $523.54
+    Long:  $523.54
+    Short: $631.26
+    Net:   $-107.72
+    Entry Z: +2.07  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $0.12
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.20
+  Prices: COST = $1018.99  |  WMT = $134.00
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,018.99)
+                    Buy 1 shares WMT ($134.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.17
+  Prices: OXY = $46.24  |  VLO = $199.69
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 14 shares of OXY @ $46.24 = $647.29
+    BUY  1 shares of VLO @ $199.69 = $199.69
+    Long:  $199.69
+    Short: $647.29
+    Net:   $-447.60
+    Entry Z: +2.16  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $2.10
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +1.11
+  Prices: ADBE = $265.20  |  NVDA = $184.14
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $265.20 = $530.39
+    BUY  6 shares of NVDA @ $184.14 = $1,104.84
+    Long:  $1,104.84
+    Short: $530.39
+    Net:   $574.45
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-31.25
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: +1.10
+  Prices: BSX = $76.27  |  PFE = $27.79
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares BSX ($76.27)
+                    Buy 1 shares PFE ($27.79)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.05
+  Prices: XOM = $149.28  |  CVX = $183.32
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($149.28)
+                    Short 1 shares CVX ($183.32)
+
+  PAIR: KO / PG  (Consumer Staples)
+  Z-Score: -0.95
+  Prices: KO = $79.13  |  PG = $162.39
+  Status: ACTIVE — LONG SPREAD
+    BUY  5 shares of KO @ $79.13 = $395.65
+    SHORT 1 shares of PG @ $162.39 = $162.39
+    Long:  $395.65
+    Short: $162.39
+    Net:   $233.26
+    Entry Z: -2.16  |  Entry time: 2026-02-12 15:29:38
+    MTM PnL: $-2.84
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 5/10
+  Total long:   $3,234.76
+  Total short:  $2,391.03
+  Gross exposure: $5,625.79 / $5,000 max
+  Net exposure:   $843.73 (target: $0)
+  Account size:   $10,000
+======================================================================
+
