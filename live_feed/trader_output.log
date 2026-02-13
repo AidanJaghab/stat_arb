@@ -19264,3 +19264,115 @@ Tracking 45 unique tickers across 23 pairs.
   Account size:   $10,000
 ======================================================================
 
+[2026-02-13 12:02:15] Tick #181
+
+============================================================
+  LIVE STAT-ARB TRADER (5-min) — Dynamic Portfolio
+  Output log: /Users/jakegreenfield/stat_arb-1/live_feed/trader_output.log
+============================================================
+
+Loaded 23 pairs.
+
+Tracking 45 unique tickers across 23 pairs.
+
+
+======================================================================
+  LIVE SIGNALS — 2026-02-13 12:02:16
+======================================================================
+
+  PAIR: DHR / UNH  (Health Care)
+  Z-Score: -1.58
+  Prices: DHR = $212.95  |  UNH = $288.42
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares DHR ($212.95)
+                    Short 1 shares UNH ($288.42)
+
+  PAIR: XOM / CVX  (Energy)
+  Z-Score: -1.32
+  Prices: XOM = $148.64  |  CVX = $183.32
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares XOM ($148.64)
+                    Short 1 shares CVX ($183.32)
+
+  PAIR: COST / WMT  (Consumer Staples)
+  Z-Score: +1.16
+  Prices: COST = $1021.77  |  WMT = $134.35
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares COST ($1,021.77)
+                    Buy 1 shares WMT ($134.35)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: +1.14
+  Prices: OXY = $46.19  |  VLO = $199.29
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares OXY ($46.19)
+                    Buy 1 shares VLO ($199.29)
+
+  PAIR: TSLA / F  (Consumer Discretionary)
+  Z-Score: +1.06
+  Prices: TSLA = $419.18  |  F = $14.15
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 1 shares of TSLA @ $419.18 = $419.18
+    BUY  71 shares of F @ $14.15 = $1,005.00
+    Long:  $1,005.00
+    Short: $419.18
+    Net:   $585.82
+    Entry Z: +2.15  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $-3.98
+
+  PAIR: NSC / UNP  (Industrials)
+  Z-Score: +1.03
+  Prices: NSC = $314.49  |  UNP = $260.35
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of NSC @ $314.49 = $628.98
+    BUY  2 shares of UNP @ $260.35 = $520.69
+    Long:  $520.69
+    Short: $628.98
+    Net:   $-108.29
+    Entry Z: +2.07  |  Entry time: 2026-02-13 11:53:23
+    MTM PnL: $-0.44
+
+  PAIR: MSFT / GOOG  (Information Technology)
+  Z-Score: +1.01
+  Prices: MSFT = $403.34  |  GOOG = $306.79
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares MSFT ($403.34)
+                    Buy 1 shares GOOG ($306.79)
+
+  PAIR: ADBE / NVDA  (Information Technology)
+  Z-Score: +0.86
+  Prices: ADBE = $263.77  |  NVDA = $183.82
+  Status: ACTIVE — SHORT SPREAD
+    SHORT 2 shares of ADBE @ $263.77 = $527.53
+    BUY  6 shares of NVDA @ $183.82 = $1,102.92
+    Long:  $1,102.92
+    Short: $527.53
+    Net:   $575.39
+    Entry Z: +2.78  |  Entry time: 2026-02-12 15:17:04
+    MTM PnL: $-30.31
+
+  PAIR: D / NEE  (Utilities)
+  Z-Score: +0.73
+  Prices: D = $66.44  |  NEE = $94.29
+  Status: FLAT — no trade (z within normal range)
+  If z hits +2.0 → Short 1 shares D ($66.44)
+                    Buy 1 shares NEE ($94.29)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -0.72
+  Prices: AEP = $129.55  |  SO = $94.45
+  Status: FLAT — no trade (z within normal range)
+  If z hits -2.0 → Buy 1 shares AEP ($129.55)
+                    Short 1 shares SO ($94.45)
+
+======================================================================
+  PORTFOLIO SUMMARY (Top 10 pairs by magnitude)
+======================================================================
+  Active pairs: 3/10
+  Total long:   $2,628.62
+  Total short:  $1,575.70
+  Gross exposure: $4,204.31 / $5,000 max
+  Net exposure:   $1,052.92 (target: $0)
+  Account size:   $10,000
+======================================================================
+
