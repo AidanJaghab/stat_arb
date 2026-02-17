@@ -31,7 +31,7 @@ from live_feed.alpaca_client import (
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-INTERVAL_SECONDS = 3  # ~20 ticks/min, well within Alpaca's 200 req/min limit
+INTERVAL_SECONDS = 60  # 1 minute, matches 1-min bar frequency
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SIGNALS_FILE = PROJECT_ROOT / "live_feed" / "signals.csv"
 POSITIONS_FILE = PROJECT_ROOT / "live_feed" / "positions.csv"
