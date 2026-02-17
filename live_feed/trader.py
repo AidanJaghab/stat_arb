@@ -328,14 +328,33 @@ def run_trader() -> None:
     all_tickers = sorted(all_tickers)
     log(f"Tracking {len(all_tickers)} unique tickers across {len(positions)} pairs.\n")
 
-    # Position reconciliation: check Alpaca positions vs local state
+    # Position reconciliation: sync Alpaca positions into local state
     try:
         alpaca_positions = get_positions()
-        alpaca_symbols = {p["symbol"] for p in alpaca_positions}
+        alpaca_symbols = {p["symbol"]: p for p in alpaca_positions}
         if alpaca_symbols:
             log(f"Alpaca has open positions in: {', '.join(sorted(alpaca_symbols))}")
         else:
             log("Alpaca: no open positions.")
+
+        # Restore local signal state from Alpaca positions
+        for pos in positions:
+            a_pos = alpaca_symbols.get(pos.ticker_a)
+            b_pos = alpaca_symbols.get(pos.ticker_b)
+            if a_pos and b_pos:
+                a_qty = float(a_pos["qty"])
+                b_qty = float(b_pos["qty"])
+                if a_qty > 0 and b_qty < 0:
+                    pos.signal = 1  # long A, short B = long spread
+                    pos.entry_time = "reconciled"
+                    pos.entry_z = 0.0
+                    log(f"  Reconciled {pos.ticker_a}/{pos.ticker_b} → LONG SPREAD")
+                elif a_qty < 0 and b_qty > 0:
+                    pos.signal = -1  # short A, long B = short spread
+                    pos.entry_time = "reconciled"
+                    pos.entry_z = 0.0
+                    log(f"  Reconciled {pos.ticker_a}/{pos.ticker_b} → SHORT SPREAD")
+
         account = get_account_info()
         log(f"Alpaca account — equity: ${float(account['equity']):,.2f}, "
             f"cash: ${float(account['cash']):,.2f}\n")
