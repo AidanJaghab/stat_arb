@@ -855,3 +855,126 @@ Alpaca account — equity: $99,997.19, cash: $99,758.63
   Account size:   $100,000
 ======================================================================
 
+[2026-02-17 14:00:24] Tick #15
+
+======================================================================
+  LIVE SIGNALS — 2026-02-17 14:00:26
+======================================================================
+
+  PAIR: FOX / FOXA  (Communication Services)
+  Z-Score: +2.32
+  Prices: FOX = $51.70  |  FOXA = $56.60
+  ACTION: SHORT SPREAD
+    SHORT 96 shares of FOX @ $51.70 = $4,963.20
+    BUY  88 shares of FOXA @ $56.60 = $4,980.97
+    Long:  $4,980.97
+    Short: $4,963.20
+    Net:   $17.77
+    Entry Z: +2.90  |  Entry time: 2026-02-17 13:42:56
+
+  PAIR: MLM / VMC  (Materials)
+  Z-Score: +0.66
+  Prices: MLM = $664.12  |  VMC = $309.00
+  ACTION: SHORT SPREAD
+    SHORT 7 shares of MLM @ $664.12 = $4,648.84
+    BUY  16 shares of VMC @ $309.00 = $4,944.00
+    Long:  $4,944.00
+    Short: $4,648.84
+    Net:   $295.16
+    Entry Z: +3.81  |  Entry time: 2026-02-17 12:32:53
+
+  PAIR: FITB / UMBF  (Financials)
+  Z-Score: +2.33
+  Prices: FITB = $53.00  |  UMBF = $128.77
+  ACTION: SHORT SPREAD
+    SHORT 94 shares of FITB @ $53.00 = $4,982.00
+    BUY  38 shares of UMBF @ $128.77 = $4,893.26
+    Long:  $4,893.26
+    Short: $4,982.00
+    Net:   $-88.74
+    Entry Z: +2.93  |  Entry time: 2026-02-17 13:42:56
+
+  PAIR: KEY / USB  (Financials)
+  Z-Score: -1.18
+  Prices: KEY = $21.69  |  USB = $57.95
+  ACTION: LONG SPREAD
+    BUY  230 shares of KEY @ $21.69 = $4,988.70
+    SHORT 86 shares of USB @ $57.95 = $4,983.70
+    Long:  $4,988.70
+    Short: $4,983.70
+    Net:   $5.00
+    Entry Z: -3.54  |  Entry time: 2026-02-17 12:32:53
+
+  PAIR: BAX / LNTH  (Health Care)
+  Z-Score: -2.26
+  Prices: BAX = $19.90  |  LNTH = $70.00
+  ACTION: LONG SPREAD
+    BUY  251 shares of BAX @ $19.90 = $4,994.90
+    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
+    Long:  $4,994.90
+    Short: $4,970.00
+    Net:   $24.90
+    Entry Z: -2.26  |  Entry time: 2026-02-17 13:57:01
+
+  PAIR: FLG / VLY  (Financials)
+  Z-Score: +1.98
+  Prices: FLG = $14.09  |  VLY = $13.46
+  ACTION: SHORT SPREAD
+    SHORT 354 shares of FLG @ $14.09 = $4,987.86
+    BUY  371 shares of VLY @ $13.46 = $4,994.44
+    Long:  $4,994.44
+    Short: $4,987.86
+    Net:   $6.58
+    Entry Z: +2.34  |  Entry time: 2026-02-17 13:42:56
+
+  PAIR: DHI / PHM  (Consumer Discretionary)
+  Z-Score: +0.68
+  Prices: DHI = $167.00  |  PHM = $141.85
+  ACTION: LONG SPREAD
+    BUY  29 shares of DHI @ $167.00 = $4,843.00
+    SHORT 35 shares of PHM @ $141.85 = $4,964.75
+    Long:  $4,843.00
+    Short: $4,964.75
+    Net:   $-121.75
+    Entry Z: -2.16  |  Entry time: 2026-02-17 12:32:53
+
+  PAIR: HLT / MTN  (Consumer Discretionary)
+  Z-Score: -2.22
+  Prices: HLT = $313.52  |  MTN = $134.32
+  ACTION: LONG SPREAD
+    BUY  15 shares of HLT @ $313.52 = $4,702.80
+    SHORT 37 shares of MTN @ $134.32 = $4,969.84
+    Long:  $4,702.80
+    Short: $4,969.84
+    Net:   $-267.04
+    Entry Z: -2.73  |  Entry time: 2026-02-17 13:42:56
+
+  PAIR: AWK / CNP  (Utilities)
+  Z-Score: +1.93
+  Prices: AWK = $133.75  |  CNP = $42.52
+  Status: WATCHING (96% to entry)
+  If z hits +2.0 → Short 37 shares AWK ($4,948.75)
+                    Buy 117 shares CNP ($4,974.84)
+
+  PAIR: DTM / RRC  (Energy)
+  Z-Score: -5.34
+  Prices: DTM = $133.21  |  RRC = $37.94
+  ACTION: LONG SPREAD
+    BUY  37 shares of DTM @ $133.21 = $4,928.77
+    SHORT 131 shares of RRC @ $37.94 = $4,970.14
+    Long:  $4,928.77
+    Short: $4,970.14
+    Net:   $-41.37
+    Entry Z: -5.34  |  Entry time: 2026-02-17 13:57:01
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 9  |  Watching: 1  |  Quiet: 15
+  Total long:   $44,270.84
+  Total short:  $44,440.33
+  Gross exposure: $88,711.17 / $10,000 max
+  Net exposure:   $-169.49 (target: $0)
+  Account size:   $100,000
+======================================================================
+
