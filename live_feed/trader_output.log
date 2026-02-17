@@ -997,3 +997,140 @@ Alpaca account — equity: $99,797.98, cash: $92,316.21
   Account size:   $100,000
 ======================================================================
 
+[2026-02-17 14:43:17] Tick #8
+
+======================================================================
+  LIVE SIGNALS — 2026-02-17 14:43:18
+======================================================================
+
+  PAIR: FOX / FOXA  (Communication Services)
+  Z-Score: +1.50
+  Prices: FOX = $51.70  |  FOXA = $56.60
+  ACTION: SHORT SPREAD
+    SHORT 96 shares of FOX @ $51.70 = $4,963.20
+    BUY  88 shares of FOXA @ $56.60 = $4,980.97
+    Long:  $4,980.97
+    Short: $4,963.20
+    Net:   $17.77
+    Entry Z: +0.00  |  Entry time: reconciled
+
+  PAIR: MLM / VMC  (Materials)
+  Z-Score: +1.53
+  Prices: MLM = $660.00  |  VMC = $295.02
+  ACTION: SHORT SPREAD
+    SHORT 7 shares of MLM @ $660.00 = $4,620.00
+    BUY  16 shares of VMC @ $295.02 = $4,720.32
+    Long:  $4,720.32
+    Short: $4,620.00
+    Net:   $100.32
+    Entry Z: +0.00  |  Entry time: reconciled
+
+  PAIR: FITB / UMBF  (Financials)
+  Z-Score: +4.01
+  Prices: FITB = $53.20  |  UMBF = $128.77
+  Status: WATCHING (201% to entry)
+  If z hits +2.0 → Short 93 shares FITB ($4,947.60)
+                    Buy 38 shares UMBF ($4,893.26)
+
+  PAIR: BAX / LNTH  (Health Care)
+  Z-Score: -1.68
+  Prices: BAX = $19.87  |  LNTH = $70.00
+  ACTION: LONG SPREAD
+    BUY  251 shares of BAX @ $19.87 = $4,987.37
+    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
+    Long:  $4,987.37
+    Short: $4,970.00
+    Net:   $17.37
+    Entry Z: +0.00  |  Entry time: reconciled
+
+  PAIR: FLG / VLY  (Financials)
+  Z-Score: +1.49
+  Prices: FLG = $14.09  |  VLY = $13.46
+  ACTION: SHORT SPREAD
+    SHORT 354 shares of FLG @ $14.09 = $4,987.86
+    BUY  371 shares of VLY @ $13.46 = $4,993.66
+    Long:  $4,993.66
+    Short: $4,987.86
+    Net:   $5.80
+    Entry Z: +0.00  |  Entry time: reconciled
+
+  PAIR: DHI / PHM  (Consumer Discretionary)
+  Z-Score: +2.70
+  Prices: DHI = $168.00  |  PHM = $141.40
+  ACTION: LONG SPREAD
+    BUY  29 shares of DHI @ $168.00 = $4,872.00
+    SHORT 35 shares of PHM @ $141.40 = $4,949.00
+    Long:  $4,872.00
+    Short: $4,949.00
+    Net:   $-77.00
+    Entry Z: +0.00  |  Entry time: reconciled
+
+  PAIR: HLT / MTN  (Consumer Discretionary)
+  Z-Score: +1.42
+  Prices: HLT = $315.00  |  MTN = $134.32
+  ACTION: LONG SPREAD
+    BUY  15 shares of HLT @ $315.00 = $4,725.00
+    SHORT 37 shares of MTN @ $134.32 = $4,969.84
+    Long:  $4,725.00
+    Short: $4,969.84
+    Net:   $-244.84
+    Entry Z: +0.00  |  Entry time: reconciled
+
+  PAIR: AVT / ENTG  (Information Technology)
+  Z-Score: +1.22
+  Prices: AVT = $65.80  |  ENTG = $129.13
+  ACTION: SHORT SPREAD
+    SHORT 75 shares of AVT @ $65.80 = $4,935.00
+    BUY  38 shares of ENTG @ $129.13 = $4,906.94
+    Long:  $4,906.94
+    Short: $4,935.00
+    Net:   $-28.06
+    Entry Z: +0.00  |  Entry time: reconciled
+
+  PAIR: AWK / CNP  (Utilities)
+  Z-Score: -4.67
+  Prices: AWK = $133.24  |  CNP = $42.80
+  Status: WATCHING (233% to entry)
+  If z hits -2.0 → Buy 37 shares AWK ($4,929.88)
+                    Short 116 shares CNP ($4,964.80)
+
+  PAIR: EVRG / PPL  (Utilities)
+  Z-Score: -2.60
+  Prices: EVRG = $82.69  |  PPL = $37.89
+  Status: WATCHING (130% to entry)
+  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
+                    Short 131 shares PPL ($4,963.59)
+
+  PAIR: FE / LNT  (Utilities)
+  Z-Score: -3.21
+  Prices: FE = $50.45  |  LNT = $72.00
+  ACTION: LONG SPREAD
+    BUY  99 shares of FE @ $50.45 = $4,994.55
+    SHORT 69 shares of LNT @ $72.00 = $4,968.00
+    Long:  $4,994.55
+    Short: $4,968.00
+    Net:   $26.55
+    Entry Z: -3.21  |  Entry time: 2026-02-17 14:41:14
+
+  PAIR: DTM / RRC  (Energy)
+  Z-Score: +2.29
+  Prices: DTM = $133.21  |  RRC = $37.26
+  ACTION: LONG SPREAD
+    BUY  37 shares of DTM @ $133.21 = $4,928.77
+    SHORT 134 shares of RRC @ $37.26 = $4,992.84
+    Long:  $4,928.77
+    Short: $4,992.84
+    Net:   $-64.07
+    Entry Z: +0.00  |  Entry time: reconciled
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 9  |  Watching: 3  |  Quiet: 13
+  Total long:   $44,109.58
+  Total short:  $44,355.74
+  Gross exposure: $88,465.32 / $10,000 max
+  Net exposure:   $-246.16 (target: $0)
+  Account size:   $100,000
+======================================================================
+
