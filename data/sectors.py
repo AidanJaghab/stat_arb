@@ -23,6 +23,22 @@ def get_sp500_sectors() -> dict[str, str]:
     return dict(zip(df["Symbol"], df["GICS Sector"]))
 
 
+def get_sp400_sectors() -> dict[str, str]:
+    """
+    Return a dict mapping ticker -> GICS sector for S&P 400 MidCap companies.
+    Scraped from Wikipedia.
+    """
+    url = "https://en.wikipedia.org/wiki/List_of_S%26P_400_companies"
+    resp = requests.get(url, headers=_HEADERS, timeout=15)
+    resp.raise_for_status()
+    tables = pd.read_html(io.StringIO(resp.text))
+    df = tables[0]
+    sym_col = "Symbol" if "Symbol" in df.columns else "Ticker symbol"
+    sec_col = "GICS Sector" if "GICS Sector" in df.columns else "GICS sector"
+    df[sym_col] = df[sym_col].str.replace(".", "-", regex=False)
+    return dict(zip(df[sym_col], df[sec_col]))
+
+
 # Fallback sector map for the most liquid names (used if Wikipedia fails)
 SECTOR_MAP_FALLBACK = {
     # Energy
@@ -93,8 +109,14 @@ SECTOR_MAP_FALLBACK = {
 
 
 def get_sectors() -> dict[str, str]:
-    """Return ticker -> sector mapping, trying Wikipedia first."""
+    """Return ticker -> sector mapping, combining S&P 500 + 400 + fallback."""
+    sectors = dict(SECTOR_MAP_FALLBACK)
     try:
-        return get_sp500_sectors()
+        sectors.update(get_sp500_sectors())
     except Exception:
-        return SECTOR_MAP_FALLBACK
+        pass
+    try:
+        sectors.update(get_sp400_sectors())
+    except Exception:
+        pass
+    return sectors

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Live price feed — fetches current prices for ~1000 stocks every 5 minutes
-using yfinance (free, no API key needed).
+using Alpaca market data API.
 
 Saves snapshots to live_feed/prices_latest.csv (overwritten each tick)
 and appends to live_feed/prices_history.csv (cumulative log).
@@ -18,7 +18,8 @@ from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
-import yfinance as yf
+
+from live_feed.alpaca_client import fetch_latest_prices_alpaca
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from data.universe import get_top_universe
@@ -32,24 +33,8 @@ BATCH_SIZE = 100
 
 
 def fetch_current_prices(tickers: list[str]) -> pd.DataFrame:
-    """Fetch latest prices via yfinance in batches."""
-    all_prices = {}
-
-    for i in range(0, len(tickers), BATCH_SIZE):
-        batch = tickers[i : i + BATCH_SIZE]
-        try:
-            df = yf.download(
-                batch, period="1d", interval="1m",
-                auto_adjust=True, progress=False,
-            )
-            if df.empty:
-                continue
-
-            closes = df["Close"] if isinstance(df.columns, pd.MultiIndex) else df
-            latest = closes.iloc[-1]
-            all_prices.update(latest.dropna().to_dict())
-        except Exception as e:
-            print(f"\n  Warning: batch {i}-{i+len(batch)} failed: {e}", flush=True)
+    """Fetch latest prices via Alpaca in batches."""
+    all_prices = fetch_latest_prices_alpaca(tickers, batch_size=BATCH_SIZE)
 
     if not all_prices:
         return pd.DataFrame()
@@ -89,7 +74,7 @@ def git_push(tick: int) -> None:
 def run_live_feed() -> None:
     """Main loop: fetch prices every 5 minutes."""
     print("=" * 50)
-    print("  LIVE PRICE FEED (yfinance)")
+    print("  LIVE PRICE FEED (Alpaca)")
     print("=" * 50)
     print(f"  Interval: {INTERVAL_SECONDS}s ({INTERVAL_SECONDS // 60} min)")
     print(f"  Output:   {LATEST_FILE}")

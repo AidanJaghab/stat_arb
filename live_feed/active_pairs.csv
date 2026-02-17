@@ -1,16 +1,26 @@
 ticker_a,ticker_b,hedge_ratio,sector
-NSC,UNP,0.8285,Industrials
-KO,PG,0.4847,Consumer Staples
-BAC,JPM,0.1526,Financials
-HD,LOW,0.8665,Consumer Discretionary
-CRM,QCOM,1.7935,Information Technology
-EMR,LMT,0.1377,Industrials
-ADBE,QCOM,2.1299,Information Technology
-OXY,VLO,0.1614,Energy
-HD,SBUX,2.812,Consumer Discretionary
-AEP,SO,1.4748,Utilities
-ISRG,JNJ,-2.2853,Health Care
-D,NEE,0.424,Utilities
-BSX,PFE,-8.2799,Health Care
-DHR,UNH,0.216,Health Care
-ABBV,BMY,-0.8722,Health Care
+FOX,FOXA,0.8978,Communication Services
+MLM,VMC,3.6296,Materials
+EVR,SF,4.1307,Financials
+FITB,UMBF,0.3796,Financials
+AVT,LSCC,0.1754,Information Technology
+KEY,USB,0.4635,Financials
+EME,PCAR,6.5839,Industrials
+BAX,LNTH,0.4125,Health Care
+APPF,DBX,5.6447,Information Technology
+FLG,VLY,1.2949,Financials
+DHI,PHM,0.8622,Consumer Discretionary
+SWK,TTC,0.6788,Industrials
+RRX,SWK,3.692,Industrials
+AM,EQT,0.4657,Energy
+AGCO,TKR,1.5092,Industrials
+DTM,TRGP,0.304,Energy
+HLT,MTN,1.9405,Consumer Discretionary
+AVT,ENTG,0.1369,Information Technology
+AVT,SYNA,0.2517,Information Technology
+AWK,CNP,6.2768,Utilities
+EVRG,PPL,1.6335,Utilities
+FE,LNT,0.7642,Utilities
+CMS,PPL,1.4072,Utilities
+BC,FND,1.4679,Consumer Discretionary
+DTM,RRC,0.8772,Energy

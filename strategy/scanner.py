@@ -242,50 +242,36 @@ def format_output(pairs: list[dict]) -> str:
 
 
 if __name__ == "__main__":
-    import yfinance as yf
     from data.sectors import get_sectors
-
-    # Use top liquid S&P 500 names for 5-min scanning
-    LIQUID_TICKERS = [
-        # Energy
-        "XOM", "CVX", "COP", "SLB", "EOG", "MPC", "PSX", "VLO", "OXY", "DVN",
-        # Tech
-        "AAPL", "MSFT", "NVDA", "AVGO", "AMD", "INTC", "CRM", "ADBE", "CSCO",
-        "TXN", "QCOM", "AMAT", "MU", "LRCX", "KLAC", "ADI", "SNPS", "CDNS",
-        # Financials
-        "JPM", "BAC", "WFC", "GS", "MS", "C", "BLK", "SCHW", "USB", "PNC",
-        "AXP", "CME", "ICE", "MCO", "SPGI", "CB",
-        # Consumer Staples
-        "PG", "KO", "PEP", "COST", "WMT", "PM", "MO", "CL", "MDLZ", "GIS",
-        "HSY", "SJM", "KHC", "STZ",
-        # Healthcare
-        "UNH", "JNJ", "LLY", "PFE", "MRK", "ABBV", "TMO", "ABT", "DHR",
-        "BMY", "AMGN", "GILD", "ISRG", "MDT", "SYK", "ZTS", "BSX", "VRTX",
-        # Communication Services
-        "GOOGL", "META", "DIS", "NFLX", "CMCSA", "T", "VZ", "TMUS",
-        # Consumer Discretionary
-        "AMZN", "TSLA", "HD", "MCD", "NKE", "LOW", "SBUX", "TJX", "BKNG",
-        # Industrials
-        "HON", "UPS", "CAT", "DE", "RTX", "LMT", "BA", "FDX", "WM",
-        "EMR", "ITW", "ETN", "NSC", "CSX", "UNP",
-        # Utilities
-        "NEE", "DUK", "SO", "D", "AEP", "EXC", "SRE", "XEL",
-        # Materials
-        "LIN", "APD", "SHW", "ECL", "FCX", "NEM", "NUE", "DOW",
-    ]
-
-    print("Fetching 5-minute price data (last 60 days)...")
-    prices = yf.download(
-        LIQUID_TICKERS, period="60d", interval="5m",
-        auto_adjust=True, progress=True,
+    from live_feed.alpaca_client import (
+        fetch_5min_data_alpaca_batch,
+        get_all_tradeable_tickers,
     )
-    if isinstance(prices.columns, pd.MultiIndex):
-        prices = prices["Close"]
-    prices = prices.dropna(axis=1, how="all").dropna()
-    print(f"Got {len(prices)} bars for {len(prices.columns)} tickers.\n")
 
+    print("Fetching all tradeable NASDAQ + NYSE tickers from Alpaca...")
+    all_tickers = get_all_tradeable_tickers()
+    print(f"  Found {len(all_tickers)} tradeable tickers.\n")
+
+    print("Loading sector classifications...")
     sectors = get_sectors()
-    top_pairs = scan_pairs(prices, sectors, max_pairs=10, max_per_sector=2)
+
+    # Filter to only tickers that have a known sector (S&P 500 + 400)
+    tickers_with_sector = [t for t in all_tickers if t in sectors]
+    print(f"  {len(tickers_with_sector)} tickers have sector data.\n")
+
+    print("Fetching 5-minute price data from Alpaca (last 5 days)...")
+    prices = fetch_5min_data_alpaca_batch(tickers_with_sector, days=5)
+    # Drop tickers with too few bars (keep columns with >= 100 non-NaN values)
+    min_bars = 100
+    valid_cols = [c for c in prices.columns if prices[c].notna().sum() >= min_bars]
+    prices = prices[valid_cols]
+    print(f"Got {len(prices)} rows for {len(prices.columns)} tickers with sufficient data.\n")
+
+    top_pairs = scan_pairs(
+        prices, sectors,
+        max_pairs=25,
+        max_per_sector=4,
+    )
 
     output = format_output(top_pairs)
     print(output)
@@ -295,3 +281,17 @@ if __name__ == "__main__":
     with open(out_path, "w") as f:
         f.write(output)
     print(f"\nSaved to {out_path}")
+
+    # Also save as active_pairs.csv for the live trader
+    pairs_csv = Path(__file__).resolve().parent.parent / "live_feed" / "active_pairs.csv"
+    pair_rows = [
+        {
+            "ticker_a": p["ticker_a"],
+            "ticker_b": p["ticker_b"],
+            "hedge_ratio": round(p["hedge_ratio"], 4),
+            "sector": p["sector"],
+        }
+        for p in top_pairs
+    ]
+    pd.DataFrame(pair_rows).to_csv(pairs_csv, index=False)
+    print(f"Saved {len(pair_rows)} pairs to {pairs_csv}")

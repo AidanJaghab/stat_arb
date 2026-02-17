@@ -3,134 +3,314 @@
   5-Minute Intraday Mean Reversion Strategy
 ============================================================
 
-PAIR 1: NSC / UNP
-  Position: Short NSC / Long UNP
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 0.8285
-  Sector: Industrials
-  Coint p-value: 0.0030 | ADF p-value: 0.0005
-  Half-life: 53.7 bars | Current Z: +0.05
-  R²: 0.9752 | Score: 0.7977
-  Rationale: Strong cointegration (p=0.003) with
-    stationary spread (ADF p=0.001). 54-bar mean-reversion
-    half-life is suitable for 5-min trading. R²=0.98.
+PAIR 1: FOX / FOXA
+  Position: Long FOX / Short FOXA
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.8978
+  Sector: Communication Services
+  Coint p-value: 0.0000 | ADF p-value: 0.0000
+  Half-life: 0.9 bars | Current Z: -1.10
+  R²: 0.8772 | Score: 0.9754
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.88.
 
-PAIR 2: KO / PG
-  Position: Short KO / Long PG
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 0.4847
-  Sector: Consumer Staples
-  Coint p-value: 0.0053 | ADF p-value: 0.0010
-  Half-life: 110.0 bars | Current Z: +0.09
-  R²: 0.9065 | Score: 0.7812
+PAIR 2: MLM / VMC
+  Position: Long MLM / Short VMC
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 3.6296
+  Sector: Materials
+  Coint p-value: 0.0050 | ADF p-value: 0.0009
+  Half-life: 1.2 bars | Current Z: -1.78
+  R²: 0.9135 | Score: 0.9512
   Rationale: Strong cointegration (p=0.005) with
-    stationary spread (ADF p=0.001). 110-bar mean-reversion
+    stationary spread (ADF p=0.001). 1-bar mean-reversion
     half-life is suitable for 5-min trading. R²=0.91.
 
-PAIR 3: BAC / JPM
-  Position: Short BAC / Long JPM
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 0.1526
+PAIR 3: EVR / SF
+  Position: Short EVR / Long SF
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 4.1307
   Sector: Financials
-  Coint p-value: 0.0022 | ADF p-value: 0.0004
-  Half-life: 82.4 bars | Current Z: +0.03
-  R²: 0.8947 | Score: 0.7806
-  Rationale: Strong cointegration (p=0.002) with
-    stationary spread (ADF p=0.000). 82-bar mean-reversion
-    half-life is suitable for 5-min trading. R²=0.89.
-
-PAIR 4: HD / LOW
-  Position: Short HD / Long LOW
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 0.8665
-  Sector: Consumer Discretionary
-  Coint p-value: 0.0038 | ADF p-value: 0.0007
-  Half-life: 155.9 bars | Current Z: +0.89
-  R²: 0.8599 | Score: 0.7719
-  Rationale: Strong cointegration (p=0.004) with
-    stationary spread (ADF p=0.001). 156-bar mean-reversion
-    half-life is suitable for 5-min trading. R²=0.86.
-
-PAIR 5: CRM / QCOM
-  Position: Short CRM / Long QCOM
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 1.7935
-  Sector: Information Technology
-  Coint p-value: 0.0329 | ADF p-value: 0.0081
-  Half-life: 124.5 bars | Current Z: +1.77
-  R²: 0.8825 | Score: 0.7658
-  Rationale: Strong cointegration (p=0.033) with
-    stationary spread (ADF p=0.008). 125-bar mean-reversion
-    half-life is suitable for 5-min trading. R²=0.88.
-
-PAIR 6: EMR / LMT
-  Position: Long EMR / Short LMT
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 0.1377
-  Sector: Industrials
-  Coint p-value: 0.0244 | ADF p-value: 0.0057
-  Half-life: 144.7 bars | Current Z: -1.66
-  R²: 0.8616 | Score: 0.7647
+  Coint p-value: 0.0240 | ADF p-value: 0.0058
+  Half-life: 1.3 bars | Current Z: +0.71
+  R²: 0.9173 | Score: 0.9307
   Rationale: Strong cointegration (p=0.024) with
-    stationary spread (ADF p=0.006). 145-bar mean-reversion
-    half-life is suitable for 5-min trading. R²=0.86.
+    stationary spread (ADF p=0.006). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.92.
 
-PAIR 7: ADBE / QCOM
-  Position: Short ADBE / Long QCOM
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 2.1299
+PAIR 4: FITB / UMBF
+  Position: Long FITB / Short UMBF
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.3796
+  Sector: Financials
+  Coint p-value: 0.0003 | ADF p-value: 0.0001
+  Half-life: 1.2 bars | Current Z: -0.48
+  R²: 0.7935 | Score: 0.9296
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.79.
+
+PAIR 5: AVT / LSCC
+  Position: Long AVT / Short LSCC
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.1754
   Sector: Information Technology
-  Coint p-value: 0.0415 | ADF p-value: 0.0107
-  Half-life: 127.5 bars | Current Z: +0.88
-  R²: 0.8801 | Score: 0.7619
-  Rationale: Strong cointegration (p=0.041) with
-    stationary spread (ADF p=0.011). 127-bar mean-reversion
+  Coint p-value: 0.0015 | ADF p-value: 0.0003
+  Half-life: 1.0 bars | Current Z: -0.05
+  R²: 0.6311 | Score: 0.9257
+  Rationale: Strong cointegration (p=0.002) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.63.
+
+PAIR 6: KEY / USB
+  Position: Short KEY / Long USB
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.4635
+  Sector: Financials
+  Coint p-value: 0.0002 | ADF p-value: 0.0000
+  Half-life: 1.3 bars | Current Z: +1.21
+  R²: 0.8818 | Score: 0.9250
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
     half-life is suitable for 5-min trading. R²=0.88.
 
-PAIR 8: OXY / VLO
-  Position: Long OXY / Short VLO
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 0.1614
-  Sector: Energy
-  Coint p-value: 0.0045 | ADF p-value: 0.0008
-  Half-life: 127.4 bars | Current Z: -1.29
-  R²: 0.8085 | Score: 0.7617
-  Rationale: Strong cointegration (p=0.004) with
-    stationary spread (ADF p=0.001). 127-bar mean-reversion
-    half-life is suitable for 5-min trading. R²=0.81.
+PAIR 7: EME / PCAR
+  Position: Short EME / Long PCAR
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 6.5839
+  Sector: Industrials
+  Coint p-value: 0.0035 | ADF p-value: 0.0007
+  Half-life: 1.2 bars | Current Z: +5.40
+  R²: 0.7796 | Score: 0.9236
+  Rationale: Strong cointegration (p=0.003) with
+    stationary spread (ADF p=0.001). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.78.
 
-PAIR 9: HD / SBUX
-  Position: Long HD / Short SBUX
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 2.8120
+PAIR 8: BAX / LNTH
+  Position: Short BAX / Long LNTH
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.4125
+  Sector: Health Care
+  Coint p-value: 0.0000 | ADF p-value: 0.0000
+  Half-life: 1.5 bars | Current Z: +0.17
+  R²: 0.9454 | Score: 0.9213
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.95.
+
+PAIR 9: APPF / DBX
+  Position: Long APPF / Short DBX
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 5.6447
+  Sector: Information Technology
+  Coint p-value: 0.0000 | ADF p-value: 0.0000
+  Half-life: 1.3 bars | Current Z: -0.49
+  R²: 0.8289 | Score: 0.9196
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.83.
+
+PAIR 10: FLG / VLY
+  Position: Short FLG / Long VLY
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 1.2949
+  Sector: Financials
+  Coint p-value: 0.0076 | ADF p-value: 0.0016
+  Half-life: 1.6 bars | Current Z: +0.71
+  R²: 0.9490 | Score: 0.9112
+  Rationale: Strong cointegration (p=0.008) with
+    stationary spread (ADF p=0.002). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.95.
+
+PAIR 11: DHI / PHM
+  Position: Long DHI / Short PHM
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.8622
   Sector: Consumer Discretionary
-  Coint p-value: 0.0340 | ADF p-value: 0.0085
-  Half-life: 130.5 bars | Current Z: -0.15
-  R²: 0.8021 | Score: 0.7492
-  Rationale: Strong cointegration (p=0.034) with
-    stationary spread (ADF p=0.008). 131-bar mean-reversion
+  Coint p-value: 0.0176 | ADF p-value: 0.0193
+  Half-life: 1.2 bars | Current Z: -2.03
+  R²: 0.7982 | Score: 0.9110
+  Rationale: Strong cointegration (p=0.018) with
+    stationary spread (ADF p=0.019). 1-bar mean-reversion
     half-life is suitable for 5-min trading. R²=0.80.
 
-PAIR 10: AEP / SO
-  Position: Long AEP / Short SO
-  Portfolio Allocation: 10.0%
-  Hedge Ratio: 1.4748
+PAIR 12: SWK / TTC
+  Position: Long SWK / Short TTC
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.6788
+  Sector: Industrials
+  Coint p-value: 0.0000 | ADF p-value: 0.0000
+  Half-life: 1.2 bars | Current Z: -0.13
+  R²: 0.7063 | Score: 0.9081
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.71.
+
+PAIR 13: RRX / SWK
+  Position: Short RRX / Long SWK
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 3.6920
+  Sector: Industrials
+  Coint p-value: 0.0228 | ADF p-value: 0.0048
+  Half-life: 1.2 bars | Current Z: +0.89
+  R²: 0.7648 | Score: 0.9062
+  Rationale: Strong cointegration (p=0.023) with
+    stationary spread (ADF p=0.005). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.76.
+
+PAIR 14: AM / EQT
+  Position: Short AM / Long EQT
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.4657
+  Sector: Energy
+  Coint p-value: 0.0109 | ADF p-value: 0.0024
+  Half-life: 1.7 bars | Current Z: +0.35
+  R²: 0.9163 | Score: 0.9002
+  Rationale: Strong cointegration (p=0.011) with
+    stationary spread (ADF p=0.002). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.92.
+
+PAIR 15: AGCO / TKR
+  Position: Short AGCO / Long TKR
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 1.5092
+  Sector: Industrials
+  Coint p-value: 0.0040 | ADF p-value: 0.0008
+  Half-life: 1.5 bars | Current Z: +3.46
+  R²: 0.8576 | Score: 0.9001
+  Rationale: Strong cointegration (p=0.004) with
+    stationary spread (ADF p=0.001). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.86.
+
+PAIR 16: DTM / TRGP
+  Position: Long DTM / Short TRGP
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.3040
+  Sector: Energy
+  Coint p-value: 0.0000 | ADF p-value: 0.0000
+  Half-life: 0.9 bars | Current Z: -3.48
+  R²: 0.4951 | Score: 0.8990
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.50.
+
+PAIR 17: HLT / MTN
+  Position: Long HLT / Short MTN
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 1.9405
+  Sector: Consumer Discretionary
+  Coint p-value: 0.0153 | ADF p-value: 0.0036
+  Half-life: 1.6 bars | Current Z: -1.56
+  R²: 0.8975 | Score: 0.8985
+  Rationale: Strong cointegration (p=0.015) with
+    stationary spread (ADF p=0.004). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.90.
+
+PAIR 18: AVT / ENTG
+  Position: Short AVT / Long ENTG
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.1369
+  Sector: Information Technology
+  Coint p-value: 0.0012 | ADF p-value: 0.0002
+  Half-life: 1.2 bars | Current Z: +0.39
+  R²: 0.6448 | Score: 0.8982
+  Rationale: Strong cointegration (p=0.001) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.64.
+
+PAIR 19: AVT / SYNA
+  Position: Long AVT / Short SYNA
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.2517
+  Sector: Information Technology
+  Coint p-value: 0.0000 | ADF p-value: 0.0000
+  Half-life: 1.2 bars | Current Z: -0.78
+  R²: 0.6227 | Score: 0.8976
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.62.
+
+PAIR 20: AWK / CNP
+  Position: Short AWK / Long CNP
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 6.2768
   Sector: Utilities
-  Coint p-value: 0.0481 | ADF p-value: 0.0128
-  Half-life: 122.2 bars | Current Z: -1.15
-  R²: 0.8256 | Score: 0.7485
-  Rationale: Strong cointegration (p=0.048) with
-    stationary spread (ADF p=0.013). 122-bar mean-reversion
-    half-life is suitable for 5-min trading. R²=0.83.
+  Coint p-value: 0.0359 | ADF p-value: 0.0005
+  Half-life: 1.7 bars | Current Z: +1.13
+  R²: 0.9197 | Score: 0.8901
+  Rationale: Strong cointegration (p=0.036) with
+    stationary spread (ADF p=0.001). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.92.
+
+PAIR 21: EVRG / PPL
+  Position: Short EVRG / Long PPL
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 1.6335
+  Sector: Utilities
+  Coint p-value: 0.0011 | ADF p-value: 0.0452
+  Half-life: 1.7 bars | Current Z: +4.08
+  R²: 0.9149 | Score: 0.8898
+  Rationale: Strong cointegration (p=0.001) with
+    stationary spread (ADF p=0.045). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.91.
+
+PAIR 22: FE / LNT
+  Position: Short FE / Long LNT
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.7642
+  Sector: Utilities
+  Coint p-value: 0.0004 | ADF p-value: 0.0001
+  Half-life: 2.0 bars | Current Z: +5.85
+  R²: 0.9383 | Score: 0.8883
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.94.
+
+PAIR 23: CMS / PPL
+  Position: Short CMS / Long PPL
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 1.4072
+  Sector: Utilities
+  Coint p-value: 0.0001 | ADF p-value: 0.0000
+  Half-life: 2.1 bars | Current Z: +4.57
+  R²: 0.9557 | Score: 0.8848
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.96.
+
+PAIR 24: BC / FND
+  Position: Long BC / Short FND
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 1.4679
+  Sector: Consumer Discretionary
+  Coint p-value: 0.0003 | ADF p-value: 0.0000
+  Half-life: 1.5 bars | Current Z: -0.90
+  R²: 0.7670 | Score: 0.8836
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 2-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.77.
+
+PAIR 25: DTM / RRC
+  Position: Long DTM / Short RRC
+  Portfolio Allocation: 4.0%
+  Hedge Ratio: 0.8772
+  Sector: Energy
+  Coint p-value: 0.0000 | ADF p-value: 0.0000
+  Half-life: 1.1 bars | Current Z: -0.54
+  R²: 0.4721 | Score: 0.8834
+  Rationale: Strong cointegration (p=0.000) with
+    stationary spread (ADF p=0.000). 1-bar mean-reversion
+    half-life is suitable for 5-min trading. R²=0.47.
 
 ============================================================
   PORTFOLIO SUMMARY
 ============================================================
-  Number of pairs: 10
+  Number of pairs: 25
   Total gross exposure: 200.0%
   Net exposure: ~0% (dollar neutral)
   Max allocation per pair: 10%
   Expected annualized volatility: 5-12%
   Expected Sharpe range: 1.0-2.5
-  Sectors represented: 7
+  Sectors represented: 9
 ============================================================

@@ -21,11 +21,17 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import yfinance as yf
+
+from live_feed.alpaca_client import (
+    execute_trade,
+    fetch_5min_data_alpaca,
+    get_account_info,
+    get_positions,
+)
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-INTERVAL_SECONDS = 60  # 1 minute (fastest safe with yfinance free tier)
+INTERVAL_SECONDS = 3  # ~20 ticks/min, well within Alpaca's 200 req/min limit
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SIGNALS_FILE = PROJECT_ROOT / "live_feed" / "signals.csv"
 POSITIONS_FILE = PROJECT_ROOT / "live_feed" / "positions.csv"
@@ -133,14 +139,8 @@ def load_pairs() -> list[dict]:
 
 
 def fetch_5min_data(tickers: list[str]) -> pd.DataFrame:
-    """Fetch recent 5-min bars for the given tickers."""
-    df = yf.download(
-        tickers, period="5d", interval="5m",
-        auto_adjust=True, progress=False,
-    )
-    if isinstance(df.columns, pd.MultiIndex):
-        df = df["Close"]
-    return df.dropna()
+    """Fetch recent 5-min bars for the given tickers via Alpaca."""
+    return fetch_5min_data_alpaca(tickers)
 
 
 def compute_zscore(spread: pd.Series, lookback: int = ZSCORE_LOOKBACK) -> float:
@@ -306,6 +306,20 @@ def run_trader() -> None:
     all_tickers = sorted(all_tickers)
     log(f"Tracking {len(all_tickers)} unique tickers across {len(positions)} pairs.\n")
 
+    # Position reconciliation: check Alpaca positions vs local state
+    try:
+        alpaca_positions = get_positions()
+        alpaca_symbols = {p["symbol"] for p in alpaca_positions}
+        if alpaca_symbols:
+            log(f"Alpaca has open positions in: {', '.join(sorted(alpaca_symbols))}")
+        else:
+            log("Alpaca: no open positions.")
+        account = get_account_info()
+        log(f"Alpaca account — equity: ${float(account['equity']):,.2f}, "
+            f"cash: ${float(account['cash']):,.2f}\n")
+    except Exception as e:
+        log(f"Warning: could not reconcile Alpaca positions: {e}\n")
+
     tick = 0
     while True:
         tick += 1
@@ -351,6 +365,12 @@ def run_trader() -> None:
 
                 actions.append(action)
                 log_signal(action)
+
+                # Execute paper trade via Alpaca
+                try:
+                    execute_trade(action)
+                except Exception as e:
+                    log(f"  [ALPACA] Trade execution error: {e}")
 
                 if action["action"] == "EXIT":
                     log(f"  >>> EXIT: {action['pair']} @ z={z:+.2f}")
