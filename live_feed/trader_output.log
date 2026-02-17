@@ -43,3 +43,43 @@ Alpaca account — equity: $99,989.64, cash: $100,464.63
   Account size:   $10,000
 ======================================================================
 
+[2026-02-17 11:55:12] Tick #3
+  Data fetch failed: HTTPSConnectionPool(host='data.alpaca.markets', port=443): Read timed out. (read timeout=None)
+[2026-02-17 12:03:22] Tick #4
+
+======================================================================
+  LIVE SIGNALS — 2026-02-17 12:03:22
+======================================================================
+
+  PAIR: MLM / VMC  (Materials)
+  Z-Score: +nan
+  Prices: MLM = $671.25  |  VMC = $308.01
+  Status: WATCHING (nan% to entry)
+  If z hits -2.0 → Buy 0 shares MLM ($0.00)
+                    Short 1 shares VMC ($308.01)
+
+  PAIR: KEY / USB  (Financials)
+  Z-Score: +nan
+  Prices: KEY = $21.69  |  USB = $58.00
+  Status: WATCHING (nan% to entry)
+  If z hits -2.0 → Buy 23 shares KEY ($498.87)
+                    Short 8 shares USB ($464.00)
+
+  PAIR: FE / LNT  (Utilities)
+  Z-Score: +nan
+  Prices: FE = $50.22  |  LNT = $70.77
+  Status: WATCHING (nan% to entry)
+  If z hits -2.0 → Buy 9 shares FE ($451.98)
+                    Short 7 shares LNT ($495.39)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 3  |  Quiet: 22
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
