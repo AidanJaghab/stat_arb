@@ -45,6 +45,8 @@ TOTAL_CAPITAL = 100_000    # total account size (Alpaca paper)
 MAX_PAIRS = 25
 MAX_EXPOSURE_PER_PAIR = 5_000  # $5,000 per leg = $10,000 gross per pair
 WATCHLIST_THRESHOLD = 1.75  # only show pairs with |z| >= 1.75
+ZSCORE_HARD_STOP = 3.25    # force exit if |z| blows out past this
+TIME_STOP_BARS = 390       # 5 trading days * 78 bars/day (5-min bars, 6.5hr session)
 
 
 class PairPosition:
@@ -58,6 +60,23 @@ class PairPosition:
         self.signal = 0  # +1 long spread, -1 short spread, 0 flat
         self.entry_z = None
         self.entry_time = None
+        self.bars_held = 0
+
+    def _force_exit(self, z_score: float, reason: str) -> dict:
+        """Build a forced exit action and reset state."""
+        action = {
+            "action": "EXIT",
+            "prev_signal": "LONG_SPREAD" if self.signal == 1 else "SHORT_SPREAD",
+            "entry_z": self.entry_z,
+            "exit_z": z_score,
+            "bars_held": self.bars_held,
+            "exit_reason": reason,
+        }
+        self.signal = 0
+        self.entry_z = None
+        self.entry_time = None
+        self.bars_held = 0
+        return action
 
     def update(self, z_score: float, timestamp: str) -> dict | None:
         """
@@ -73,6 +92,7 @@ class PairPosition:
                 self.signal = 1  # long spread: long A, short B
                 self.entry_z = z_score
                 self.entry_time = timestamp
+                self.bars_held = 0
                 action = {
                     "action": "ENTER_LONG_SPREAD",
                     "long": self.ticker_a,
@@ -82,24 +102,26 @@ class PairPosition:
                 self.signal = -1  # short spread: short A, long B
                 self.entry_z = z_score
                 self.entry_time = timestamp
+                self.bars_held = 0
                 action = {
                     "action": "ENTER_SHORT_SPREAD",
                     "long": self.ticker_b,
                     "short": self.ticker_a,
                 }
         else:
-            # Look for exit
-            if abs(z_score) <= ZSCORE_EXIT:
-                action = {
-                    "action": "EXIT",
-                    "prev_signal": "LONG_SPREAD" if self.signal == 1 else "SHORT_SPREAD",
-                    "entry_z": self.entry_z,
-                    "exit_z": z_score,
-                    "bars_held": None,  # filled by caller
-                }
-                self.signal = 0
-                self.entry_z = None
-                self.entry_time = None
+            self.bars_held += 1
+
+            # Hard stop: z-score blew out
+            if abs(z_score) >= ZSCORE_HARD_STOP:
+                action = self._force_exit(z_score, "HARD_STOP")
+
+            # Time stop: held too long
+            elif self.bars_held >= TIME_STOP_BARS:
+                action = self._force_exit(z_score, "TIME_STOP")
+
+            # Normal mean-reversion exit
+            elif abs(z_score) <= ZSCORE_EXIT:
+                action = self._force_exit(z_score, "PROFIT_EXIT")
 
         if action:
             action.update({
@@ -373,7 +395,9 @@ def run_trader() -> None:
                     log(f"  [ALPACA] Trade execution error: {e}")
 
                 if action["action"] == "EXIT":
-                    log(f"  >>> EXIT: {action['pair']} @ z={z:+.2f}")
+                    reason = action.get("exit_reason", "UNKNOWN")
+                    bars = action.get("bars_held", "?")
+                    log(f"  >>> EXIT ({reason}): {action['pair']} @ z={z:+.2f} after {bars} bars")
                     log(f"      Sell {shares_a} shares {pos.ticker_a}, Cover {shares_b} shares {pos.ticker_b}")
                 else:
                     long_tk = action.get("long", "")
