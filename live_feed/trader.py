@@ -47,6 +47,7 @@ MAX_EXPOSURE_PER_PAIR = 5_000  # $5,000 per leg = $10,000 gross per pair
 WATCHLIST_THRESHOLD = 1.75  # only show pairs with |z| >= 1.75
 ZSCORE_HARD_STOP = 3.25    # force exit if |z| blows out past this
 TIME_STOP_BARS = 390       # 5 trading days * 78 bars/day (5-min bars, 6.5hr session)
+COOLDOWN_BARS = 78         # 1 trading day cooldown after hard/time stop
 
 
 class PairPosition:
@@ -61,6 +62,7 @@ class PairPosition:
         self.entry_z = None
         self.entry_time = None
         self.bars_held = 0
+        self.cooldown_remaining = 0
 
     def _force_exit(self, z_score: float, reason: str) -> dict:
         """Build a forced exit action and reset state."""
@@ -76,6 +78,8 @@ class PairPosition:
         self.entry_z = None
         self.entry_time = None
         self.bars_held = 0
+        if reason in ("HARD_STOP", "TIME_STOP"):
+            self.cooldown_remaining = COOLDOWN_BARS
         return action
 
     def update(self, z_score: float, timestamp: str) -> dict | None:
@@ -87,6 +91,11 @@ class PairPosition:
         action = None
 
         if self.signal == 0:
+            # Tick down cooldown
+            if self.cooldown_remaining > 0:
+                self.cooldown_remaining -= 1
+                return None
+
             # Look for entry
             if z_score <= -ZSCORE_ENTRY:
                 self.signal = 1  # long spread: long A, short B
