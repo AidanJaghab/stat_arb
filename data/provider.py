@@ -10,10 +10,12 @@ To add a new provider:
 
 import os
 from abc import ABC, abstractmethod
+from datetime import datetime
 
 import pandas as pd
-import yfinance as yf
-import databento as db
+from alpaca.data import StockHistoricalDataClient
+from alpaca.data.requests import StockBarsRequest
+from alpaca.data.timeframe import TimeFrame
 
 
 class DataProvider(ABC):
@@ -27,60 +29,61 @@ class DataProvider(ABC):
         ...
 
 
-class YFinanceProvider(DataProvider):
-    """Fetch data via the yfinance library (free, no API key)."""
-
-    def get_prices(
-        self, tickers: list[str], start: str, end: str
-    ) -> pd.DataFrame:
-        df = yf.download(
-            tickers, start=start, end=end, auto_adjust=True, progress=False
-        )
-        # yf.download returns MultiIndex columns when len(tickers) > 1
-        if isinstance(df.columns, pd.MultiIndex):
-            df = df["Close"]
-        return df.dropna(axis=1, how="all").dropna()
-
-
-class DatabentoProvider(DataProvider):
-    """Fetch data via the Databento API. Requires DATABENTO_API_KEY env var."""
+class AlpacaProvider(DataProvider):
+    """Fetch daily bar data via Alpaca. Uses ALPACA_API_KEY / ALPACA_SECRET_KEY env vars."""
 
     def __init__(self) -> None:
-        key = os.environ.get("DATABENTO_API_KEY")
-        if not key:
-            raise RuntimeError(
-                "Set DATABENTO_API_KEY environment variable to use DatabentoProvider"
-            )
-        self.client = db.Historical(key)
+        api_key = os.environ["ALPACA_API_KEY"]
+        secret_key = os.environ["ALPACA_SECRET_KEY"]
+        self.client = StockHistoricalDataClient(api_key, secret_key)
 
     def get_prices(
         self, tickers: list[str], start: str, end: str
     ) -> pd.DataFrame:
-        # Databento uses dataset + schema; XNAS.ITCH for US equities
-        data = self.client.timeseries.get_range(
-            dataset="XNAS.ITCH",
-            symbols=tickers,
-            schema="ohlcv-1d",
-            start=start,
-            end=end,
-        )
-        df = data.to_df()
-        # Pivot to (dates x tickers) using the close column
-        df = df.reset_index()
-        pivot = df.pivot_table(
-            index="ts_event", columns="symbol", values="close"
+        batch_size = 500
+        all_frames = []
+
+        for i in range(0, len(tickers), batch_size):
+            batch = tickers[i : i + batch_size]
+            try:
+                request = StockBarsRequest(
+                    symbol_or_symbols=batch,
+                    timeframe=TimeFrame.Day,
+                    start=datetime.strptime(start, "%Y-%m-%d"),
+                    end=datetime.strptime(end, "%Y-%m-%d"),
+                )
+                bars = self.client.get_stock_bars(request)
+                bar_df = bars.df
+                if not bar_df.empty:
+                    all_frames.append(bar_df)
+                print(f"    Fetched batch {i}-{i+len(batch)} "
+                      f"({len(bar_df)} bars)", flush=True)
+            except Exception as e:
+                print(f"    Warning: batch {i}-{i+len(batch)} failed: {e}",
+                      flush=True)
+
+        if not all_frames:
+            return pd.DataFrame()
+
+        combined = pd.concat(all_frames).reset_index()
+        pivot = combined.pivot_table(
+            index="timestamp", columns="symbol", values="close"
         )
         pivot.index = pd.to_datetime(pivot.index).tz_localize(None)
         pivot.index.name = "Date"
-        return pivot.dropna(axis=1, how="all").dropna()
+        # Drop tickers with insufficient data, then forward-fill small gaps
+        min_rows = len(pivot) * 0.5
+        valid = [c for c in pivot.columns if pivot[c].notna().sum() >= min_rows]
+        pivot = pivot[valid].ffill().dropna()
+        return pivot
 
 
 # --- Factory --------------------------------------------------------------- #
 
-def get_provider(name: str = "yfinance") -> DataProvider:
+def get_provider(name: str = "alpaca") -> DataProvider:
     """Return the provider instance matching *name*."""
     providers = {
-        "databento": DatabentoProvider
+        "alpaca": AlpacaProvider,
     }
     if name not in providers:
         raise ValueError(
