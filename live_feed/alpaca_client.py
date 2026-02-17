@@ -43,17 +43,17 @@ def _get_data_client() -> StockHistoricalDataClient:
 
 def fetch_5min_data_alpaca(tickers: list[str]) -> pd.DataFrame:
     """
-    Fetch recent 5-min bars for given tickers via Alpaca.
+    Fetch recent 1-min bars for given tickers via Alpaca.
 
     Returns a DataFrame with DatetimeIndex and one column per ticker (close prices),
     matching the format previously returned by yfinance.
     """
     end = datetime.now()
-    start = end - timedelta(days=5)
+    start = end - timedelta(days=2)  # ~156 bars per ticker at 5-min, enough for lookback
 
     request = StockBarsRequest(
         symbol_or_symbols=tickers,
-        timeframe=TimeFrame.Minute,
+        timeframe=TimeFrame(5, TimeFrameUnit.Minute),
         start=start,
         end=end,
     )
@@ -69,7 +69,7 @@ def fetch_5min_data_alpaca(tickers: list[str]) -> pd.DataFrame:
     pivot = bar_df.pivot_table(index="timestamp", columns="symbol", values="close")
     pivot.index = pd.to_datetime(pivot.index)
     pivot = pivot.sort_index()
-    return pivot.dropna()
+    return pivot.ffill().dropna(how="all")
 
 
 def fetch_latest_prices_alpaca(tickers: list[str], batch_size: int = 100) -> dict:
