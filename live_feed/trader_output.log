@@ -713,3 +713,92 @@ Alpaca account — equity: $99,869.91, cash: $103,143.05
   Account size:   $100,000
 ======================================================================
 
+[2026-02-17 14:10:29] Tick #9
+  >>> ENTER_LONG_SPREAD: DTM/RRC @ z=-3.71
+      BUY  37 shares of DTM @ $133.21 = $4,928.77
+      SHORT 131 shares of RRC @ $37.94 = $4,970.14
+
+======================================================================
+  LIVE SIGNALS — 2026-02-17 14:10:29
+======================================================================
+
+  PAIR: FOX / FOXA  (Communication Services)
+  Z-Score: +2.06
+  Prices: FOX = $51.70  |  FOXA = $56.60
+  ACTION: SHORT SPREAD
+    SHORT 96 shares of FOX @ $51.70 = $4,963.20
+    BUY  88 shares of FOXA @ $56.60 = $4,980.97
+    Long:  $4,980.97
+    Short: $4,963.20
+    Net:   $17.77
+    Entry Z: +2.18  |  Entry time: 2026-02-17 14:02:14
+
+  PAIR: FITB / UMBF  (Financials)
+  Z-Score: +2.07
+  Prices: FITB = $53.00  |  UMBF = $128.77
+  ACTION: SHORT SPREAD
+    SHORT 94 shares of FITB @ $53.00 = $4,982.00
+    BUY  38 shares of UMBF @ $128.77 = $4,893.26
+    Long:  $4,893.26
+    Short: $4,982.00
+    Net:   $-88.74
+    Entry Z: +2.19  |  Entry time: 2026-02-17 14:02:14
+
+  PAIR: BAX / LNTH  (Health Care)
+  Z-Score: -2.57
+  Prices: BAX = $19.84  |  LNTH = $70.00
+  ACTION: LONG SPREAD
+    BUY  252 shares of BAX @ $19.84 = $4,999.68
+    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
+    Long:  $4,999.68
+    Short: $4,970.00
+    Net:   $29.68
+    Entry Z: -2.17  |  Entry time: 2026-02-17 14:02:14
+
+  PAIR: FLG / VLY  (Financials)
+  Z-Score: +1.80
+  Prices: FLG = $14.09  |  VLY = $13.46
+  Status: WATCHING (90% to entry)
+  If z hits +2.0 → Short 354 shares FLG ($4,987.86)
+                    Buy 371 shares VLY ($4,994.44)
+
+  PAIR: HLT / MTN  (Consumer Discretionary)
+  Z-Score: -1.98
+  Prices: HLT = $313.52  |  MTN = $134.32
+  ACTION: LONG SPREAD
+    BUY  15 shares of HLT @ $313.52 = $4,702.80
+    SHORT 37 shares of MTN @ $134.32 = $4,969.84
+    Long:  $4,702.80
+    Short: $4,969.84
+    Net:   $-267.04
+    Entry Z: -2.09  |  Entry time: 2026-02-17 14:02:14
+
+  PAIR: AWK / CNP  (Utilities)
+  Z-Score: +1.98
+  Prices: AWK = $133.75  |  CNP = $42.52
+  Status: WATCHING (99% to entry)
+  If z hits +2.0 → Short 37 shares AWK ($4,948.75)
+                    Buy 117 shares CNP ($4,974.84)
+
+  PAIR: DTM / RRC  (Energy)
+  Z-Score: -3.71
+  Prices: DTM = $133.21  |  RRC = $37.94
+  ACTION: LONG SPREAD
+    BUY  37 shares of DTM @ $133.21 = $4,928.77
+    SHORT 131 shares of RRC @ $37.94 = $4,970.14
+    Long:  $4,928.77
+    Short: $4,970.14
+    Net:   $-41.37
+    Entry Z: -3.71  |  Entry time: 2026-02-17 14:10:29
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 5  |  Watching: 2  |  Quiet: 18
+  Total long:   $24,505.48
+  Total short:  $24,855.18
+  Gross exposure: $49,360.66 / $10,000 max
+  Net exposure:   $-349.70 (target: $0)
+  Account size:   $100,000
+======================================================================
+
