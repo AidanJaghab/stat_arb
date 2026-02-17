@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 
 import pandas as pd
 from alpaca.data import StockHistoricalDataClient
+from alpaca.data.enums import DataFeed
 from alpaca.data.requests import StockBarsRequest
 from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 from alpaca.trading.client import TradingClient
@@ -48,14 +49,15 @@ def fetch_5min_data_alpaca(tickers: list[str]) -> pd.DataFrame:
     Returns a DataFrame with DatetimeIndex and one column per ticker (close prices),
     matching the format previously returned by yfinance.
     """
-    end = datetime.now()
-    start = end - timedelta(days=2)  # ~156 bars per ticker at 5-min, enough for lookback
+    end = datetime.now() - timedelta(minutes=16)  # 15-min delay for free SIP access
+    start = end - timedelta(days=5)
 
     request = StockBarsRequest(
         symbol_or_symbols=tickers,
         timeframe=TimeFrame(5, TimeFrameUnit.Minute),
         start=start,
         end=end,
+        feed=DataFeed.SIP,
     )
 
     bars = _get_data_client().get_stock_bars(request)

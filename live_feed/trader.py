@@ -41,9 +41,9 @@ OUTPUT_LOG = PROJECT_ROOT / "live_feed" / "trader_output.log"
 ZSCORE_LOOKBACK = 60       # 60 x 5min = 5 hours rolling window
 ZSCORE_ENTRY = 2.0
 ZSCORE_EXIT = 0.5
-TOTAL_CAPITAL = 10_000     # total account size
+TOTAL_CAPITAL = 100_000    # total account size (Alpaca paper)
 MAX_PAIRS = 25
-MAX_EXPOSURE_PER_PAIR = 500  # $500 per leg = $1,000 gross per pair
+MAX_EXPOSURE_PER_PAIR = 5_000  # $5,000 per leg = $10,000 gross per pair
 WATCHLIST_THRESHOLD = 1.75  # only show pairs with |z| >= 1.75
 
 
