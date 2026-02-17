@@ -2252,3 +2252,38 @@ Alpaca account — equity: $100,000.00, cash: $100,000.00
   Account size:   $10,000
 ======================================================================
 
+[2026-02-17 10:50:52] Tick #65
+
+======================================================================
+  LIVE SIGNALS — 2026-02-17 10:50:53
+======================================================================
+
+  PAIR: AVT / LSCC  (Information Technology)
+  Z-Score: +1.79
+  Prices: AVT = $65.76  |  LSCC = $97.63
+  Status: WATCHING (89% to entry)
+  If z hits +2.0 → Short 7 shares AVT ($460.32)
+                    Buy 5 shares LSCC ($488.15)
+
+  PAIR: AGCO / TKR  (Industrials)
+  Z-Score: +2.36
+  Prices: AGCO = $140.49  |  TKR = $107.84
+  ACTION: SHORT SPREAD
+    SHORT 3 shares of AGCO @ $140.49 = $421.47
+    BUY  4 shares of TKR @ $107.84 = $431.36
+    Long:  $431.36
+    Short: $421.47
+    Net:   $9.89
+    Entry Z: +2.36  |  Entry time: 2026-02-17 10:45:33
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 1  |  Watching: 1  |  Quiet: 23
+  Total long:   $431.36
+  Total short:  $421.47
+  Gross exposure: $852.83 / $10,000 max
+  Net exposure:   $9.89 (target: $0)
+  Account size:   $10,000
+======================================================================
+
