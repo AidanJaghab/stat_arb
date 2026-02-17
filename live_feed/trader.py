@@ -38,7 +38,7 @@ ZSCORE_EXIT = 0.5
 TOTAL_CAPITAL = 10_000     # total account size
 MAX_PAIRS = 25
 MAX_EXPOSURE_PER_PAIR = 500  # $500 per leg = $1,000 gross per pair
-WATCHLIST_THRESHOLD = 1.5  # only show pairs nearing entry (75%+ of z=2.0)
+WATCHLIST_THRESHOLD = 1.75  # only show pairs with |z| >= 1.75
 
 
 class PairPosition:
