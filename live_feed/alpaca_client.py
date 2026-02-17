@@ -9,6 +9,7 @@ Provides helpers to:
 """
 
 import os
+import time
 from datetime import datetime, timedelta
 
 import pandas as pd
@@ -139,8 +140,12 @@ def execute_trade(action: dict) -> None:
         # Close both legs — figure out tickers from pair string "A/B"
         tickers = pair.split("/")
         if len(tickers) == 2:
-            _close_position(tickers[0])
-            _close_position(tickers[1])
+            for t in tickers:
+                # Try up to 3 times to close each leg
+                for attempt in range(3):
+                    if _close_position(t):
+                        break
+                    time.sleep(1)
             print(f"  [ALPACA] Exited pair {pair}: closed positions in "
                   f"{tickers[0]} and {tickers[1]}", flush=True)
 
@@ -159,14 +164,16 @@ def _submit_order(ticker: str, qty: int, side: OrderSide) -> None:
         print(f"  [ALPACA] Order failed ({side.name} {qty} {ticker}): {e}", flush=True)
 
 
-def _close_position(ticker: str) -> None:
-    """Close any existing position in the given ticker."""
+def _close_position(ticker: str) -> bool:
+    """Close any existing position in the given ticker. Returns True if closed or no position."""
     try:
         _get_trading_client().close_position(ticker)
+        return True
     except Exception as e:
-        # No position to close is fine
-        if "position does not exist" not in str(e).lower():
-            print(f"  [ALPACA] Close position failed ({ticker}): {e}", flush=True)
+        if "position does not exist" in str(e).lower():
+            return True  # already closed
+        print(f"  [ALPACA] Close position failed ({ticker}): {e}", flush=True)
+        return False
 
 
 def get_account_info() -> dict:
