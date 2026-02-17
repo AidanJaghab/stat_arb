@@ -1,0 +1,2 @@
+action,long,short,pair,hedge_ratio,z_score,timestamp,sector,shares_a,shares_b,price_a,price_b
+ENTER_SHORT_SPREAD,TKR,AGCO,AGCO/TKR,1.5092,2.364245018464033,2026-02-17 10:45:33,Industrials,3,4,140.49,107.84
