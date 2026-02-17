@@ -218,3 +218,53 @@ Alpaca account — equity: $99,997.19, cash: $99,758.63
   Account size:   $100,000
 ======================================================================
 
+[2026-02-17 12:36:58] Tick #5
+
+======================================================================
+  LIVE SIGNALS — 2026-02-17 12:36:59
+======================================================================
+
+  PAIR: MLM / VMC  (Materials)
+  Z-Score: +3.04
+  Prices: MLM = $672.94  |  VMC = $306.99
+  ACTION: SHORT SPREAD
+    SHORT 7 shares of MLM @ $672.94 = $4,710.58
+    BUY  16 shares of VMC @ $306.99 = $4,911.84
+    Long:  $4,911.84
+    Short: $4,710.58
+    Net:   $201.26
+    Entry Z: +3.81  |  Entry time: 2026-02-17 12:32:53
+
+  PAIR: KEY / USB  (Financials)
+  Z-Score: -3.17
+  Prices: KEY = $21.69  |  USB = $58.00
+  ACTION: LONG SPREAD
+    BUY  230 shares of KEY @ $21.69 = $4,988.70
+    SHORT 86 shares of USB @ $58.00 = $4,988.00
+    Long:  $4,988.70
+    Short: $4,988.00
+    Net:   $0.70
+    Entry Z: -3.54  |  Entry time: 2026-02-17 12:32:53
+
+  PAIR: DHI / PHM  (Consumer Discretionary)
+  Z-Score: -2.05
+  Prices: DHI = $166.75  |  PHM = $143.00
+  ACTION: LONG SPREAD
+    BUY  29 shares of DHI @ $166.75 = $4,835.75
+    SHORT 34 shares of PHM @ $143.00 = $4,862.00
+    Long:  $4,835.75
+    Short: $4,862.00
+    Net:   $-26.25
+    Entry Z: -2.16  |  Entry time: 2026-02-17 12:32:53
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 3  |  Watching: 0  |  Quiet: 22
+  Total long:   $14,736.29
+  Total short:  $14,560.58
+  Gross exposure: $29,296.87 / $10,000 max
+  Net exposure:   $175.71 (target: $0)
+  Account size:   $100,000
+======================================================================
+
