@@ -2,94 +2,943 @@
   LIVE STAT-ARB TRADER (5-min)
   Output log: /Users/jakegreenfield/stat_arb/live_feed/trader_output.log
 ============================================================
-Loaded 10 pairs.
+Loaded 15 pairs.
 
-Tracking 18 unique tickers across 10 pairs.
+Tracking 28 unique tickers across 15 pairs.
 
-[2026-02-11 20:23:39] Tick #1
+[2026-02-11 20:35:56] Tick #1
 
 ======================================================================
-  LIVE SIGNALS — 2026-02-11 20:23:40
+  LIVE SIGNALS — 2026-02-11 20:35:57
 ======================================================================
-
-  PAIR: NSC / UNP  (Industrials)
-  Z-Score: +0.05
-  Prices: NSC = $317.24  |  UNP = $262.70
-  Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 7 shares NSC ($2,220.68)
-                    Buy 9 shares UNP ($2,364.30)
-
-  PAIR: KO / PG  (Consumer Staples)
-  Z-Score: +0.09
-  Prices: KO = $78.60  |  PG = $159.93
-  Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 31 shares KO ($2,436.60)
-                    Buy 15 shares PG ($2,398.95)
-
-  PAIR: BAC / JPM  (Financials)
-  Z-Score: +0.03
-  Prices: BAC = $53.83  |  JPM = $310.79
-  Status: FLAT — no trade (z within normal range)
-  If z hits +2.0 → Short 46 shares BAC ($2,476.18)
-                    Buy 8 shares JPM ($2,486.32)
-
-  PAIR: HD / LOW  (Consumer Discretionary)
-  Z-Score: +0.88
-  Prices: HD = $390.56  |  LOW = $287.06
-  Status: FLAT — watching (z approaching entry)
-  If z hits +2.0 → Short 6 shares HD ($2,343.36)
-                    Buy 8 shares LOW ($2,296.48)
 
   PAIR: CRM / QCOM  (Information Technology)
   Z-Score: +1.76
   Prices: CRM = $184.91  |  QCOM = $141.02
-  Status: FLAT — watching (z approaching entry)
-  If z hits +2.0 → Short 13 shares CRM ($2,403.89)
-                    Buy 17 shares QCOM ($2,397.34)
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
 
   PAIR: EMR / LMT  (Industrials)
   Z-Score: -1.64
   Prices: EMR = $154.67  |  LMT = $628.79
-  Status: FLAT — watching (z approaching entry)
-  If z hits -2.0 → Buy 16 shares EMR ($2,474.72)
-                    Short 3 shares LMT ($1,886.37)
-
-  PAIR: ADBE / QCOM  (Information Technology)
-  Z-Score: +0.87
-  Prices: ADBE = $257.13  |  QCOM = $141.02
-  Status: FLAT — watching (z approaching entry)
-  If z hits +2.0 → Short 9 shares ADBE ($2,314.17)
-                    Buy 17 shares QCOM ($2,397.34)
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
 
   PAIR: OXY / VLO  (Energy)
   Z-Score: -1.28
   Prices: OXY = $47.24  |  VLO = $203.85
-  Status: FLAT — watching (z approaching entry)
-  If z hits -2.0 → Buy 52 shares OXY ($2,456.22)
-                    Short 12 shares VLO ($2,446.20)
-
-  PAIR: HD / SBUX  (Consumer Discretionary)
-  Z-Score: -0.15
-  Prices: HD = $390.56  |  SBUX = $99.12
-  Status: FLAT — no trade (z within normal range)
-  If z hits -2.0 → Buy 6 shares HD ($2,343.36)
-                    Short 25 shares SBUX ($2,478.00)
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
 
   PAIR: AEP / SO  (Utilities)
   Z-Score: -1.14
   Prices: AEP = $122.22  |  SO = $90.86
-  Status: FLAT — watching (z approaching entry)
-  If z hits -2.0 → Buy 20 shares AEP ($2,444.40)
-                    Short 27 shares SO ($2,453.22)
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
 
 ======================================================================
   PORTFOLIO SUMMARY
 ======================================================================
-  Active pairs: 0/10
+  Active: 0  |  Watching: 5  |  Quiet: 10
   Total long:   $0.00
   Total short:  $0.00
-  Gross exposure: $0.00 / $25,000 max
+  Gross exposure: $0.00 / $10,000 max
   Net exposure:   $0.00 (target: $0)
-  Account size:   $50,000
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:36:58] Tick #2
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:36:59
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:37:59] Tick #3
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:38:00
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:39:00] Tick #4
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:39:01
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:40:01] Tick #5
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:40:02
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:41:03] Tick #6
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:41:04
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:42:04] Tick #7
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:42:05
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:43:05] Tick #8
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:43:06
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:44:06] Tick #9
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:44:07
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:45:08] Tick #10
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:45:08
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 20:49:57] Tick #11
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 20:49:59
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 22:03:18] Tick #12
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 22:03:19
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 22:04:19] Tick #13
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 22:04:21
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 22:05:21] Tick #14
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 22:05:22
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 22:06:22] Tick #15
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 22:06:23
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 22:07:23] Tick #16
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 22:07:25
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 22:08:25] Tick #17
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 22:08:26
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
+======================================================================
+
+[2026-02-11 22:09:26] Tick #18
+
+======================================================================
+  LIVE SIGNALS — 2026-02-11 22:09:27
+======================================================================
+
+  PAIR: CRM / QCOM  (Information Technology)
+  Z-Score: +1.76
+  Prices: CRM = $184.91  |  QCOM = $141.02
+  Status: WATCHING (88% to entry)
+  If z hits +2.0 → Short 2 shares CRM ($369.83)
+                    Buy 3 shares QCOM ($423.06)
+
+  PAIR: EMR / LMT  (Industrials)
+  Z-Score: -1.64
+  Prices: EMR = $154.67  |  LMT = $628.79
+  Status: WATCHING (82% to entry)
+  If z hits -2.0 → Buy 3 shares EMR ($464.01)
+                    Short 0 shares LMT ($0.00)
+
+  PAIR: OXY / VLO  (Energy)
+  Z-Score: -1.28
+  Prices: OXY = $47.24  |  VLO = $203.85
+  Status: WATCHING (64% to entry)
+  If z hits -2.0 → Buy 10 shares OXY ($472.35)
+                    Short 2 shares VLO ($407.70)
+
+  PAIR: AEP / SO  (Utilities)
+  Z-Score: -1.14
+  Prices: AEP = $122.22  |  SO = $90.86
+  Status: WATCHING (57% to entry)
+  If z hits -2.0 → Buy 4 shares AEP ($488.88)
+                    Short 5 shares SO ($454.30)
+
+  PAIR: BSX / PFE  (Health Care)
+  Z-Score: -1.92
+  Prices: BSX = $73.46  |  PFE = $27.72
+  Status: WATCHING (96% to entry)
+  If z hits -2.0 → Buy 6 shares BSX ($440.76)
+                    Short 18 shares PFE ($498.87)
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 0  |  Watching: 5  |  Quiet: 10
+  Total long:   $0.00
+  Total short:  $0.00
+  Gross exposure: $0.00 / $10,000 max
+  Net exposure:   $0.00 (target: $0)
+  Account size:   $10,000
 ======================================================================
 
