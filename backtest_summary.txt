@@ -1,0 +1,15 @@
+BACKTEST PERFORMANCE SUMMARY
+Period: 2024-01-01 to 2026-02-12
+Training Window: 252 days
+Trading Window: 21 days
+Universe: 474 tickers
+Data Provider: alpaca
+==================================================
+annualized_return: -0.0891
+annualized_volatility: 0.0575
+sharpe_ratio: -1.5937
+max_drawdown: -0.0362
+annualized_turnover: 85.0120
+beta: 0.0345
+total_return: -0.0306
+n_trading_days: 84
