@@ -6,289 +6,65 @@ Loaded 25 pairs.
 
 Tracking 45 unique tickers across 25 pairs.
 
-Alpaca has open positions in: AGCO, TKR
-Alpaca account — equity: $99,989.64, cash: $100,464.63
+Alpaca has open positions in: AGCO, AVT, ENTG, TKR
+Alpaca account — equity: $99,997.19, cash: $99,758.63
 
-[2026-02-17 11:50:34] Tick #1
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 11:50:34
-======================================================================
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 0  |  Watching: 0  |  Quiet: 25
-  Total long:   $0.00
-  Total short:  $0.00
-  Gross exposure: $0.00 / $10,000 max
-  Net exposure:   $0.00 (target: $0)
-  Account size:   $10,000
-======================================================================
-
-[2026-02-17 11:51:35] Tick #2
+[2026-02-17 12:32:53] Tick #1
+  >>> ENTER_SHORT_SPREAD: MLM/VMC @ z=+3.81
+      BUY  16 shares of VMC @ $304.70 = $4,875.20
+      SHORT 7 shares of MLM @ $672.94 = $4,710.58
+  >>> ENTER_LONG_SPREAD: KEY/USB @ z=-3.54
+      BUY  230 shares of KEY @ $21.69 = $4,988.70
+      SHORT 86 shares of USB @ $58.00 = $4,988.00
+  >>> ENTER_LONG_SPREAD: DHI/PHM @ z=-2.16
+      BUY  29 shares of DHI @ $166.75 = $4,835.75
+      SHORT 34 shares of PHM @ $143.00 = $4,862.00
 
 ======================================================================
-  LIVE SIGNALS — 2026-02-17 11:51:36
-======================================================================
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 0  |  Watching: 0  |  Quiet: 25
-  Total long:   $0.00
-  Total short:  $0.00
-  Gross exposure: $0.00 / $10,000 max
-  Net exposure:   $0.00 (target: $0)
-  Account size:   $10,000
-======================================================================
-
-[2026-02-17 11:55:12] Tick #3
-  Data fetch failed: HTTPSConnectionPool(host='data.alpaca.markets', port=443): Read timed out. (read timeout=None)
-[2026-02-17 12:03:22] Tick #4
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 12:03:22
+  LIVE SIGNALS — 2026-02-17 12:32:54
 ======================================================================
 
   PAIR: MLM / VMC  (Materials)
-  Z-Score: +nan
-  Prices: MLM = $671.25  |  VMC = $308.01
-  Status: WATCHING (nan% to entry)
-  If z hits -2.0 → Buy 0 shares MLM ($0.00)
-                    Short 1 shares VMC ($308.01)
+  Z-Score: +3.81
+  Prices: MLM = $672.94  |  VMC = $304.70
+  ACTION: SHORT SPREAD
+    SHORT 7 shares of MLM @ $672.94 = $4,710.58
+    BUY  16 shares of VMC @ $304.70 = $4,875.20
+    Long:  $4,875.20
+    Short: $4,710.58
+    Net:   $164.62
+    Entry Z: +3.81  |  Entry time: 2026-02-17 12:32:53
 
   PAIR: KEY / USB  (Financials)
-  Z-Score: +nan
+  Z-Score: -3.54
   Prices: KEY = $21.69  |  USB = $58.00
-  Status: WATCHING (nan% to entry)
-  If z hits -2.0 → Buy 23 shares KEY ($498.87)
-                    Short 8 shares USB ($464.00)
+  ACTION: LONG SPREAD
+    BUY  230 shares of KEY @ $21.69 = $4,988.70
+    SHORT 86 shares of USB @ $58.00 = $4,988.00
+    Long:  $4,988.70
+    Short: $4,988.00
+    Net:   $0.70
+    Entry Z: -3.54  |  Entry time: 2026-02-17 12:32:53
 
-  PAIR: FE / LNT  (Utilities)
-  Z-Score: +nan
-  Prices: FE = $50.22  |  LNT = $70.77
-  Status: WATCHING (nan% to entry)
-  If z hits -2.0 → Buy 9 shares FE ($451.98)
-                    Short 7 shares LNT ($495.39)
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 0  |  Watching: 3  |  Quiet: 22
-  Total long:   $0.00
-  Total short:  $0.00
-  Gross exposure: $0.00 / $10,000 max
-  Net exposure:   $0.00 (target: $0)
-  Account size:   $10,000
-======================================================================
-
-[2026-02-17 12:04:23] Tick #5
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 12:04:23
-======================================================================
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +nan
-  Prices: MLM = $671.25  |  VMC = $308.01
-  Status: WATCHING (nan% to entry)
-  If z hits -2.0 → Buy 0 shares MLM ($0.00)
-                    Short 1 shares VMC ($308.01)
-
-  PAIR: KEY / USB  (Financials)
-  Z-Score: +nan
-  Prices: KEY = $21.69  |  USB = $58.00
-  Status: WATCHING (nan% to entry)
-  If z hits -2.0 → Buy 23 shares KEY ($498.87)
-                    Short 8 shares USB ($464.00)
-
-  PAIR: FE / LNT  (Utilities)
-  Z-Score: +nan
-  Prices: FE = $50.22  |  LNT = $70.77
-  Status: WATCHING (nan% to entry)
-  If z hits -2.0 → Buy 9 shares FE ($451.98)
-                    Short 7 shares LNT ($495.39)
+  PAIR: DHI / PHM  (Consumer Discretionary)
+  Z-Score: -2.16
+  Prices: DHI = $166.75  |  PHM = $143.00
+  ACTION: LONG SPREAD
+    BUY  29 shares of DHI @ $166.75 = $4,835.75
+    SHORT 34 shares of PHM @ $143.00 = $4,862.00
+    Long:  $4,835.75
+    Short: $4,862.00
+    Net:   $-26.25
+    Entry Z: -2.16  |  Entry time: 2026-02-17 12:32:53
 
 ======================================================================
   PORTFOLIO SUMMARY
 ======================================================================
-  Active: 0  |  Watching: 3  |  Quiet: 22
-  Total long:   $0.00
-  Total short:  $0.00
-  Gross exposure: $0.00 / $10,000 max
-  Net exposure:   $0.00 (target: $0)
-  Account size:   $10,000
-======================================================================
-
-[2026-02-17 12:05:24] Tick #6
-  >>> ENTER_SHORT_SPREAD: AVT/ENTG @ z=+2.47
-      BUY  3 shares of ENTG @ $130.00 = $390.00
-      SHORT 7 shares of AVT @ $65.80 = $460.60
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 12:05:25
-======================================================================
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +2.47
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of AVT @ $65.80 = $460.60
-    BUY  3 shares of ENTG @ $130.00 = $390.00
-    Long:  $390.00
-    Short: $460.60
-    Net:   $-70.60
-    Entry Z: +2.47  |  Entry time: 2026-02-17 12:05:24
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 1  |  Watching: 0  |  Quiet: 24
-  Total long:   $390.00
-  Total short:  $460.60
-  Gross exposure: $850.60 / $10,000 max
-  Net exposure:   $-70.60 (target: $0)
-  Account size:   $10,000
-======================================================================
-
-[2026-02-17 12:06:25] Tick #7
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 12:06:26
-======================================================================
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +2.47
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of AVT @ $65.80 = $460.60
-    BUY  3 shares of ENTG @ $130.00 = $390.00
-    Long:  $390.00
-    Short: $460.60
-    Net:   $-70.60
-    Entry Z: +2.47  |  Entry time: 2026-02-17 12:05:24
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 1  |  Watching: 0  |  Quiet: 24
-  Total long:   $390.00
-  Total short:  $460.60
-  Gross exposure: $850.60 / $10,000 max
-  Net exposure:   $-70.60 (target: $0)
-  Account size:   $10,000
-======================================================================
-
-[2026-02-17 12:29:09] Tick #8
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 12:29:10
-======================================================================
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +1.13
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of AVT @ $65.80 = $460.60
-    BUY  3 shares of ENTG @ $130.00 = $390.00
-    Long:  $390.00
-    Short: $460.60
-    Net:   $-70.60
-    Entry Z: +2.47  |  Entry time: 2026-02-17 12:05:24
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 1  |  Watching: 0  |  Quiet: 24
-  Total long:   $390.00
-  Total short:  $460.60
-  Gross exposure: $850.60 / $10,000 max
-  Net exposure:   $-70.60 (target: $0)
-  Account size:   $10,000
-======================================================================
-
-[2026-02-17 12:30:10] Tick #9
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 12:30:11
-======================================================================
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +1.04
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of AVT @ $65.80 = $460.60
-    BUY  3 shares of ENTG @ $130.00 = $390.00
-    Long:  $390.00
-    Short: $460.60
-    Net:   $-70.60
-    Entry Z: +2.47  |  Entry time: 2026-02-17 12:05:24
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 1  |  Watching: 0  |  Quiet: 24
-  Total long:   $390.00
-  Total short:  $460.60
-  Gross exposure: $850.60 / $10,000 max
-  Net exposure:   $-70.60 (target: $0)
-  Account size:   $10,000
-======================================================================
-
-[2026-02-17 12:31:12] Tick #10
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 12:31:12
-======================================================================
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +1.04
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of AVT @ $65.80 = $460.60
-    BUY  3 shares of ENTG @ $130.00 = $390.00
-    Long:  $390.00
-    Short: $460.60
-    Net:   $-70.60
-    Entry Z: +2.47  |  Entry time: 2026-02-17 12:05:24
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 1  |  Watching: 0  |  Quiet: 24
-  Total long:   $390.00
-  Total short:  $460.60
-  Gross exposure: $850.60 / $10,000 max
-  Net exposure:   $-70.60 (target: $0)
-  Account size:   $10,000
-======================================================================
-
-[2026-02-17 12:32:13] Tick #11
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 12:32:13
-======================================================================
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +1.04
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of AVT @ $65.80 = $460.60
-    BUY  3 shares of ENTG @ $130.00 = $390.00
-    Long:  $390.00
-    Short: $460.60
-    Net:   $-70.60
-    Entry Z: +2.47  |  Entry time: 2026-02-17 12:05:24
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 1  |  Watching: 0  |  Quiet: 24
-  Total long:   $390.00
-  Total short:  $460.60
-  Gross exposure: $850.60 / $10,000 max
-  Net exposure:   $-70.60 (target: $0)
-  Account size:   $10,000
+  Active: 3  |  Watching: 0  |  Quiet: 22
+  Total long:   $14,699.65
+  Total short:  $14,560.58
+  Gross exposure: $29,260.23 / $10,000 max
+  Net exposure:   $139.07 (target: $0)
+  Account size:   $100,000
 ======================================================================
 
