@@ -1765,3 +1765,144 @@ Alpaca account — equity: $99,717.20, cash: $99,717.20
   Account size:   $100,000
 ======================================================================
 
+[2026-02-18 20:27:34] Tick #14
+
+======================================================================
+  LIVE SIGNALS — 2026-02-18 20:27:34
+======================================================================
+
+  PAIR: MLM / VMC  (Materials)
+  Z-Score: +2.20
+  Prices: MLM = $660.70  |  VMC = $298.22
+  ACTION: SHORT SPREAD
+    SHORT 7 shares of MLM @ $660.70 = $4,624.90
+    BUY  16 shares of VMC @ $298.22 = $4,771.52
+    Long:  $4,771.52
+    Short: $4,624.90
+    Net:   $146.62
+    Entry Z: +2.20  |  Entry time: 2026-02-18 20:26:32
+
+  PAIR: EVR / SF  (Financials)
+  Z-Score: +1.93
+  Prices: EVR = $332.18  |  SF = $120.50
+  Status: WATCHING (97% to entry)
+  If z hits +2.0 → Short 15 shares EVR ($4,982.70)
+                    Buy 41 shares SF ($4,940.50)
+
+  PAIR: AVT / LSCC  (Information Technology)
+  Z-Score: -1.76
+  Prices: AVT = $64.87  |  LSCC = $95.95
+  ACTION: LONG SPREAD
+    BUY  77 shares of AVT @ $64.87 = $4,994.99
+    SHORT 52 shares of LSCC @ $95.95 = $4,989.40
+    Long:  $4,994.99
+    Short: $4,989.40
+    Net:   $5.59
+    Entry Z: -2.12  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: KEY / USB  (Financials)
+  Z-Score: -1.87
+  Prices: KEY = $21.96  |  USB = $58.71
+  ACTION: LONG SPREAD
+    BUY  227 shares of KEY @ $21.96 = $4,984.92
+    SHORT 85 shares of USB @ $58.71 = $4,990.35
+    Long:  $4,984.92
+    Short: $4,990.35
+    Net:   $-5.43
+    Entry Z: -2.12  |  Entry time: 2026-02-18 20:21:25
+
+  PAIR: EME / PCAR  (Industrials)
+  Z-Score: -2.46
+  Prices: EME = $781.80  |  PCAR = $124.96
+  Status: WATCHING (123% to entry)
+  If z hits -2.0 → Buy 6 shares EME ($4,690.80)
+                    Short 40 shares PCAR ($4,998.40)
+
+  PAIR: APPF / DBX  (Information Technology)
+  Z-Score: +2.03
+  Prices: APPF = $176.47  |  DBX = $24.62
+  ACTION: SHORT SPREAD
+    SHORT 28 shares of APPF @ $176.47 = $4,941.30
+    BUY  203 shares of DBX @ $24.62 = $4,997.86
+    Long:  $4,997.86
+    Short: $4,941.30
+    Net:   $56.56
+    Entry Z: +2.01  |  Entry time: 2026-02-18 20:16:35
+
+  PAIR: FLG / VLY  (Financials)
+  Z-Score: -1.87
+  Prices: FLG = $13.52  |  VLY = $13.30
+  ACTION: LONG SPREAD
+    BUY  369 shares of FLG @ $13.52 = $4,988.88
+    SHORT 375 shares of VLY @ $13.30 = $4,987.54
+    Long:  $4,988.88
+    Short: $4,987.54
+    Net:   $1.34
+    Entry Z: -2.45  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: SWK / TTC  (Industrials)
+  Z-Score: -1.56
+  Prices: SWK = $89.59  |  TTC = $98.55
+  ACTION: LONG SPREAD
+    BUY  55 shares of SWK @ $89.59 = $4,927.45
+    SHORT 50 shares of TTC @ $98.55 = $4,927.25
+    Long:  $4,927.45
+    Short: $4,927.25
+    Net:   $0.20
+    Entry Z: -2.26  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: RRX / SWK  (Industrials)
+  Z-Score: +1.68
+  Prices: RRX = $217.86  |  SWK = $89.59
+  ACTION: SHORT SPREAD
+    SHORT 22 shares of RRX @ $217.86 = $4,792.92
+    BUY  55 shares of SWK @ $89.59 = $4,927.45
+    Long:  $4,927.45
+    Short: $4,792.92
+    Net:   $134.53
+    Entry Z: +2.35  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: AGCO / TKR  (Industrials)
+  Z-Score: +2.19
+  Prices: AGCO = $138.45  |  TKR = $106.89
+  ACTION: SHORT SPREAD
+    SHORT 36 shares of AGCO @ $138.45 = $4,984.20
+    BUY  46 shares of TKR @ $106.89 = $4,916.71
+    Long:  $4,916.71
+    Short: $4,984.20
+    Net:   $-67.49
+    Entry Z: +2.10  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: AVT / ENTG  (Information Technology)
+  Z-Score: -2.01
+  Prices: AVT = $64.87  |  ENTG = $130.60
+  ACTION: LONG SPREAD
+    BUY  77 shares of AVT @ $64.87 = $4,994.99
+    SHORT 38 shares of ENTG @ $130.60 = $4,962.99
+    Long:  $4,994.99
+    Short: $4,962.99
+    Net:   $32.00
+    Entry Z: -2.17  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: EVRG / PPL  (Utilities)
+  Z-Score: +1.91
+  Prices: EVRG = $80.63  |  PPL = $36.84
+  ACTION: SHORT SPREAD
+    SHORT 62 shares of EVRG @ $80.63 = $4,999.06
+    BUY  135 shares of PPL @ $36.84 = $4,974.07
+    Long:  $4,974.07
+    Short: $4,999.06
+    Net:   $-24.98
+    Entry Z: +2.23  |  Entry time: 2026-02-18 20:12:54
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 10  |  Watching: 2  |  Quiet: 13
+  Total long:   $49,478.84
+  Total short:  $49,199.91
+  Gross exposure: $98,678.75 / $10,000 max
+  Net exposure:   $278.94 (target: $0)
+  Account size:   $100,000
+======================================================================
+
