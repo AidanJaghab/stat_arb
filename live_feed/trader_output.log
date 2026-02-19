@@ -166,3 +166,134 @@ Alpaca account — equity: $99,717.20, cash: $99,717.20
   Account size:   $100,000
 ======================================================================
 
+[2026-02-18 20:13:56] Tick #2
+  >>> EXIT (HARD_STOP): EME/PCAR @ z=-3.32 after 1 bars
+      Sell 6 shares EME, Cover 39 shares PCAR
+
+======================================================================
+  LIVE SIGNALS — 2026-02-18 20:14:03
+======================================================================
+
+  PAIR: MLM / VMC  (Materials)
+  Z-Score: +2.00
+  Prices: MLM = $661.08  |  VMC = $298.61
+  Status: WATCHING (100% to entry)
+  If z hits +2.0 → Short 7 shares MLM ($4,627.56)
+                    Buy 16 shares VMC ($4,777.76)
+
+  PAIR: AVT / LSCC  (Information Technology)
+  Z-Score: -2.12
+  Prices: AVT = $64.97  |  LSCC = $96.62
+  ACTION: LONG SPREAD
+    BUY  76 shares of AVT @ $64.97 = $4,937.72
+    SHORT 51 shares of LSCC @ $96.62 = $4,927.62
+    Long:  $4,937.72
+    Short: $4,927.62
+    Net:   $10.10
+    Entry Z: -2.12  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: EME / PCAR  (Industrials)
+  Z-Score: -3.32
+  Prices: EME = $783.14  |  PCAR = $125.22
+  Status: WATCHING (166% to entry)
+  If z hits -2.0 → Buy 6 shares EME ($4,698.84)
+                    Short 39 shares PCAR ($4,883.58)
+
+  PAIR: APPF / DBX  (Information Technology)
+  Z-Score: +1.87
+  Prices: APPF = $175.99  |  DBX = $24.59
+  Status: WATCHING (93% to entry)
+  If z hits +2.0 → Short 28 shares APPF ($4,927.72)
+                    Buy 203 shares DBX ($4,991.77)
+
+  PAIR: FLG / VLY  (Financials)
+  Z-Score: -2.45
+  Prices: FLG = $13.52  |  VLY = $13.32
+  ACTION: LONG SPREAD
+    BUY  369 shares of FLG @ $13.52 = $4,990.36
+    SHORT 375 shares of VLY @ $13.32 = $4,995.00
+    Long:  $4,990.36
+    Short: $4,995.00
+    Net:   $-4.64
+    Entry Z: -2.45  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: SWK / TTC  (Industrials)
+  Z-Score: -2.26
+  Prices: SWK = $89.59  |  TTC = $99.01
+  ACTION: LONG SPREAD
+    BUY  55 shares of SWK @ $89.59 = $4,927.73
+    SHORT 50 shares of TTC @ $99.01 = $4,950.50
+    Long:  $4,927.73
+    Short: $4,950.50
+    Net:   $-22.77
+    Entry Z: -2.26  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: RRX / SWK  (Industrials)
+  Z-Score: +2.35
+  Prices: RRX = $218.58  |  SWK = $89.59
+  ACTION: SHORT SPREAD
+    SHORT 22 shares of RRX @ $218.58 = $4,808.76
+    BUY  55 shares of SWK @ $89.59 = $4,927.73
+    Long:  $4,927.73
+    Short: $4,808.76
+    Net:   $118.97
+    Entry Z: +2.35  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: AGCO / TKR  (Industrials)
+  Z-Score: +2.10
+  Prices: AGCO = $138.89  |  TKR = $107.14
+  ACTION: SHORT SPREAD
+    SHORT 35 shares of AGCO @ $138.89 = $4,861.15
+    BUY  46 shares of TKR @ $107.14 = $4,928.67
+    Long:  $4,928.67
+    Short: $4,861.15
+    Net:   $67.52
+    Entry Z: +2.10  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: DTM / TRGP  (Energy)
+  Z-Score: +1.85
+  Prices: DTM = $133.75  |  TRGP = $228.02
+  Status: WATCHING (93% to entry)
+  If z hits +2.0 → Short 37 shares DTM ($4,948.75)
+                    Buy 21 shares TRGP ($4,788.42)
+
+  PAIR: AVT / ENTG  (Information Technology)
+  Z-Score: -2.17
+  Prices: AVT = $64.97  |  ENTG = $130.90
+  ACTION: LONG SPREAD
+    BUY  76 shares of AVT @ $64.97 = $4,937.72
+    SHORT 38 shares of ENTG @ $130.90 = $4,974.20
+    Long:  $4,937.72
+    Short: $4,974.20
+    Net:   $-36.48
+    Entry Z: -2.17  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: AVT / SYNA  (Information Technology)
+  Z-Score: -1.90
+  Prices: AVT = $64.97  |  SYNA = $84.66
+  Status: WATCHING (95% to entry)
+  If z hits -2.0 → Buy 76 shares AVT ($4,937.72)
+                    Short 59 shares SYNA ($4,994.65)
+
+  PAIR: EVRG / PPL  (Utilities)
+  Z-Score: +2.23
+  Prices: EVRG = $80.78  |  PPL = $36.94
+  ACTION: SHORT SPREAD
+    SHORT 61 shares of EVRG @ $80.78 = $4,927.58
+    BUY  135 shares of PPL @ $36.94 = $4,986.23
+    Long:  $4,986.23
+    Short: $4,927.58
+    Net:   $58.65
+    Entry Z: +2.23  |  Entry time: 2026-02-18 20:12:54
+
+======================================================================
+  PORTFOLIO SUMMARY
+======================================================================
+  Active: 7  |  Watching: 5  |  Quiet: 13
+  Total long:   $34,636.14
+  Total short:  $34,444.81
+  Gross exposure: $69,080.95 / $10,000 max
+  Net exposure:   $191.33 (target: $0)
+  Account size:   $100,000
+======================================================================
+
