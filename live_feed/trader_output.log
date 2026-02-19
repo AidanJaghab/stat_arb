@@ -6,1405 +6,163 @@ Loaded 25 pairs.
 
 Tracking 45 unique tickers across 25 pairs.
 
-Alpaca has open positions in: AGCO, AVT, AWK, BAX, CNP, DHI, DTM, ENTG, FITB, FLG, FOX, FOXA, HLT, LNTH, MLM, MTN, PHM, RRC, TKR, UMBF, VLY, VMC
-  Reconciled FOX/FOXA → SHORT SPREAD
-  Reconciled MLM/VMC → SHORT SPREAD
-  Reconciled FITB/UMBF → SHORT SPREAD
-  Reconciled BAX/LNTH → LONG SPREAD
-  Reconciled FLG/VLY → SHORT SPREAD
-  Reconciled DHI/PHM → LONG SPREAD
-  Reconciled AGCO/TKR → SHORT SPREAD
-  Reconciled HLT/MTN → LONG SPREAD
-  Reconciled AVT/ENTG → SHORT SPREAD
-  Reconciled AWK/CNP → LONG SPREAD
-  Reconciled DTM/RRC → LONG SPREAD
-Alpaca account — equity: $99,797.98, cash: $92,316.21
+Alpaca: no open positions.
+Alpaca account — equity: $99,717.20, cash: $99,717.20
 
-[2026-02-17 14:36:06] Tick #1
-  >>> EXIT (PROFIT_EXIT): AGCO/TKR @ z=-0.43 after 1 bars
-      Sell 36 shares AGCO, Cover 46 shares TKR
-  >>> EXIT (HARD_STOP): AWK/CNP @ z=-6.69 after 1 bars
-      Sell 37 shares AWK, Cover 116 shares CNP
-  >>> ENTER_LONG_SPREAD: EVRG/PPL @ z=-3.40
-      BUY  60 shares of EVRG @ $82.69 = $4,961.40
-      SHORT 131 shares of PPL @ $37.94 = $4,970.14
+[2026-02-18 20:12:54] Tick #1
+  >>> ENTER_LONG_SPREAD: AVT/LSCC @ z=-2.12
+      BUY  76 shares of AVT @ $64.97 = $4,937.72
+      SHORT 51 shares of LSCC @ $96.62 = $4,927.62
+  >>> ENTER_LONG_SPREAD: EME/PCAR @ z=-3.32
+      BUY  6 shares of EME @ $783.14 = $4,698.84
+      SHORT 39 shares of PCAR @ $125.22 = $4,883.58
+  >>> ENTER_LONG_SPREAD: FLG/VLY @ z=-2.45
+      BUY  369 shares of FLG @ $13.52 = $4,990.36
+      SHORT 375 shares of VLY @ $13.32 = $4,995.00
+  >>> ENTER_LONG_SPREAD: SWK/TTC @ z=-2.26
+      BUY  55 shares of SWK @ $89.59 = $4,927.73
+      SHORT 50 shares of TTC @ $99.01 = $4,950.50
+  >>> ENTER_SHORT_SPREAD: RRX/SWK @ z=+2.35
+      BUY  55 shares of SWK @ $89.59 = $4,927.73
+      SHORT 22 shares of RRX @ $218.58 = $4,808.76
+  >>> ENTER_SHORT_SPREAD: AGCO/TKR @ z=+2.10
+      BUY  46 shares of TKR @ $107.14 = $4,928.67
+      SHORT 35 shares of AGCO @ $138.89 = $4,861.15
+  >>> ENTER_LONG_SPREAD: AVT/ENTG @ z=-2.17
+      BUY  76 shares of AVT @ $64.97 = $4,937.72
+      SHORT 38 shares of ENTG @ $130.90 = $4,974.20
+  >>> ENTER_SHORT_SPREAD: EVRG/PPL @ z=+2.23
+      BUY  135 shares of PPL @ $36.94 = $4,986.23
+      SHORT 61 shares of EVRG @ $80.78 = $4,927.58
 
 ======================================================================
-  LIVE SIGNALS — 2026-02-17 14:36:07
+  LIVE SIGNALS — 2026-02-18 20:12:55
 ======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.56
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
 
   PAIR: MLM / VMC  (Materials)
-  Z-Score: +0.85
-  Prices: MLM = $660.00  |  VMC = $303.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $303.00 = $4,848.00
-    Long:  $4,848.00
-    Short: $4,620.00
-    Net:   $228.00
-    Entry Z: +0.00  |  Entry time: reconciled
+  Z-Score: +2.00
+  Prices: MLM = $661.08  |  VMC = $298.61
+  Status: WATCHING (100% to entry)
+  If z hits +2.0 → Short 7 shares MLM ($4,627.56)
+                    Buy 16 shares VMC ($4,777.76)
 
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +1.57
-  Prices: FITB = $53.00  |  UMBF = $128.77
-  ACTION: SHORT SPREAD
-    SHORT 94 shares of FITB @ $53.00 = $4,982.00
-    BUY  38 shares of UMBF @ $128.77 = $4,893.26
-    Long:  $4,893.26
-    Short: $4,982.00
-    Net:   $-88.74
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -2.07
-  Prices: BAX = $19.82  |  LNTH = $70.00
+  PAIR: AVT / LSCC  (Information Technology)
+  Z-Score: -2.12
+  Prices: AVT = $64.97  |  LSCC = $96.62
   ACTION: LONG SPREAD
-    BUY  252 shares of BAX @ $19.82 = $4,994.64
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,994.64
-    Short: $4,970.00
-    Net:   $24.64
-    Entry Z: +0.00  |  Entry time: reconciled
+    BUY  76 shares of AVT @ $64.97 = $4,937.72
+    SHORT 51 shares of LSCC @ $96.62 = $4,927.62
+    Long:  $4,937.72
+    Short: $4,927.62
+    Net:   $10.10
+    Entry Z: -2.12  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: EME / PCAR  (Industrials)
+  Z-Score: -3.32
+  Prices: EME = $783.14  |  PCAR = $125.22
+  ACTION: LONG SPREAD
+    BUY  6 shares of EME @ $783.14 = $4,698.84
+    SHORT 39 shares of PCAR @ $125.22 = $4,883.58
+    Long:  $4,698.84
+    Short: $4,883.58
+    Net:   $-184.74
+    Entry Z: -3.32  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: APPF / DBX  (Information Technology)
+  Z-Score: +1.87
+  Prices: APPF = $175.99  |  DBX = $24.59
+  Status: WATCHING (93% to entry)
+  If z hits +2.0 → Short 28 shares APPF ($4,927.72)
+                    Buy 203 shares DBX ($4,991.77)
 
   PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.42
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,994.44
-    Long:  $4,994.44
-    Short: $4,987.86
-    Net:   $6.58
-    Entry Z: +0.00  |  Entry time: reconciled
+  Z-Score: -2.45
+  Prices: FLG = $13.52  |  VLY = $13.32
+  ACTION: LONG SPREAD
+    BUY  369 shares of FLG @ $13.52 = $4,990.36
+    SHORT 375 shares of VLY @ $13.32 = $4,995.00
+    Long:  $4,990.36
+    Short: $4,995.00
+    Net:   $-4.64
+    Entry Z: -2.45  |  Entry time: 2026-02-18 20:12:54
 
-  PAIR: DHI / PHM  (Consumer Discretionary)
+  PAIR: SWK / TTC  (Industrials)
+  Z-Score: -2.26
+  Prices: SWK = $89.59  |  TTC = $99.01
+  ACTION: LONG SPREAD
+    BUY  55 shares of SWK @ $89.59 = $4,927.73
+    SHORT 50 shares of TTC @ $99.01 = $4,950.50
+    Long:  $4,927.73
+    Short: $4,950.50
+    Net:   $-22.77
+    Entry Z: -2.26  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: RRX / SWK  (Industrials)
+  Z-Score: +2.35
+  Prices: RRX = $218.58  |  SWK = $89.59
+  ACTION: SHORT SPREAD
+    SHORT 22 shares of RRX @ $218.58 = $4,808.76
+    BUY  55 shares of SWK @ $89.59 = $4,927.73
+    Long:  $4,927.73
+    Short: $4,808.76
+    Net:   $118.97
+    Entry Z: +2.35  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: AGCO / TKR  (Industrials)
+  Z-Score: +2.10
+  Prices: AGCO = $138.89  |  TKR = $107.14
+  ACTION: SHORT SPREAD
+    SHORT 35 shares of AGCO @ $138.89 = $4,861.15
+    BUY  46 shares of TKR @ $107.14 = $4,928.67
+    Long:  $4,928.67
+    Short: $4,861.15
+    Net:   $67.52
+    Entry Z: +2.10  |  Entry time: 2026-02-18 20:12:54
+
+  PAIR: DTM / TRGP  (Energy)
   Z-Score: +1.85
-  Prices: DHI = $167.75  |  PHM = $141.85
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $167.75 = $4,864.75
-    SHORT 35 shares of PHM @ $141.85 = $4,964.75
-    Long:  $4,864.75
-    Short: $4,964.75
-    Net:   $-100.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: -1.51
-  Prices: HLT = $313.52  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $313.52 = $4,702.80
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,702.80
-    Short: $4,969.84
-    Net:   $-267.04
-    Entry Z: +0.00  |  Entry time: reconciled
+  Prices: DTM = $133.75  |  TRGP = $228.02
+  Status: WATCHING (93% to entry)
+  If z hits +2.0 → Short 37 shares DTM ($4,948.75)
+                    Buy 21 shares TRGP ($4,788.42)
 
   PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +0.62
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $130.00 = $4,940.00
-    Long:  $4,940.00
-    Short: $4,935.00
-    Net:   $5.00
-    Entry Z: +0.00  |  Entry time: reconciled
+  Z-Score: -2.17
+  Prices: AVT = $64.97  |  ENTG = $130.90
+  ACTION: LONG SPREAD
+    BUY  76 shares of AVT @ $64.97 = $4,937.72
+    SHORT 38 shares of ENTG @ $130.90 = $4,974.20
+    Long:  $4,937.72
+    Short: $4,974.20
+    Net:   $-36.48
+    Entry Z: -2.17  |  Entry time: 2026-02-18 20:12:54
 
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -6.69
-  Prices: AWK = $133.03  |  CNP = $42.80
-  Status: WATCHING (334% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,922.04)
-                    Short 116 shares CNP ($4,964.80)
+  PAIR: AVT / SYNA  (Information Technology)
+  Z-Score: -1.90
+  Prices: AVT = $64.97  |  SYNA = $84.66
+  Status: WATCHING (95% to entry)
+  If z hits -2.0 → Buy 76 shares AVT ($4,937.72)
+                    Short 59 shares SYNA ($4,994.65)
 
   PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -3.40
-  Prices: EVRG = $82.69  |  PPL = $37.94
-  ACTION: LONG SPREAD
-    BUY  60 shares of EVRG @ $82.69 = $4,961.40
-    SHORT 131 shares of PPL @ $37.94 = $4,970.14
-    Long:  $4,961.40
-    Short: $4,970.14
-    Net:   $-8.74
-    Entry Z: -3.40  |  Entry time: 2026-02-17 14:36:06
-
-  PAIR: CMS / PPL  (Utilities)
-  Z-Score: -1.78
-  Prices: CMS = $76.41  |  PPL = $37.94
-  Status: WATCHING (89% to entry)
-  If z hits -2.0 → Buy 65 shares CMS ($4,966.65)
-                    Short 131 shares PPL ($4,970.14)
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.22
-  Prices: DTM = $133.21  |  RRC = $37.29
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.29 = $4,996.86
-    Long:  $4,928.77
-    Short: $4,996.86
-    Net:   $-68.09
-    Entry Z: +0.00  |  Entry time: reconciled
+  Z-Score: +2.23
+  Prices: EVRG = $80.78  |  PPL = $36.94
+  ACTION: SHORT SPREAD
+    SHORT 61 shares of EVRG @ $80.78 = $4,927.58
+    BUY  135 shares of PPL @ $36.94 = $4,986.23
+    Long:  $4,986.23
+    Short: $4,927.58
+    Net:   $58.65
+    Entry Z: +2.23  |  Entry time: 2026-02-18 20:12:54
 
 ======================================================================
   PORTFOLIO SUMMARY
 ======================================================================
-  Active: 10  |  Watching: 2  |  Quiet: 13
-  Total long:   $49,109.03
-  Total short:  $49,359.65
-  Gross exposure: $98,468.68 / $10,000 max
-  Net exposure:   $-250.62 (target: $0)
-  Account size:   $100,000
-======================================================================
-
-[2026-02-17 14:37:07] Tick #2
-  >>> EXIT (HARD_STOP): EVRG/PPL @ z=-3.40 after 1 bars
-      Sell 60 shares EVRG, Cover 131 shares PPL
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 14:37:08
-======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.56
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +0.85
-  Prices: MLM = $660.00  |  VMC = $303.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $303.00 = $4,848.00
-    Long:  $4,848.00
-    Short: $4,620.00
-    Net:   $228.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +1.57
-  Prices: FITB = $53.00  |  UMBF = $128.77
-  ACTION: SHORT SPREAD
-    SHORT 94 shares of FITB @ $53.00 = $4,982.00
-    BUY  38 shares of UMBF @ $128.77 = $4,893.26
-    Long:  $4,893.26
-    Short: $4,982.00
-    Net:   $-88.74
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -2.07
-  Prices: BAX = $19.82  |  LNTH = $70.00
-  ACTION: LONG SPREAD
-    BUY  252 shares of BAX @ $19.82 = $4,994.64
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,994.64
-    Short: $4,970.00
-    Net:   $24.64
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.42
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,994.44
-    Long:  $4,994.44
-    Short: $4,987.86
-    Net:   $6.58
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: DHI / PHM  (Consumer Discretionary)
-  Z-Score: +1.85
-  Prices: DHI = $167.75  |  PHM = $141.85
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $167.75 = $4,864.75
-    SHORT 35 shares of PHM @ $141.85 = $4,964.75
-    Long:  $4,864.75
-    Short: $4,964.75
-    Net:   $-100.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: -1.51
-  Prices: HLT = $313.52  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $313.52 = $4,702.80
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,702.80
-    Short: $4,969.84
-    Net:   $-267.04
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +0.62
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $130.00 = $4,940.00
-    Long:  $4,940.00
-    Short: $4,935.00
-    Net:   $5.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -6.69
-  Prices: AWK = $133.03  |  CNP = $42.80
-  Status: WATCHING (334% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,922.04)
-                    Short 116 shares CNP ($4,964.80)
-
-  PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -3.40
-  Prices: EVRG = $82.69  |  PPL = $37.94
-  Status: WATCHING (170% to entry)
-  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
-                    Short 131 shares PPL ($4,970.14)
-
-  PAIR: CMS / PPL  (Utilities)
-  Z-Score: -1.78
-  Prices: CMS = $76.41  |  PPL = $37.94
-  Status: WATCHING (89% to entry)
-  If z hits -2.0 → Buy 65 shares CMS ($4,966.65)
-                    Short 131 shares PPL ($4,970.14)
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.22
-  Prices: DTM = $133.21  |  RRC = $37.29
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.29 = $4,996.86
-    Long:  $4,928.77
-    Short: $4,996.86
-    Net:   $-68.09
-    Entry Z: +0.00  |  Entry time: reconciled
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 9  |  Watching: 3  |  Quiet: 13
-  Total long:   $44,147.63
-  Total short:  $44,389.51
-  Gross exposure: $88,537.14 / $10,000 max
-  Net exposure:   $-241.88 (target: $0)
-  Account size:   $100,000
-======================================================================
-
-[2026-02-17 14:38:09] Tick #3
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 14:38:10
-======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.56
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +0.85
-  Prices: MLM = $660.00  |  VMC = $303.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $303.00 = $4,848.00
-    Long:  $4,848.00
-    Short: $4,620.00
-    Net:   $228.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +1.57
-  Prices: FITB = $53.00  |  UMBF = $128.77
-  ACTION: SHORT SPREAD
-    SHORT 94 shares of FITB @ $53.00 = $4,982.00
-    BUY  38 shares of UMBF @ $128.77 = $4,893.26
-    Long:  $4,893.26
-    Short: $4,982.00
-    Net:   $-88.74
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -2.07
-  Prices: BAX = $19.82  |  LNTH = $70.00
-  ACTION: LONG SPREAD
-    BUY  252 shares of BAX @ $19.82 = $4,994.64
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,994.64
-    Short: $4,970.00
-    Net:   $24.64
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.42
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,994.44
-    Long:  $4,994.44
-    Short: $4,987.86
-    Net:   $6.58
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: DHI / PHM  (Consumer Discretionary)
-  Z-Score: +1.85
-  Prices: DHI = $167.75  |  PHM = $141.85
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $167.75 = $4,864.75
-    SHORT 35 shares of PHM @ $141.85 = $4,964.75
-    Long:  $4,864.75
-    Short: $4,964.75
-    Net:   $-100.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: -1.51
-  Prices: HLT = $313.52  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $313.52 = $4,702.80
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,702.80
-    Short: $4,969.84
-    Net:   $-267.04
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +0.62
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $130.00 = $4,940.00
-    Long:  $4,940.00
-    Short: $4,935.00
-    Net:   $5.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -6.69
-  Prices: AWK = $133.03  |  CNP = $42.80
-  Status: WATCHING (334% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,922.04)
-                    Short 116 shares CNP ($4,964.80)
-
-  PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -3.40
-  Prices: EVRG = $82.69  |  PPL = $37.94
-  Status: WATCHING (170% to entry)
-  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
-                    Short 131 shares PPL ($4,970.14)
-
-  PAIR: CMS / PPL  (Utilities)
-  Z-Score: -1.78
-  Prices: CMS = $76.41  |  PPL = $37.94
-  Status: WATCHING (89% to entry)
-  If z hits -2.0 → Buy 65 shares CMS ($4,966.65)
-                    Short 131 shares PPL ($4,970.14)
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.22
-  Prices: DTM = $133.21  |  RRC = $37.29
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.29 = $4,996.86
-    Long:  $4,928.77
-    Short: $4,996.86
-    Net:   $-68.09
-    Entry Z: +0.00  |  Entry time: reconciled
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 9  |  Watching: 3  |  Quiet: 13
-  Total long:   $44,147.63
-  Total short:  $44,389.51
-  Gross exposure: $88,537.14 / $10,000 max
-  Net exposure:   $-241.88 (target: $0)
-  Account size:   $100,000
-======================================================================
-
-[2026-02-17 14:39:11] Tick #4
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 14:39:12
-======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.56
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +0.85
-  Prices: MLM = $660.00  |  VMC = $303.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $303.00 = $4,848.00
-    Long:  $4,848.00
-    Short: $4,620.00
-    Net:   $228.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +1.57
-  Prices: FITB = $53.00  |  UMBF = $128.77
-  ACTION: SHORT SPREAD
-    SHORT 94 shares of FITB @ $53.00 = $4,982.00
-    BUY  38 shares of UMBF @ $128.77 = $4,893.26
-    Long:  $4,893.26
-    Short: $4,982.00
-    Net:   $-88.74
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -2.07
-  Prices: BAX = $19.82  |  LNTH = $70.00
-  ACTION: LONG SPREAD
-    BUY  252 shares of BAX @ $19.82 = $4,994.64
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,994.64
-    Short: $4,970.00
-    Net:   $24.64
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.42
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,994.44
-    Long:  $4,994.44
-    Short: $4,987.86
-    Net:   $6.58
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: DHI / PHM  (Consumer Discretionary)
-  Z-Score: +1.85
-  Prices: DHI = $167.75  |  PHM = $141.85
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $167.75 = $4,864.75
-    SHORT 35 shares of PHM @ $141.85 = $4,964.75
-    Long:  $4,864.75
-    Short: $4,964.75
-    Net:   $-100.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: -1.51
-  Prices: HLT = $313.52  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $313.52 = $4,702.80
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,702.80
-    Short: $4,969.84
-    Net:   $-267.04
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +0.62
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $130.00 = $4,940.00
-    Long:  $4,940.00
-    Short: $4,935.00
-    Net:   $5.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -6.69
-  Prices: AWK = $133.03  |  CNP = $42.80
-  Status: WATCHING (334% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,922.04)
-                    Short 116 shares CNP ($4,964.80)
-
-  PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -3.40
-  Prices: EVRG = $82.69  |  PPL = $37.94
-  Status: WATCHING (170% to entry)
-  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
-                    Short 131 shares PPL ($4,970.14)
-
-  PAIR: CMS / PPL  (Utilities)
-  Z-Score: -1.78
-  Prices: CMS = $76.41  |  PPL = $37.94
-  Status: WATCHING (89% to entry)
-  If z hits -2.0 → Buy 65 shares CMS ($4,966.65)
-                    Short 131 shares PPL ($4,970.14)
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.22
-  Prices: DTM = $133.21  |  RRC = $37.29
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.29 = $4,996.86
-    Long:  $4,928.77
-    Short: $4,996.86
-    Net:   $-68.09
-    Entry Z: +0.00  |  Entry time: reconciled
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 9  |  Watching: 3  |  Quiet: 13
-  Total long:   $44,147.63
-  Total short:  $44,389.51
-  Gross exposure: $88,537.14 / $10,000 max
-  Net exposure:   $-241.88 (target: $0)
-  Account size:   $100,000
-======================================================================
-
-[2026-02-17 14:40:12] Tick #5
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 14:40:13
-======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.56
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +0.85
-  Prices: MLM = $660.00  |  VMC = $303.00
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $303.00 = $4,848.00
-    Long:  $4,848.00
-    Short: $4,620.00
-    Net:   $228.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +1.57
-  Prices: FITB = $53.00  |  UMBF = $128.77
-  ACTION: SHORT SPREAD
-    SHORT 94 shares of FITB @ $53.00 = $4,982.00
-    BUY  38 shares of UMBF @ $128.77 = $4,893.26
-    Long:  $4,893.26
-    Short: $4,982.00
-    Net:   $-88.74
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -2.07
-  Prices: BAX = $19.82  |  LNTH = $70.00
-  ACTION: LONG SPREAD
-    BUY  252 shares of BAX @ $19.82 = $4,994.64
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,994.64
-    Short: $4,970.00
-    Net:   $24.64
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.42
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,994.44
-    Long:  $4,994.44
-    Short: $4,987.86
-    Net:   $6.58
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: DHI / PHM  (Consumer Discretionary)
-  Z-Score: +1.85
-  Prices: DHI = $167.75  |  PHM = $141.85
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $167.75 = $4,864.75
-    SHORT 35 shares of PHM @ $141.85 = $4,964.75
-    Long:  $4,864.75
-    Short: $4,964.75
-    Net:   $-100.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: -1.51
-  Prices: HLT = $313.52  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $313.52 = $4,702.80
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,702.80
-    Short: $4,969.84
-    Net:   $-267.04
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +0.62
-  Prices: AVT = $65.80  |  ENTG = $130.00
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $130.00 = $4,940.00
-    Long:  $4,940.00
-    Short: $4,935.00
-    Net:   $5.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -6.69
-  Prices: AWK = $133.03  |  CNP = $42.80
-  Status: WATCHING (334% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,922.04)
-                    Short 116 shares CNP ($4,964.80)
-
-  PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -3.40
-  Prices: EVRG = $82.69  |  PPL = $37.94
-  Status: WATCHING (170% to entry)
-  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
-                    Short 131 shares PPL ($4,970.14)
-
-  PAIR: CMS / PPL  (Utilities)
-  Z-Score: -1.78
-  Prices: CMS = $76.41  |  PPL = $37.94
-  Status: WATCHING (89% to entry)
-  If z hits -2.0 → Buy 65 shares CMS ($4,966.65)
-                    Short 131 shares PPL ($4,970.14)
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.22
-  Prices: DTM = $133.21  |  RRC = $37.29
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.29 = $4,996.86
-    Long:  $4,928.77
-    Short: $4,996.86
-    Net:   $-68.09
-    Entry Z: +0.00  |  Entry time: reconciled
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 9  |  Watching: 3  |  Quiet: 13
-  Total long:   $44,147.63
-  Total short:  $44,389.51
-  Gross exposure: $88,537.14 / $10,000 max
-  Net exposure:   $-241.88 (target: $0)
-  Account size:   $100,000
-======================================================================
-
-[2026-02-17 14:41:14] Tick #6
-  >>> EXIT (HARD_STOP): FITB/UMBF @ z=+4.01 after 6 bars
-      Sell 93 shares FITB, Cover 38 shares UMBF
-  >>> ENTER_LONG_SPREAD: FE/LNT @ z=-3.21
-      BUY  99 shares of FE @ $50.45 = $4,994.55
-      SHORT 69 shares of LNT @ $72.00 = $4,968.00
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 14:41:15
-======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.50
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +1.53
-  Prices: MLM = $660.00  |  VMC = $295.02
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $295.02 = $4,720.32
-    Long:  $4,720.32
-    Short: $4,620.00
-    Net:   $100.32
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +4.01
-  Prices: FITB = $53.20  |  UMBF = $128.77
-  Status: WATCHING (201% to entry)
-  If z hits +2.0 → Short 93 shares FITB ($4,947.60)
-                    Buy 38 shares UMBF ($4,893.26)
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -1.68
-  Prices: BAX = $19.87  |  LNTH = $70.00
-  ACTION: LONG SPREAD
-    BUY  251 shares of BAX @ $19.87 = $4,987.37
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,987.37
-    Short: $4,970.00
-    Net:   $17.37
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.49
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,993.66
-    Long:  $4,993.66
-    Short: $4,987.86
-    Net:   $5.80
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: DHI / PHM  (Consumer Discretionary)
-  Z-Score: +2.70
-  Prices: DHI = $168.00  |  PHM = $141.40
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $168.00 = $4,872.00
-    SHORT 35 shares of PHM @ $141.40 = $4,949.00
-    Long:  $4,872.00
-    Short: $4,949.00
-    Net:   $-77.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: +1.42
-  Prices: HLT = $315.00  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $315.00 = $4,725.00
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,725.00
-    Short: $4,969.84
-    Net:   $-244.84
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +1.22
-  Prices: AVT = $65.80  |  ENTG = $129.13
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $129.13 = $4,906.94
-    Long:  $4,906.94
-    Short: $4,935.00
-    Net:   $-28.06
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -4.67
-  Prices: AWK = $133.24  |  CNP = $42.80
-  Status: WATCHING (233% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,929.88)
-                    Short 116 shares CNP ($4,964.80)
-
-  PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -2.60
-  Prices: EVRG = $82.69  |  PPL = $37.89
-  Status: WATCHING (130% to entry)
-  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
-                    Short 131 shares PPL ($4,963.59)
-
-  PAIR: FE / LNT  (Utilities)
-  Z-Score: -3.21
-  Prices: FE = $50.45  |  LNT = $72.00
-  ACTION: LONG SPREAD
-    BUY  99 shares of FE @ $50.45 = $4,994.55
-    SHORT 69 shares of LNT @ $72.00 = $4,968.00
-    Long:  $4,994.55
-    Short: $4,968.00
-    Net:   $26.55
-    Entry Z: -3.21  |  Entry time: 2026-02-17 14:41:14
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.29
-  Prices: DTM = $133.21  |  RRC = $37.26
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.26 = $4,992.84
-    Long:  $4,928.77
-    Short: $4,992.84
-    Net:   $-64.07
-    Entry Z: +0.00  |  Entry time: reconciled
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 9  |  Watching: 3  |  Quiet: 13
-  Total long:   $44,109.58
-  Total short:  $44,355.74
-  Gross exposure: $88,465.32 / $10,000 max
-  Net exposure:   $-246.16 (target: $0)
-  Account size:   $100,000
-======================================================================
-
-[2026-02-17 14:42:16] Tick #7
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 14:42:16
-======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.50
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +1.53
-  Prices: MLM = $660.00  |  VMC = $295.02
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $295.02 = $4,720.32
-    Long:  $4,720.32
-    Short: $4,620.00
-    Net:   $100.32
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +4.01
-  Prices: FITB = $53.20  |  UMBF = $128.77
-  Status: WATCHING (201% to entry)
-  If z hits +2.0 → Short 93 shares FITB ($4,947.60)
-                    Buy 38 shares UMBF ($4,893.26)
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -1.68
-  Prices: BAX = $19.87  |  LNTH = $70.00
-  ACTION: LONG SPREAD
-    BUY  251 shares of BAX @ $19.87 = $4,987.37
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,987.37
-    Short: $4,970.00
-    Net:   $17.37
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.49
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,993.66
-    Long:  $4,993.66
-    Short: $4,987.86
-    Net:   $5.80
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: DHI / PHM  (Consumer Discretionary)
-  Z-Score: +2.70
-  Prices: DHI = $168.00  |  PHM = $141.40
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $168.00 = $4,872.00
-    SHORT 35 shares of PHM @ $141.40 = $4,949.00
-    Long:  $4,872.00
-    Short: $4,949.00
-    Net:   $-77.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: +1.42
-  Prices: HLT = $315.00  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $315.00 = $4,725.00
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,725.00
-    Short: $4,969.84
-    Net:   $-244.84
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +1.22
-  Prices: AVT = $65.80  |  ENTG = $129.13
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $129.13 = $4,906.94
-    Long:  $4,906.94
-    Short: $4,935.00
-    Net:   $-28.06
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -4.67
-  Prices: AWK = $133.24  |  CNP = $42.80
-  Status: WATCHING (233% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,929.88)
-                    Short 116 shares CNP ($4,964.80)
-
-  PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -2.60
-  Prices: EVRG = $82.69  |  PPL = $37.89
-  Status: WATCHING (130% to entry)
-  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
-                    Short 131 shares PPL ($4,963.59)
-
-  PAIR: FE / LNT  (Utilities)
-  Z-Score: -3.21
-  Prices: FE = $50.45  |  LNT = $72.00
-  ACTION: LONG SPREAD
-    BUY  99 shares of FE @ $50.45 = $4,994.55
-    SHORT 69 shares of LNT @ $72.00 = $4,968.00
-    Long:  $4,994.55
-    Short: $4,968.00
-    Net:   $26.55
-    Entry Z: -3.21  |  Entry time: 2026-02-17 14:41:14
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.29
-  Prices: DTM = $133.21  |  RRC = $37.26
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.26 = $4,992.84
-    Long:  $4,928.77
-    Short: $4,992.84
-    Net:   $-64.07
-    Entry Z: +0.00  |  Entry time: reconciled
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 9  |  Watching: 3  |  Quiet: 13
-  Total long:   $44,109.58
-  Total short:  $44,355.74
-  Gross exposure: $88,465.32 / $10,000 max
-  Net exposure:   $-246.16 (target: $0)
-  Account size:   $100,000
-======================================================================
-
-[2026-02-17 14:43:17] Tick #8
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 14:43:18
-======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.50
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +1.53
-  Prices: MLM = $660.00  |  VMC = $295.02
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $295.02 = $4,720.32
-    Long:  $4,720.32
-    Short: $4,620.00
-    Net:   $100.32
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +4.01
-  Prices: FITB = $53.20  |  UMBF = $128.77
-  Status: WATCHING (201% to entry)
-  If z hits +2.0 → Short 93 shares FITB ($4,947.60)
-                    Buy 38 shares UMBF ($4,893.26)
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -1.68
-  Prices: BAX = $19.87  |  LNTH = $70.00
-  ACTION: LONG SPREAD
-    BUY  251 shares of BAX @ $19.87 = $4,987.37
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,987.37
-    Short: $4,970.00
-    Net:   $17.37
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.49
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,993.66
-    Long:  $4,993.66
-    Short: $4,987.86
-    Net:   $5.80
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: DHI / PHM  (Consumer Discretionary)
-  Z-Score: +2.70
-  Prices: DHI = $168.00  |  PHM = $141.40
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $168.00 = $4,872.00
-    SHORT 35 shares of PHM @ $141.40 = $4,949.00
-    Long:  $4,872.00
-    Short: $4,949.00
-    Net:   $-77.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: +1.42
-  Prices: HLT = $315.00  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $315.00 = $4,725.00
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,725.00
-    Short: $4,969.84
-    Net:   $-244.84
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +1.22
-  Prices: AVT = $65.80  |  ENTG = $129.13
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $129.13 = $4,906.94
-    Long:  $4,906.94
-    Short: $4,935.00
-    Net:   $-28.06
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -4.67
-  Prices: AWK = $133.24  |  CNP = $42.80
-  Status: WATCHING (233% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,929.88)
-                    Short 116 shares CNP ($4,964.80)
-
-  PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -2.60
-  Prices: EVRG = $82.69  |  PPL = $37.89
-  Status: WATCHING (130% to entry)
-  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
-                    Short 131 shares PPL ($4,963.59)
-
-  PAIR: FE / LNT  (Utilities)
-  Z-Score: -3.21
-  Prices: FE = $50.45  |  LNT = $72.00
-  ACTION: LONG SPREAD
-    BUY  99 shares of FE @ $50.45 = $4,994.55
-    SHORT 69 shares of LNT @ $72.00 = $4,968.00
-    Long:  $4,994.55
-    Short: $4,968.00
-    Net:   $26.55
-    Entry Z: -3.21  |  Entry time: 2026-02-17 14:41:14
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.29
-  Prices: DTM = $133.21  |  RRC = $37.26
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.26 = $4,992.84
-    Long:  $4,928.77
-    Short: $4,992.84
-    Net:   $-64.07
-    Entry Z: +0.00  |  Entry time: reconciled
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 9  |  Watching: 3  |  Quiet: 13
-  Total long:   $44,109.58
-  Total short:  $44,355.74
-  Gross exposure: $88,465.32 / $10,000 max
-  Net exposure:   $-246.16 (target: $0)
-  Account size:   $100,000
-======================================================================
-
-[2026-02-17 14:44:18] Tick #9
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 14:44:19
-======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.50
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +1.53
-  Prices: MLM = $660.00  |  VMC = $295.02
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $295.02 = $4,720.32
-    Long:  $4,720.32
-    Short: $4,620.00
-    Net:   $100.32
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +4.01
-  Prices: FITB = $53.20  |  UMBF = $128.77
-  Status: WATCHING (201% to entry)
-  If z hits +2.0 → Short 93 shares FITB ($4,947.60)
-                    Buy 38 shares UMBF ($4,893.26)
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -1.68
-  Prices: BAX = $19.87  |  LNTH = $70.00
-  ACTION: LONG SPREAD
-    BUY  251 shares of BAX @ $19.87 = $4,987.37
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,987.37
-    Short: $4,970.00
-    Net:   $17.37
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.49
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,993.66
-    Long:  $4,993.66
-    Short: $4,987.86
-    Net:   $5.80
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: DHI / PHM  (Consumer Discretionary)
-  Z-Score: +2.70
-  Prices: DHI = $168.00  |  PHM = $141.40
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $168.00 = $4,872.00
-    SHORT 35 shares of PHM @ $141.40 = $4,949.00
-    Long:  $4,872.00
-    Short: $4,949.00
-    Net:   $-77.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: +1.42
-  Prices: HLT = $315.00  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $315.00 = $4,725.00
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,725.00
-    Short: $4,969.84
-    Net:   $-244.84
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +1.22
-  Prices: AVT = $65.80  |  ENTG = $129.13
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $129.13 = $4,906.94
-    Long:  $4,906.94
-    Short: $4,935.00
-    Net:   $-28.06
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -4.67
-  Prices: AWK = $133.24  |  CNP = $42.80
-  Status: WATCHING (233% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,929.88)
-                    Short 116 shares CNP ($4,964.80)
-
-  PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -2.60
-  Prices: EVRG = $82.69  |  PPL = $37.89
-  Status: WATCHING (130% to entry)
-  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
-                    Short 131 shares PPL ($4,963.59)
-
-  PAIR: FE / LNT  (Utilities)
-  Z-Score: -3.21
-  Prices: FE = $50.45  |  LNT = $72.00
-  ACTION: LONG SPREAD
-    BUY  99 shares of FE @ $50.45 = $4,994.55
-    SHORT 69 shares of LNT @ $72.00 = $4,968.00
-    Long:  $4,994.55
-    Short: $4,968.00
-    Net:   $26.55
-    Entry Z: -3.21  |  Entry time: 2026-02-17 14:41:14
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.29
-  Prices: DTM = $133.21  |  RRC = $37.26
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.26 = $4,992.84
-    Long:  $4,928.77
-    Short: $4,992.84
-    Net:   $-64.07
-    Entry Z: +0.00  |  Entry time: reconciled
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 9  |  Watching: 3  |  Quiet: 13
-  Total long:   $44,109.58
-  Total short:  $44,355.74
-  Gross exposure: $88,465.32 / $10,000 max
-  Net exposure:   $-246.16 (target: $0)
-  Account size:   $100,000
-======================================================================
-
-[2026-02-17 14:45:20] Tick #10
-
-======================================================================
-  LIVE SIGNALS — 2026-02-17 14:45:21
-======================================================================
-
-  PAIR: FOX / FOXA  (Communication Services)
-  Z-Score: +1.50
-  Prices: FOX = $51.70  |  FOXA = $56.60
-  ACTION: SHORT SPREAD
-    SHORT 96 shares of FOX @ $51.70 = $4,963.20
-    BUY  88 shares of FOXA @ $56.60 = $4,980.97
-    Long:  $4,980.97
-    Short: $4,963.20
-    Net:   $17.77
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: MLM / VMC  (Materials)
-  Z-Score: +1.53
-  Prices: MLM = $660.00  |  VMC = $295.02
-  ACTION: SHORT SPREAD
-    SHORT 7 shares of MLM @ $660.00 = $4,620.00
-    BUY  16 shares of VMC @ $295.02 = $4,720.32
-    Long:  $4,720.32
-    Short: $4,620.00
-    Net:   $100.32
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FITB / UMBF  (Financials)
-  Z-Score: +4.01
-  Prices: FITB = $53.20  |  UMBF = $128.77
-  Status: WATCHING (201% to entry)
-  If z hits +2.0 → Short 93 shares FITB ($4,947.60)
-                    Buy 38 shares UMBF ($4,893.26)
-
-  PAIR: BAX / LNTH  (Health Care)
-  Z-Score: -1.68
-  Prices: BAX = $19.87  |  LNTH = $70.00
-  ACTION: LONG SPREAD
-    BUY  251 shares of BAX @ $19.87 = $4,987.37
-    SHORT 71 shares of LNTH @ $70.00 = $4,970.00
-    Long:  $4,987.37
-    Short: $4,970.00
-    Net:   $17.37
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: FLG / VLY  (Financials)
-  Z-Score: +1.49
-  Prices: FLG = $14.09  |  VLY = $13.46
-  ACTION: SHORT SPREAD
-    SHORT 354 shares of FLG @ $14.09 = $4,987.86
-    BUY  371 shares of VLY @ $13.46 = $4,993.66
-    Long:  $4,993.66
-    Short: $4,987.86
-    Net:   $5.80
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: DHI / PHM  (Consumer Discretionary)
-  Z-Score: +2.70
-  Prices: DHI = $168.00  |  PHM = $141.40
-  ACTION: LONG SPREAD
-    BUY  29 shares of DHI @ $168.00 = $4,872.00
-    SHORT 35 shares of PHM @ $141.40 = $4,949.00
-    Long:  $4,872.00
-    Short: $4,949.00
-    Net:   $-77.00
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: HLT / MTN  (Consumer Discretionary)
-  Z-Score: +1.42
-  Prices: HLT = $315.00  |  MTN = $134.32
-  ACTION: LONG SPREAD
-    BUY  15 shares of HLT @ $315.00 = $4,725.00
-    SHORT 37 shares of MTN @ $134.32 = $4,969.84
-    Long:  $4,725.00
-    Short: $4,969.84
-    Net:   $-244.84
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AVT / ENTG  (Information Technology)
-  Z-Score: +1.22
-  Prices: AVT = $65.80  |  ENTG = $129.13
-  ACTION: SHORT SPREAD
-    SHORT 75 shares of AVT @ $65.80 = $4,935.00
-    BUY  38 shares of ENTG @ $129.13 = $4,906.94
-    Long:  $4,906.94
-    Short: $4,935.00
-    Net:   $-28.06
-    Entry Z: +0.00  |  Entry time: reconciled
-
-  PAIR: AWK / CNP  (Utilities)
-  Z-Score: -4.67
-  Prices: AWK = $133.24  |  CNP = $42.80
-  Status: WATCHING (233% to entry)
-  If z hits -2.0 → Buy 37 shares AWK ($4,929.88)
-                    Short 116 shares CNP ($4,964.80)
-
-  PAIR: EVRG / PPL  (Utilities)
-  Z-Score: -2.60
-  Prices: EVRG = $82.69  |  PPL = $37.89
-  Status: WATCHING (130% to entry)
-  If z hits -2.0 → Buy 60 shares EVRG ($4,961.40)
-                    Short 131 shares PPL ($4,963.59)
-
-  PAIR: FE / LNT  (Utilities)
-  Z-Score: -3.21
-  Prices: FE = $50.45  |  LNT = $72.00
-  ACTION: LONG SPREAD
-    BUY  99 shares of FE @ $50.45 = $4,994.55
-    SHORT 69 shares of LNT @ $72.00 = $4,968.00
-    Long:  $4,994.55
-    Short: $4,968.00
-    Net:   $26.55
-    Entry Z: -3.21  |  Entry time: 2026-02-17 14:41:14
-
-  PAIR: DTM / RRC  (Energy)
-  Z-Score: +2.29
-  Prices: DTM = $133.21  |  RRC = $37.26
-  ACTION: LONG SPREAD
-    BUY  37 shares of DTM @ $133.21 = $4,928.77
-    SHORT 134 shares of RRC @ $37.26 = $4,992.84
-    Long:  $4,928.77
-    Short: $4,992.84
-    Net:   $-64.07
-    Entry Z: +0.00  |  Entry time: reconciled
-
-======================================================================
-  PORTFOLIO SUMMARY
-======================================================================
-  Active: 9  |  Watching: 3  |  Quiet: 13
-  Total long:   $44,109.58
-  Total short:  $44,355.74
-  Gross exposure: $88,465.32 / $10,000 max
-  Net exposure:   $-246.16 (target: $0)
+  Active: 8  |  Watching: 4  |  Quiet: 13
+  Total long:   $39,334.98
+  Total short:  $39,328.39
+  Gross exposure: $78,663.37 / $10,000 max
+  Net exposure:   $6.59 (target: $0)
   Account size:   $100,000
 ======================================================================
 
