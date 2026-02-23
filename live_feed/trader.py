@@ -63,21 +63,28 @@ class PairPosition:
         self.entry_time = None
         self.bars_held = 0
         self.cooldown_remaining = 0
+        self.entry_shares_a = 0
+        self.entry_shares_b = 0
 
     def _force_exit(self, z_score: float, reason: str) -> dict:
         """Build a forced exit action and reset state."""
         action = {
             "action": "EXIT",
             "prev_signal": "LONG_SPREAD" if self.signal == 1 else "SHORT_SPREAD",
+            "signal": self.signal,
             "entry_z": self.entry_z,
             "exit_z": z_score,
             "bars_held": self.bars_held,
             "exit_reason": reason,
+            "exit_shares_a": self.entry_shares_a,
+            "exit_shares_b": self.entry_shares_b,
         }
         self.signal = 0
         self.entry_z = None
         self.entry_time = None
         self.bars_held = 0
+        self.entry_shares_a = 0
+        self.entry_shares_b = 0
         if reason in ("HARD_STOP", "TIME_STOP"):
             self.cooldown_remaining = COOLDOWN_BARS
         return action
@@ -401,13 +408,18 @@ def run_trader() -> None:
                 label = f"{pos.ticker_a}/{pos.ticker_b}"
                 z_scores[label] = z
 
+                # Pre-compute shares so PairPosition can store them on entry
+                price_a = prices[pos.ticker_a].iloc[-1] if pos.ticker_a in prices.columns else 0
+                price_b = prices[pos.ticker_b].iloc[-1] if pos.ticker_b in prices.columns else 0
+                shares_a = compute_shares(price_a, MAX_EXPOSURE_PER_PAIR)
+                shares_b = compute_shares(price_b, MAX_EXPOSURE_PER_PAIR)
+
                 action = pos.update(z, now)
                 if action:
-                    # Add share counts to the action
-                    price_a = prices[pos.ticker_a].iloc[-1] if pos.ticker_a in prices.columns else 0
-                    price_b = prices[pos.ticker_b].iloc[-1] if pos.ticker_b in prices.columns else 0
-                    shares_a = compute_shares(price_a, MAX_EXPOSURE_PER_PAIR)
-                    shares_b = compute_shares(price_b, MAX_EXPOSURE_PER_PAIR)
+                    if action["action"] != "EXIT":
+                        # Store entry shares on the position for later exit
+                        pos.entry_shares_a = shares_a
+                        pos.entry_shares_b = shares_b
                     action["shares_a"] = shares_a
                     action["shares_b"] = shares_b
                     action["price_a"] = price_a

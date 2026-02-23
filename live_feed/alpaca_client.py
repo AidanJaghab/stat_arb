@@ -137,17 +137,34 @@ def execute_trade(action: dict) -> None:
               f"SELL {shares_short} {short_ticker}", flush=True)
 
     elif act == "EXIT":
-        # Close both legs — figure out tickers from pair string "A/B"
+        # Exit by reversing the exact entry shares (not closing entire position)
         tickers = pair.split("/")
         if len(tickers) == 2:
-            for t in tickers:
-                # Try up to 3 times to close each leg
-                for attempt in range(3):
-                    if _close_position(t):
-                        break
-                    time.sleep(1)
-            print(f"  [ALPACA] Exited pair {pair}: closed positions in "
-                  f"{tickers[0]} and {tickers[1]}", flush=True)
+            ticker_a, ticker_b = tickers
+            shares_a = action.get("exit_shares_a", 0)
+            shares_b = action.get("exit_shares_b", 0)
+            signal = action.get("signal", 0)
+
+            if shares_a > 0 and shares_b > 0 and signal != 0:
+                if signal == 1:
+                    # Was long A, short B → sell A, buy-to-cover B
+                    _submit_order(ticker_a, shares_a, OrderSide.SELL)
+                    _submit_order(ticker_b, shares_b, OrderSide.BUY)
+                else:
+                    # Was short A, long B → buy-to-cover A, sell B
+                    _submit_order(ticker_a, shares_a, OrderSide.BUY)
+                    _submit_order(ticker_b, shares_b, OrderSide.SELL)
+                print(f"  [ALPACA] Exited pair {pair}: reversed {shares_a} {ticker_a}, "
+                      f"{shares_b} {ticker_b}", flush=True)
+            else:
+                # Fallback: close entire position (legacy behavior)
+                for t in tickers:
+                    for attempt in range(3):
+                        if _close_position(t):
+                            break
+                        time.sleep(1)
+                print(f"  [ALPACA] Exited pair {pair}: closed positions in "
+                      f"{ticker_a} and {ticker_b}", flush=True)
 
 
 def _submit_order(ticker: str, qty: int, side: OrderSide) -> None:
