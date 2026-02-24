@@ -425,14 +425,26 @@ def run_trader() -> None:
                     action["price_a"] = price_a
                     action["price_b"] = price_b
 
-                    actions.append(action)
-                    log_signal(action)
-
                     # Execute paper trade via Alpaca
+                    trade_ok = False
                     try:
-                        execute_trade(action)
+                        trade_ok = execute_trade(action)
                     except Exception as e:
                         log(f"  [ALPACA] Trade execution error: {e}")
+
+                    if not trade_ok and action["action"] != "EXIT":
+                        # Entry failed — roll back PairPosition state
+                        log(f"  [ROLLBACK] Entry failed for {pos.ticker_a}/{pos.ticker_b}, resetting to flat")
+                        pos.signal = 0
+                        pos.entry_z = None
+                        pos.entry_time = None
+                        pos.bars_held = 0
+                        pos.entry_shares_a = 0
+                        pos.entry_shares_b = 0
+                        continue  # skip logging this as a successful action
+
+                    actions.append(action)
+                    log_signal(action)
 
                     if action["action"] == "EXIT":
                         reason = action.get("exit_reason", "UNKNOWN")

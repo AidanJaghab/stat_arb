@@ -111,13 +111,15 @@ def fetch_latest_prices_alpaca(tickers: list[str], batch_size: int = 100) -> dic
     return all_prices
 
 
-def execute_trade(action: dict) -> None:
+def execute_trade(action: dict) -> bool:
     """
     Execute a paper trade via Alpaca based on the action dict from PairPosition.
 
     Supported actions:
       - ENTER_LONG_SPREAD / ENTER_SHORT_SPREAD: buy 'long' ticker, sell short 'short' ticker
       - EXIT: close both legs of the pair
+
+    Returns True if ALL orders succeeded, False if any failed.
     """
     act = action.get("action", "")
     pair = action.get("pair", "")
@@ -128,13 +130,21 @@ def execute_trade(action: dict) -> None:
         shares_long = action.get("shares_long", action.get("shares_a", 0))
         shares_short = action.get("shares_short", action.get("shares_b", 0))
 
+        ok_long = True
+        ok_short = True
         if shares_long > 0:
-            _submit_order(long_ticker, shares_long, OrderSide.BUY)
+            ok_long = _submit_order(long_ticker, shares_long, OrderSide.BUY)
         if shares_short > 0:
-            _submit_order(short_ticker, shares_short, OrderSide.SELL)
+            ok_short = _submit_order(short_ticker, shares_short, OrderSide.SELL)
 
-        print(f"  [ALPACA] Entered {act}: BUY {shares_long} {long_ticker}, "
-              f"SELL {shares_short} {short_ticker}", flush=True)
+        success = ok_long and ok_short
+        if success:
+            print(f"  [ALPACA] Entered {act}: BUY {shares_long} {long_ticker}, "
+                  f"SELL {shares_short} {short_ticker}", flush=True)
+        else:
+            print(f"  [ALPACA] FAILED to enter {act}: BUY {long_ticker} ({'OK' if ok_long else 'FAIL'}), "
+                  f"SELL {short_ticker} ({'OK' if ok_short else 'FAIL'})", flush=True)
+        return success
 
     elif act == "EXIT":
         # Exit by reversing the exact entry shares (not closing entire position)
@@ -148,14 +158,15 @@ def execute_trade(action: dict) -> None:
             if shares_a > 0 and shares_b > 0 and signal != 0:
                 if signal == 1:
                     # Was long A, short B → sell A, buy-to-cover B
-                    _submit_order(ticker_a, shares_a, OrderSide.SELL)
-                    _submit_order(ticker_b, shares_b, OrderSide.BUY)
+                    ok_a = _submit_order(ticker_a, shares_a, OrderSide.SELL)
+                    ok_b = _submit_order(ticker_b, shares_b, OrderSide.BUY)
                 else:
                     # Was short A, long B → buy-to-cover A, sell B
-                    _submit_order(ticker_a, shares_a, OrderSide.BUY)
-                    _submit_order(ticker_b, shares_b, OrderSide.SELL)
+                    ok_a = _submit_order(ticker_a, shares_a, OrderSide.BUY)
+                    ok_b = _submit_order(ticker_b, shares_b, OrderSide.SELL)
                 print(f"  [ALPACA] Exited pair {pair}: reversed {shares_a} {ticker_a}, "
                       f"{shares_b} {ticker_b}", flush=True)
+                return ok_a and ok_b
             else:
                 # Fallback: close entire position (legacy behavior)
                 for t in tickers:
@@ -165,10 +176,12 @@ def execute_trade(action: dict) -> None:
                         time.sleep(1)
                 print(f"  [ALPACA] Exited pair {pair}: closed positions in "
                       f"{ticker_a} and {ticker_b}", flush=True)
+                return True
+        return False
 
 
-def _submit_order(ticker: str, qty: int, side: OrderSide) -> None:
-    """Submit a market order."""
+def _submit_order(ticker: str, qty: int, side: OrderSide) -> bool:
+    """Submit a market order. Returns True if order succeeded, False otherwise."""
     try:
         order = MarketOrderRequest(
             symbol=ticker,
@@ -177,8 +190,10 @@ def _submit_order(ticker: str, qty: int, side: OrderSide) -> None:
             time_in_force=TimeInForce.DAY,
         )
         _get_trading_client().submit_order(order)
+        return True
     except Exception as e:
         print(f"  [ALPACA] Order failed ({side.name} {qty} {ticker}): {e}", flush=True)
+        return False
 
 
 def _close_position(ticker: str) -> bool:
