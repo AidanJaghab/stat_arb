@@ -28,6 +28,7 @@ from live_feed.alpaca_client import (
     fetch_5min_data_alpaca,
     get_account_info,
     get_positions,
+    _close_position,
 )
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -360,6 +361,7 @@ def run_trader() -> None:
             log("Alpaca: no open positions.")
 
         # Restore local signal state from Alpaca positions
+        reconciled_symbols = set()
         for pos in positions:
             a_pos = alpaca_symbols.get(pos.ticker_a)
             b_pos = alpaca_symbols.get(pos.ticker_b)
@@ -371,11 +373,21 @@ def run_trader() -> None:
                     pos.entry_time = "reconciled"
                     pos.entry_z = 0.0
                     log(f"  Reconciled {pos.ticker_a}/{pos.ticker_b} → LONG SPREAD")
+                    reconciled_symbols.update([pos.ticker_a, pos.ticker_b])
                 elif a_qty < 0 and b_qty > 0:
                     pos.signal = -1  # short A, long B = short spread
                     pos.entry_time = "reconciled"
                     pos.entry_z = 0.0
                     log(f"  Reconciled {pos.ticker_a}/{pos.ticker_b} → SHORT SPREAD")
+                    reconciled_symbols.update([pos.ticker_a, pos.ticker_b])
+
+        # Close orphaned positions (from removed pairs after a rescan)
+        orphaned = set(alpaca_symbols.keys()) - reconciled_symbols
+        if orphaned:
+            log(f"  Closing {len(orphaned)} orphaned positions: {', '.join(sorted(orphaned))}")
+            for symbol in orphaned:
+                _close_position(symbol)
+                log(f"    Closed orphaned position: {symbol}")
 
         account = get_account_info()
         log(f"Alpaca account — equity: ${float(account['equity']):,.2f}, "

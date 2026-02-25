@@ -241,31 +241,60 @@ def format_output(pairs: list[dict]) -> str:
     return "\n".join(lines)
 
 
-if __name__ == "__main__":
+def run_scan() -> list[dict]:
+    """
+    Run the full pair scan pipeline.
+    Returns the list of top pairs and saves results to disk.
+    Backs up old active_pairs.csv and logs changes.
+    """
+    from datetime import datetime
     from data.sectors import get_sectors
     from live_feed.alpaca_client import (
         fetch_5min_data_alpaca_batch,
         get_all_tradeable_tickers,
     )
 
-    print("Fetching all tradeable NASDAQ + NYSE tickers from Alpaca...")
+    project_root = Path(__file__).resolve().parent.parent
+    pairs_csv = project_root / "live_feed" / "active_pairs.csv"
+    out_path = project_root / "top_pairs.txt"
+    rescan_log = project_root / "live_feed" / "rescan.log"
+
+    def log(msg: str) -> None:
+        line = f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}"
+        print(line, flush=True)
+        with open(rescan_log, "a") as f:
+            f.write(line + "\n")
+
+    log("=== PAIR RESCAN STARTED ===")
+
+    # Load old pairs for comparison
+    old_pairs = set()
+    if pairs_csv.exists():
+        old_df = pd.read_csv(pairs_csv)
+        old_pairs = set(
+            f"{r['ticker_a']}/{r['ticker_b']}" for _, r in old_df.iterrows()
+        )
+        # Backup old file
+        backup = pairs_csv.with_suffix(".csv.bak")
+        import shutil
+        shutil.copy2(pairs_csv, backup)
+        log(f"Backed up old pairs ({len(old_pairs)} pairs) to {backup.name}")
+
+    log("Fetching all tradeable NASDAQ + NYSE tickers from Alpaca...")
     all_tickers = get_all_tradeable_tickers()
-    print(f"  Found {len(all_tickers)} tradeable tickers.\n")
+    log(f"  Found {len(all_tickers)} tradeable tickers.")
 
-    print("Loading sector classifications...")
+    log("Loading sector classifications...")
     sectors = get_sectors()
-
-    # Filter to only tickers that have a known sector (S&P 500 + 400)
     tickers_with_sector = [t for t in all_tickers if t in sectors]
-    print(f"  {len(tickers_with_sector)} tickers have sector data.\n")
+    log(f"  {len(tickers_with_sector)} tickers have sector data.")
 
-    print("Fetching 5-minute price data from Alpaca (last 5 days)...")
+    log("Fetching 5-minute price data from Alpaca (last 5 days)...")
     prices = fetch_5min_data_alpaca_batch(tickers_with_sector, days=5)
-    # Drop tickers with too few bars (keep columns with >= 100 non-NaN values)
     min_bars = 100
     valid_cols = [c for c in prices.columns if prices[c].notna().sum() >= min_bars]
     prices = prices[valid_cols]
-    print(f"Got {len(prices)} rows for {len(prices.columns)} tickers with sufficient data.\n")
+    log(f"Got {len(prices)} rows for {len(prices.columns)} tickers with sufficient data.")
 
     top_pairs = scan_pairs(
         prices, sectors,
@@ -273,17 +302,13 @@ if __name__ == "__main__":
         max_per_sector=4,
     )
 
+    # Save top_pairs.txt
     output = format_output(top_pairs)
     print(output)
-
-    # Save results
-    out_path = Path(__file__).resolve().parent.parent / "top_pairs.txt"
     with open(out_path, "w") as f:
         f.write(output)
-    print(f"\nSaved to {out_path}")
 
-    # Also save as active_pairs.csv for the live trader
-    pairs_csv = Path(__file__).resolve().parent.parent / "live_feed" / "active_pairs.csv"
+    # Save active_pairs.csv
     pair_rows = [
         {
             "ticker_a": p["ticker_a"],
@@ -294,4 +319,21 @@ if __name__ == "__main__":
         for p in top_pairs
     ]
     pd.DataFrame(pair_rows).to_csv(pairs_csv, index=False)
-    print(f"Saved {len(pair_rows)} pairs to {pairs_csv}")
+
+    # Log changes
+    new_pairs = set(f"{p['ticker_a']}/{p['ticker_b']}" for p in top_pairs)
+    added = new_pairs - old_pairs
+    removed = old_pairs - new_pairs
+    kept = new_pairs & old_pairs
+
+    log(f"Scan complete: {len(new_pairs)} pairs selected")
+    log(f"  Kept:    {len(kept)} pairs")
+    log(f"  Added:   {len(added)} — {', '.join(sorted(added)) if added else 'none'}")
+    log(f"  Removed: {len(removed)} — {', '.join(sorted(removed)) if removed else 'none'}")
+    log("=== PAIR RESCAN COMPLETE ===")
+
+    return top_pairs
+
+
+if __name__ == "__main__":
+    run_scan()
