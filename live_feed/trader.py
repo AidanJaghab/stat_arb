@@ -50,6 +50,7 @@ ZSCORE_HARD_STOP = 3.25    # force exit if |z| blows out past this
 TIME_STOP_BARS = 390       # 5 trading days * 78 bars/day (5-min bars, 6.5hr session)
 COOLDOWN_BARS = 78         # 1 trading day cooldown after hard/time stop
 OPEN_COOLDOWN_MINUTES = 15 # skip new entries for first 15 min after market open (9:30 ET)
+MAX_ENTRY_FAILURES = 3     # disable pair after this many consecutive failed entries
 
 
 class PairPosition:
@@ -67,6 +68,7 @@ class PairPosition:
         self.cooldown_remaining = 0
         self.entry_shares_a = 0
         self.entry_shares_b = 0
+        self.consecutive_entry_failures = 0
 
     def _force_exit(self, z_score: float, reason: str) -> dict:
         """Build a forced exit action and reset state."""
@@ -429,6 +431,10 @@ def run_trader() -> None:
                 if in_open_cooldown and pos.signal == 0:
                     continue
 
+                # Skip pairs that have failed too many consecutive entries
+                if pos.signal == 0 and pos.consecutive_entry_failures >= MAX_ENTRY_FAILURES:
+                    continue
+
                 action = pos.update(z, now)
                 if action:
                     if action["action"] != "EXIT":
@@ -449,7 +455,11 @@ def run_trader() -> None:
 
                     if not trade_ok and action["action"] != "EXIT":
                         # Entry failed — roll back PairPosition state
-                        log(f"  [ROLLBACK] Entry failed for {pos.ticker_a}/{pos.ticker_b}, resetting to flat")
+                        pos.consecutive_entry_failures += 1
+                        if pos.consecutive_entry_failures >= MAX_ENTRY_FAILURES:
+                            log(f"  [DISABLED] {pos.ticker_a}/{pos.ticker_b} disabled after {MAX_ENTRY_FAILURES} consecutive entry failures")
+                        else:
+                            log(f"  [ROLLBACK] Entry failed for {pos.ticker_a}/{pos.ticker_b} ({pos.consecutive_entry_failures}/{MAX_ENTRY_FAILURES}), resetting to flat")
                         pos.signal = 0
                         pos.entry_z = None
                         pos.entry_time = None
@@ -457,6 +467,10 @@ def run_trader() -> None:
                         pos.entry_shares_a = 0
                         pos.entry_shares_b = 0
                         continue  # skip logging this as a successful action
+
+                    # Successful entry — reset failure counter
+                    if action["action"] != "EXIT":
+                        pos.consecutive_entry_failures = 0
 
                     actions.append(action)
                     log_signal(action)
