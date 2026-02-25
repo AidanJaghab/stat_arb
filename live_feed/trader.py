@@ -13,9 +13,13 @@ Usage:
     python -m live_feed.trader
 """
 
+import json
+import os
 import subprocess
 import sys
 import time
+import urllib.request
+import urllib.error
 from datetime import datetime, time as dtime
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -61,6 +65,12 @@ VOL_LOOKBACK = 60              # bars for spread volatility calculation
 PNL_FILE = Path(__file__).resolve().parent / "pair_pnl.csv"
 LOSS_STREAK_CUTOFF = 3         # reduce size after this many consecutive losses
 LOSS_STREAK_SCALE = 0.5        # scale factor when on a loss streak
+
+# --- Telegram alerts ---
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
+SLIPPAGE_FILE = Path(__file__).resolve().parent / "slippage.csv"
+DAILY_SUMMARY_SENT = {}        # tracks if summary sent today {date_str: True}
 
 
 class PairPosition:
@@ -306,6 +316,189 @@ def save_pair_pnl(positions: list) -> None:
         label = f"{pos.ticker_a}/{pos.ticker_b}"
         rows.append({"pair": label, "consecutive_losses": pos.consecutive_losses})
     pd.DataFrame(rows).to_csv(PNL_FILE, index=False)
+
+
+def send_telegram(message: str) -> None:
+    """Send a message via Telegram bot. Silently fails if not configured."""
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        return
+    try:
+        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+        data = json.dumps({
+            "chat_id": TELEGRAM_CHAT_ID,
+            "text": message,
+            "parse_mode": "HTML",
+        }).encode("utf-8")
+        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=10)
+    except Exception as e:
+        print(f"  [TELEGRAM] Failed to send: {e}", flush=True)
+
+
+def alert_trade(action: dict, exposure: float = 0) -> None:
+    """Send Telegram alert for a trade entry or exit."""
+    act = action.get("action", "")
+    pair = action.get("pair", "")
+    z = action.get("z_score", 0)
+
+    if act == "EXIT":
+        reason = action.get("exit_reason", "UNKNOWN")
+        bars = action.get("bars_held", "?")
+        emoji = "🛑" if reason == "HARD_STOP" else "⏰" if reason == "TIME_STOP" else "✅"
+        msg = (
+            f"{emoji} <b>EXIT {pair}</b>\n"
+            f"Reason: {reason}\n"
+            f"Z-score: {z:+.2f} | Bars held: {bars}"
+        )
+    else:
+        direction = "LONG" if "LONG" in act else "SHORT"
+        long_tk = action.get("long", "")
+        short_tk = action.get("short", "")
+        msg = (
+            f"📈 <b>{direction} SPREAD {pair}</b>\n"
+            f"Buy {long_tk} / Short {short_tk}\n"
+            f"Z-score: {z:+.2f} | Exposure: ${exposure:,.0f}/leg"
+        )
+    send_telegram(msg)
+
+
+def alert_risk_block(pair: str, reason: str) -> None:
+    """Send Telegram alert when a risk gate blocks an entry."""
+    send_telegram(f"⚠️ <b>BLOCKED</b> {pair}\n{reason}")
+
+
+def alert_disabled(pair: str) -> None:
+    """Send Telegram alert when a pair is disabled."""
+    send_telegram(f"🚫 <b>DISABLED</b> {pair}\nToo many consecutive entry failures")
+
+
+def record_slippage(
+    action: dict, signal_price_a: float, signal_price_b: float,
+) -> None:
+    """Query Alpaca for fill price and record slippage."""
+    try:
+        from alpaca.trading.client import TradingClient
+        client = TradingClient(
+            os.environ["ALPACA_API_KEY"],
+            os.environ["ALPACA_SECRET_KEY"],
+            paper=True,
+        )
+        # Get most recent orders
+        orders = client.get_orders(filter={"status": "filled", "limit": 10})
+        pair = action.get("pair", "")
+        tickers = pair.split("/")
+        if len(tickers) != 2:
+            return
+
+        fills = {}
+        for order in orders:
+            if order.symbol in tickers and order.filled_avg_price:
+                fills[order.symbol] = float(order.filled_avg_price)
+
+        if len(fills) < 2:
+            return
+
+        fill_a = fills.get(tickers[0], signal_price_a)
+        fill_b = fills.get(tickers[1], signal_price_b)
+        slip_a = fill_a - signal_price_a
+        slip_b = fill_b - signal_price_b
+
+        row = pd.DataFrame([{
+            "timestamp": datetime.now().isoformat(),
+            "pair": pair,
+            "action": action.get("action", ""),
+            "signal_price_a": signal_price_a,
+            "fill_price_a": fill_a,
+            "slippage_a": slip_a,
+            "signal_price_b": signal_price_b,
+            "fill_price_b": fill_b,
+            "slippage_b": slip_b,
+        }])
+        if SLIPPAGE_FILE.exists():
+            row.to_csv(SLIPPAGE_FILE, mode="a", header=False, index=False)
+        else:
+            row.to_csv(SLIPPAGE_FILE, index=False)
+    except Exception as e:
+        print(f"  [SLIPPAGE] Failed to record: {e}", flush=True)
+
+
+def send_daily_summary(
+    positions: list, z_scores: dict, latest_prices: dict,
+) -> None:
+    """Send end-of-day summary via Telegram at 4:00 PM ET."""
+    now_et = datetime.now(ZoneInfo("America/New_York"))
+    today = now_et.strftime("%Y-%m-%d")
+
+    # Only send once per day, between 4:00-4:05 PM ET
+    if not (dtime(16, 0) <= now_et.time() <= dtime(16, 5)):
+        return
+    if DAILY_SUMMARY_SENT.get(today):
+        return
+    DAILY_SUMMARY_SENT[today] = True
+
+    # Compute portfolio stats
+    active = []
+    total_unrealized = 0.0
+    for pos in positions:
+        if pos.signal == 0:
+            continue
+        label = f"{pos.ticker_a}/{pos.ticker_b}"
+        z = z_scores.get(label, 0)
+        price_a = latest_prices.get(pos.ticker_a, 0)
+        price_b = latest_prices.get(pos.ticker_b, 0)
+
+        # Rough unrealized P&L
+        if pos.entry_price_a > 0:
+            if pos.signal == 1:
+                pnl = (price_a - pos.entry_price_a) * pos.entry_shares_a \
+                    - (price_b - pos.entry_price_b) * pos.entry_shares_b
+            else:
+                pnl = -(price_a - pos.entry_price_a) * pos.entry_shares_a \
+                    + (price_b - pos.entry_price_b) * pos.entry_shares_b
+        else:
+            pnl = 0
+        total_unrealized += pnl
+        active.append(f"  {label}: z={z:+.2f} P&L=${pnl:+,.0f}")
+
+    gross = get_current_gross_exposure(positions, latest_prices)
+
+    # Get account info
+    try:
+        account = get_account_info()
+        equity = float(account["equity"])
+        cash = float(account["cash"])
+    except Exception:
+        equity = 0
+        cash = 0
+
+    # Avg slippage today
+    slip_note = ""
+    if SLIPPAGE_FILE.exists():
+        try:
+            sdf = pd.read_csv(SLIPPAGE_FILE)
+            today_slips = sdf[sdf["timestamp"].str.startswith(today)]
+            if not today_slips.empty:
+                avg_slip = today_slips[["slippage_a", "slippage_b"]].abs().mean().mean()
+                slip_note = f"\nAvg slippage: ${avg_slip:.4f}"
+        except Exception:
+            pass
+
+    active_count = len(active)
+    positions_text = "\n".join(active[:10]) if active else "  None"
+    if active_count > 10:
+        positions_text += f"\n  ... +{active_count - 10} more"
+
+    msg = (
+        f"📊 <b>DAILY SUMMARY — {today}</b>\n\n"
+        f"Equity: ${equity:,.2f}\n"
+        f"Cash: ${cash:,.2f}\n"
+        f"Unrealized P&L: ${total_unrealized:+,.2f}\n"
+        f"Gross exposure: ${gross:,.0f} / ${MAX_GROSS_EXPOSURE:,.0f}\n"
+        f"Active positions: {active_count}\n\n"
+        f"<b>Positions:</b>\n{positions_text}"
+        f"{slip_note}"
+    )
+    send_telegram(msg)
 
 
 def format_signal_table(
@@ -590,18 +783,21 @@ def run_trader() -> None:
                     new_gross = shares_a * price_a + shares_b * price_b
                     if current_gross + new_gross > MAX_GROSS_EXPOSURE:
                         log(f"  [RISK] Skipping {label}: gross exposure would be ${current_gross + new_gross:,.0f} > ${MAX_GROSS_EXPOSURE:,.0f} cap")
+                        alert_risk_block(label, f"Gross exposure ${current_gross + new_gross:,.0f} > ${MAX_GROSS_EXPOSURE:,.0f} cap")
                         continue
 
                     # 2. Sector concentration limit
                     sector_active = count_sector_active(positions, pos.sector)
                     if sector_active >= MAX_SECTOR_ACTIVE:
                         log(f"  [RISK] Skipping {label}: {sector_active} active in {pos.sector} (max {MAX_SECTOR_ACTIVE})")
+                        alert_risk_block(label, f"{sector_active} active in {pos.sector} (max {MAX_SECTOR_ACTIVE})")
                         continue
 
                     # 3. Sector losing check
                     sector_losing = count_sector_losing(positions, pos.sector, z_scores)
                     if sector_losing >= MAX_SECTOR_LOSING:
                         log(f"  [RISK] Skipping {label}: {sector_losing} losing positions in {pos.sector}")
+                        alert_risk_block(label, f"{sector_losing} losing in {pos.sector}")
                         continue
 
                 action = pos.update(z, now)
@@ -629,6 +825,7 @@ def run_trader() -> None:
                         pos.consecutive_entry_failures += 1
                         if pos.consecutive_entry_failures >= MAX_ENTRY_FAILURES:
                             log(f"  [DISABLED] {pos.ticker_a}/{pos.ticker_b} disabled after {MAX_ENTRY_FAILURES} consecutive entry failures")
+                            alert_disabled(f"{pos.ticker_a}/{pos.ticker_b}")
                         else:
                             log(f"  [ROLLBACK] Entry failed for {pos.ticker_a}/{pos.ticker_b} ({pos.consecutive_entry_failures}/{MAX_ENTRY_FAILURES}), resetting to flat")
                         pos.signal = 0
@@ -664,6 +861,8 @@ def run_trader() -> None:
 
                     actions.append(action)
                     log_signal(action)
+                    alert_trade(action, exposure)
+                    record_slippage(action, price_a, price_b)
 
                     if action["action"] == "EXIT":
                         reason = action.get("exit_reason", "UNKNOWN")
@@ -690,6 +889,9 @@ def run_trader() -> None:
             # Print status table
             table = format_signal_table(positions, z_scores, latest_prices)
             log(table)
+
+            # Send daily summary at market close
+            send_daily_summary(positions, z_scores, latest_prices)
 
             # Save current positions
             pos_data = []
