@@ -45,13 +45,22 @@ ZSCORE_ENTRY = 2.0
 ZSCORE_EXIT = 0.5
 TOTAL_CAPITAL = 100_000    # total account size (Alpaca paper)
 MAX_PAIRS = 25
-MAX_EXPOSURE_PER_PAIR = 5_000  # $5,000 per leg = $10,000 gross per pair
+BASE_EXPOSURE_PER_PAIR = 5_000  # base $5,000 per leg, adjusted by volatility
 WATCHLIST_THRESHOLD = 1.75  # only show pairs with |z| >= 1.75
 ZSCORE_HARD_STOP = 3.25    # force exit if |z| blows out past this
 TIME_STOP_BARS = 390       # 5 trading days * 78 bars/day (5-min bars, 6.5hr session)
 COOLDOWN_BARS = 78         # 1 trading day cooldown after hard/time stop
 OPEN_COOLDOWN_MINUTES = 15 # skip new entries for first 15 min after market open (9:30 ET)
 MAX_ENTRY_FAILURES = 3     # disable pair after this many consecutive failed entries
+
+# --- Risk management ---
+MAX_GROSS_EXPOSURE = 100_000   # cap total gross exposure at 1.0x capital
+MAX_SECTOR_ACTIVE = 3          # max active positions per sector
+MAX_SECTOR_LOSING = 2          # block new entries if this many in same sector are losing
+VOL_LOOKBACK = 60              # bars for spread volatility calculation
+PNL_FILE = Path(__file__).resolve().parent / "pair_pnl.csv"
+LOSS_STREAK_CUTOFF = 3         # reduce size after this many consecutive losses
+LOSS_STREAK_SCALE = 0.5        # scale factor when on a loss streak
 
 
 class PairPosition:
@@ -70,6 +79,12 @@ class PairPosition:
         self.entry_shares_a = 0
         self.entry_shares_b = 0
         self.consecutive_entry_failures = 0
+        # Risk management
+        self.spread_vol = 1.0          # rolling spread volatility (updated each tick)
+        self.entry_price_a = 0.0       # price at entry for P&L tracking
+        self.entry_price_b = 0.0
+        self.consecutive_losses = 0    # consecutive losing trades
+        self.allocated_exposure = BASE_EXPOSURE_PER_PAIR  # vol-adjusted per-leg $
 
     def _force_exit(self, z_score: float, reason: str) -> dict:
         """Build a forced exit action and reset state."""
@@ -207,6 +222,92 @@ def compute_shares(price: float, dollar_amount: float) -> int:
     return int(dollar_amount / price)
 
 
+def compute_vol_adjusted_exposure(
+    spread: pd.Series,
+    all_spread_vols: list[float],
+    lookback: int = VOL_LOOKBACK,
+) -> float:
+    """
+    Compute per-leg dollar exposure inversely proportional to spread volatility.
+    Higher vol → smaller allocation. Returns dollar amount per leg.
+    """
+    if len(spread) < lookback:
+        lookback = max(len(spread), 2)
+    vol = spread.iloc[-lookback:].std()
+    if vol < 1e-8:
+        return BASE_EXPOSURE_PER_PAIR
+
+    # Median vol across all pairs as anchor
+    if not all_spread_vols or all(v < 1e-8 for v in all_spread_vols):
+        return BASE_EXPOSURE_PER_PAIR
+
+    median_vol = np.median([v for v in all_spread_vols if v > 1e-8])
+    if median_vol < 1e-8:
+        return BASE_EXPOSURE_PER_PAIR
+
+    # Scale inversely: if this pair has 2x median vol, get 0.5x allocation
+    scale = median_vol / vol
+    # Clamp between 0.25x and 2.0x base exposure
+    scale = max(0.25, min(2.0, scale))
+    return BASE_EXPOSURE_PER_PAIR * scale
+
+
+def get_current_gross_exposure(positions: list, latest_prices: dict) -> float:
+    """Calculate total gross dollar exposure across all active positions."""
+    gross = 0.0
+    for pos in positions:
+        if pos.signal == 0:
+            continue
+        price_a = latest_prices.get(pos.ticker_a, 0)
+        price_b = latest_prices.get(pos.ticker_b, 0)
+        gross += pos.entry_shares_a * price_a + pos.entry_shares_b * price_b
+    return gross
+
+
+def count_sector_active(positions: list, sector: str) -> int:
+    """Count active positions in a given sector."""
+    return sum(1 for p in positions if p.signal != 0 and p.sector == sector)
+
+
+def count_sector_losing(
+    positions: list, sector: str, z_scores: dict,
+) -> int:
+    """Count active positions in a sector where z-score moved against the entry."""
+    count = 0
+    for p in positions:
+        if p.signal == 0 or p.sector != sector:
+            continue
+        label = f"{p.ticker_a}/{p.ticker_b}"
+        z = z_scores.get(label, 0)
+        # Losing = z moved further from zero since entry (wrong direction)
+        if p.entry_z is not None and p.entry_z != 0:
+            if p.signal == 1 and z < p.entry_z:  # long spread, z went more negative
+                count += 1
+            elif p.signal == -1 and z > p.entry_z:  # short spread, z went more positive
+                count += 1
+    return count
+
+
+def load_pair_pnl() -> dict:
+    """Load per-pair P&L tracking from disk. Returns {pair_label: consecutive_losses}."""
+    if not PNL_FILE.exists():
+        return {}
+    try:
+        df = pd.read_csv(PNL_FILE)
+        return dict(zip(df["pair"], df["consecutive_losses"]))
+    except Exception:
+        return {}
+
+
+def save_pair_pnl(positions: list) -> None:
+    """Save per-pair consecutive loss counts to disk."""
+    rows = []
+    for pos in positions:
+        label = f"{pos.ticker_a}/{pos.ticker_b}"
+        rows.append({"pair": label, "consecutive_losses": pos.consecutive_losses})
+    pd.DataFrame(rows).to_csv(PNL_FILE, index=False)
+
+
 def format_signal_table(
     positions: list[PairPosition],
     z_scores: dict,
@@ -239,11 +340,13 @@ def format_signal_table(
         lines.append(f"  Prices: {pos.ticker_a} = ${price_a:.2f}  |  {pos.ticker_b} = ${price_b:.2f}")
 
         if pos.signal == 0:
-            # Watching — show projected trade
-            shares_a = compute_shares(price_a, MAX_EXPOSURE_PER_PAIR)
-            shares_b = compute_shares(price_b, MAX_EXPOSURE_PER_PAIR)
+            # Watching — show projected trade with vol-adjusted exposure
+            exp = pos.allocated_exposure
+            shares_a = compute_shares(price_a, exp)
+            shares_b = compute_shares(price_b, exp)
             pct = abs(z) / ZSCORE_ENTRY * 100
-            lines.append(f"  Status: WATCHING ({pct:.0f}% to entry)")
+            streak_note = f" [loss streak: {pos.consecutive_losses}]" if pos.consecutive_losses >= LOSS_STREAK_CUTOFF else ""
+            lines.append(f"  Status: WATCHING ({pct:.0f}% to entry, ${exp:,.0f}/leg){streak_note}")
             if z > 0:
                 lines.append(f"  If z hits +{ZSCORE_ENTRY:.1f} → Short {shares_a} shares {pos.ticker_a} (${shares_a * price_a:,.2f})")
                 lines.append(f"                    Buy {shares_b} shares {pos.ticker_b} (${shares_b * price_b:,.2f})")
@@ -251,9 +354,9 @@ def format_signal_table(
                 lines.append(f"  If z hits -{ZSCORE_ENTRY:.1f} → Buy {shares_a} shares {pos.ticker_a} (${shares_a * price_a:,.2f})")
                 lines.append(f"                    Short {shares_b} shares {pos.ticker_b} (${shares_b * price_b:,.2f})")
         else:
-            # Active position — show exact shares
-            shares_a = compute_shares(price_a, MAX_EXPOSURE_PER_PAIR)
-            shares_b = compute_shares(price_b, MAX_EXPOSURE_PER_PAIR)
+            # Active position — show actual entry shares
+            shares_a = pos.entry_shares_a if pos.entry_shares_a > 0 else compute_shares(price_a, pos.allocated_exposure)
+            shares_b = pos.entry_shares_b if pos.entry_shares_b > 0 else compute_shares(price_b, pos.allocated_exposure)
             long_dollars = shares_a * price_a if pos.signal == 1 else shares_b * price_b
             short_dollars = shares_b * price_b if pos.signal == 1 else shares_a * price_a
 
@@ -284,7 +387,7 @@ def format_signal_table(
     lines.append(f"  Active: {active}  |  Watching: {watching}  |  Quiet: {hidden}")
     lines.append(f"  Total long:   ${total_long_dollars:,.2f}")
     lines.append(f"  Total short:  ${total_short_dollars:,.2f}")
-    lines.append(f"  Gross exposure: ${gross:,.2f} / $10,000 max")
+    lines.append(f"  Gross exposure: ${gross:,.2f} / ${MAX_GROSS_EXPOSURE:,.0f} cap")
     lines.append(f"  Net exposure:   ${net:,.2f} (target: $0)")
     lines.append(f"  Account size:   ${TOTAL_CAPITAL:,}")
     lines.append(f"{'='*70}\n")
@@ -395,6 +498,14 @@ def run_trader() -> None:
     except Exception as e:
         log(f"Warning: could not reconcile Alpaca positions: {e}\n")
 
+    # Load per-pair P&L state from disk
+    pnl_state = load_pair_pnl()
+    for pos in positions:
+        label = f"{pos.ticker_a}/{pos.ticker_b}"
+        pos.consecutive_losses = pnl_state.get(label, 0)
+        if pos.consecutive_losses >= LOSS_STREAK_CUTOFF:
+            log(f"  {label}: on {pos.consecutive_losses}-loss streak, sizing reduced")
+
     tick = 0
     consecutive_errors = 0
     while True:
@@ -420,23 +531,44 @@ def run_trader() -> None:
             if in_open_cooldown:
                 log(f"  Opening cooldown active until 9:{30 + OPEN_COOLDOWN_MINUTES} ET — no new entries")
 
+            # First pass: compute all spread vols for vol-weighting
+            spreads = {}
+            all_spread_vols = []
+            for pos in positions:
+                if pos.ticker_a not in prices.columns or pos.ticker_b not in prices.columns:
+                    continue
+                spread = prices[pos.ticker_a] - pos.hedge_ratio * prices[pos.ticker_b]
+                label = f"{pos.ticker_a}/{pos.ticker_b}"
+                spreads[label] = spread
+                lookback = min(VOL_LOOKBACK, max(len(spread), 2))
+                vol = spread.iloc[-lookback:].std()
+                pos.spread_vol = vol
+                all_spread_vols.append(vol)
+
             # Compute z-scores and update signals
             z_scores = {}
             actions = []
             for pos in positions:
-                if pos.ticker_a not in prices.columns or pos.ticker_b not in prices.columns:
+                label = f"{pos.ticker_a}/{pos.ticker_b}"
+                if label not in spreads:
                     continue
 
-                spread = prices[pos.ticker_a] - pos.hedge_ratio * prices[pos.ticker_b]
+                spread = spreads[label]
                 z = compute_zscore(spread)
-                label = f"{pos.ticker_a}/{pos.ticker_b}"
                 z_scores[label] = z
 
-                # Pre-compute shares so PairPosition can store them on entry
-                price_a = prices[pos.ticker_a].iloc[-1] if pos.ticker_a in prices.columns else 0
-                price_b = prices[pos.ticker_b].iloc[-1] if pos.ticker_b in prices.columns else 0
-                shares_a = compute_shares(price_a, MAX_EXPOSURE_PER_PAIR)
-                shares_b = compute_shares(price_b, MAX_EXPOSURE_PER_PAIR)
+                price_a = prices[pos.ticker_a].iloc[-1]
+                price_b = prices[pos.ticker_b].iloc[-1]
+
+                # Vol-adjusted exposure per leg
+                exposure = compute_vol_adjusted_exposure(spread, all_spread_vols)
+                # Scale down on loss streak
+                if pos.consecutive_losses >= LOSS_STREAK_CUTOFF:
+                    exposure *= LOSS_STREAK_SCALE
+                pos.allocated_exposure = exposure
+
+                shares_a = compute_shares(price_a, exposure)
+                shares_b = compute_shares(price_b, exposure)
 
                 # During opening cooldown, skip flat positions (no new entries)
                 # but still allow exits for active positions
@@ -447,12 +579,39 @@ def run_trader() -> None:
                 if pos.signal == 0 and pos.consecutive_entry_failures >= MAX_ENTRY_FAILURES:
                     continue
 
+                # --- Risk gates (only for new entries, not exits) ---
+                if pos.signal == 0 and abs(z) >= ZSCORE_ENTRY:
+                    # 1. Gross exposure cap
+                    latest_prices_snap = {}
+                    for t in all_tickers:
+                        if t in prices.columns:
+                            latest_prices_snap[t] = prices[t].iloc[-1]
+                    current_gross = get_current_gross_exposure(positions, latest_prices_snap)
+                    new_gross = shares_a * price_a + shares_b * price_b
+                    if current_gross + new_gross > MAX_GROSS_EXPOSURE:
+                        log(f"  [RISK] Skipping {label}: gross exposure would be ${current_gross + new_gross:,.0f} > ${MAX_GROSS_EXPOSURE:,.0f} cap")
+                        continue
+
+                    # 2. Sector concentration limit
+                    sector_active = count_sector_active(positions, pos.sector)
+                    if sector_active >= MAX_SECTOR_ACTIVE:
+                        log(f"  [RISK] Skipping {label}: {sector_active} active in {pos.sector} (max {MAX_SECTOR_ACTIVE})")
+                        continue
+
+                    # 3. Sector losing check
+                    sector_losing = count_sector_losing(positions, pos.sector, z_scores)
+                    if sector_losing >= MAX_SECTOR_LOSING:
+                        log(f"  [RISK] Skipping {label}: {sector_losing} losing positions in {pos.sector}")
+                        continue
+
                 action = pos.update(z, now)
                 if action:
                     if action["action"] != "EXIT":
-                        # Store entry shares on the position for later exit
+                        # Store entry shares and prices on the position
                         pos.entry_shares_a = shares_a
                         pos.entry_shares_b = shares_b
+                        pos.entry_price_a = price_a
+                        pos.entry_price_b = price_b
                     action["shares_a"] = shares_a
                     action["shares_b"] = shares_b
                     action["price_a"] = price_a
@@ -484,6 +643,25 @@ def run_trader() -> None:
                     if action["action"] != "EXIT":
                         pos.consecutive_entry_failures = 0
 
+                    # Track P&L on exits
+                    if action["action"] == "EXIT" and pos.entry_price_a > 0:
+                        # Compute rough P&L from entry vs exit prices
+                        if action.get("signal") == 1:  # was long A, short B
+                            pnl = (price_a - pos.entry_price_a) * pos.entry_shares_a \
+                                - (price_b - pos.entry_price_b) * pos.entry_shares_b
+                        else:  # was short A, long B
+                            pnl = -(price_a - pos.entry_price_a) * pos.entry_shares_a \
+                                + (price_b - pos.entry_price_b) * pos.entry_shares_b
+                        if pnl < 0:
+                            pos.consecutive_losses += 1
+                            log(f"  [P&L] {label}: loss (${pnl:+,.2f}), streak: {pos.consecutive_losses}")
+                        else:
+                            pos.consecutive_losses = 0
+                            log(f"  [P&L] {label}: win (${pnl:+,.2f}), streak reset")
+                        pos.entry_price_a = 0.0
+                        pos.entry_price_b = 0.0
+                        save_pair_pnl(positions)
+
                     actions.append(action)
                     log_signal(action)
 
@@ -499,7 +677,7 @@ def run_trader() -> None:
                         short_sh = shares_b if short_tk == pos.ticker_b else shares_a
                         long_px = price_a if long_tk == pos.ticker_a else price_b
                         short_px = price_b if short_tk == pos.ticker_b else price_a
-                        log(f"  >>> {action['action']}: {action['pair']} @ z={z:+.2f}")
+                        log(f"  >>> {action['action']}: {action['pair']} @ z={z:+.2f} (exposure: ${exposure:,.0f}/leg)")
                         log(f"      BUY  {long_sh} shares of {long_tk} @ ${long_px:.2f} = ${long_sh * long_px:,.2f}")
                         log(f"      SHORT {short_sh} shares of {short_tk} @ ${short_px:.2f} = ${short_sh * short_px:,.2f}")
 
