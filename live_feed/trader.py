@@ -935,16 +935,18 @@ def run_trader() -> None:
                     # Track P&L on exits
                     trade_pnl = None
                     if action["action"] == "EXIT" and pos.entry_price_a > 0:
-                        # Compute rough P&L from entry vs exit prices
+                        # Use shares from action dict (pos fields already reset by _force_exit)
+                        exit_shares_a = action.get("exit_shares_a", 0)
+                        exit_shares_b = action.get("exit_shares_b", 0)
                         if action.get("signal") == 1:  # was long A, short B
-                            trade_pnl = (price_a - pos.entry_price_a) * pos.entry_shares_a \
-                                - (price_b - pos.entry_price_b) * pos.entry_shares_b
+                            trade_pnl = (price_a - pos.entry_price_a) * exit_shares_a \
+                                - (price_b - pos.entry_price_b) * exit_shares_b
                         else:  # was short A, long B
-                            trade_pnl = -(price_a - pos.entry_price_a) * pos.entry_shares_a \
-                                + (price_b - pos.entry_price_b) * pos.entry_shares_b
+                            trade_pnl = -(price_a - pos.entry_price_a) * exit_shares_a \
+                                + (price_b - pos.entry_price_b) * exit_shares_b
                         # Store entry cost for % calculation
-                        entry_cost = pos.entry_price_a * pos.entry_shares_a \
-                            + pos.entry_price_b * pos.entry_shares_b
+                        entry_cost = pos.entry_price_a * exit_shares_a \
+                            + pos.entry_price_b * exit_shares_b
                         action["entry_cost"] = entry_cost
                         if trade_pnl < 0:
                             pos.consecutive_losses += 1
