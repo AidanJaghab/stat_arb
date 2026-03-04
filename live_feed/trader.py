@@ -77,6 +77,10 @@ TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 SLIPPAGE_FILE = Path(__file__).resolve().parent / "slippage.csv"
 DAILY_SUMMARY_SENT = {}        # tracks if summary sent today {date_str: True}
 DAILY_TRADES = []              # accumulates trade dicts for daily recap
+MORNING_CHECK_SENT = {}        # tracks if morning health check sent today
+HOURLY_PULSE_SENT = {}         # tracks hourly pulse {hour_key: True}
+WEEKLY_REPORT_SENT = {}        # tracks if weekly report sent {week_key: True}
+POSITION_IMBALANCE_PCT = 0.15  # alert if long/short legs differ by >15%
 
 
 class PairPosition:
@@ -427,7 +431,7 @@ def send_telegram(message: str) -> None:
 
 
 def alert_trade(action: dict, exposure: float = 0, pnl: float = None) -> None:
-    """Send Telegram alert for a trade entry or exit."""
+    """Send Telegram alert for a trade entry or exit with full dollar details."""
     act = action.get("action", "")
     pair = action.get("pair", "")
     z = action.get("z_score", 0)
@@ -435,7 +439,7 @@ def alert_trade(action: dict, exposure: float = 0, pnl: float = None) -> None:
     if act == "EXIT":
         reason = action.get("exit_reason", "UNKNOWN")
         bars = action.get("bars_held", "?")
-        emoji = "🛑" if reason == "HARD_STOP" else "⏰" if reason == "TIME_STOP" else "✅"
+        emoji = "🛑" if reason == "HARD_STOP" else "⏰" if reason == "TIME_STOP" else "📉" if reason == "TRAILING_STOP" else "🕐" if reason == "EOD_CLOSE" else "✅"
         pnl_line = ""
         if pnl is not None:
             pnl_emoji = "🟢" if pnl >= 0 else "🔴"
@@ -448,15 +452,37 @@ def alert_trade(action: dict, exposure: float = 0, pnl: float = None) -> None:
             f"Z-score: {z:+.2f} | Bars held: {bars}"
             f"{pnl_line}"
         )
-    else:
+    elif act in ("ENTER_LONG_SPREAD", "ENTER_SHORT_SPREAD"):
         direction = "LONG" if "LONG" in act else "SHORT"
         long_tk = action.get("long", "")
         short_tk = action.get("short", "")
+        shares_long = action.get("shares_long", 0)
+        shares_short = action.get("shares_short", 0)
+        # Get fill or signal prices for dollar calculations
+        price_a = action.get("price_a", 0)
+        price_b = action.get("price_b", 0)
+        if long_tk == pair.split("/")[0] if "/" in pair else "":
+            long_px, short_px = price_a, price_b
+        else:
+            long_px, short_px = price_b, price_a
+        long_dollars = shares_long * long_px
+        short_dollars = shares_short * short_px
+
         msg = (
             f"📈 <b>{direction} SPREAD {pair}</b>\n"
-            f"Buy {long_tk} / Short {short_tk}\n"
+            f"BUY {shares_long} {long_tk} @ ${long_px:.2f} = ${long_dollars:,.0f}\n"
+            f"SHORT {shares_short} {short_tk} @ ${short_px:.2f} = ${short_dollars:,.0f}\n"
             f"Z-score: {z:+.2f} | Exposure: ${exposure:,.0f}/leg"
         )
+        # Balance check: alert if legs are imbalanced
+        if long_dollars > 0 and short_dollars > 0:
+            imbalance = abs(long_dollars - short_dollars) / max(long_dollars, short_dollars)
+            if imbalance > POSITION_IMBALANCE_PCT:
+                msg += f"\n⚠️ IMBALANCED: long ${long_dollars:,.0f} vs short ${short_dollars:,.0f} ({imbalance:.0%} diff)"
+    else:
+        # Fallback for EOD_CLOSE batch alert etc.
+        msg = f"📋 <b>{act}</b> {pair}"
+
     send_telegram(msg)
 
 
@@ -662,6 +688,250 @@ def send_daily_summary(
 
     # Reset daily trades for next day
     DAILY_TRADES = []
+
+
+def send_morning_health_check(positions: list) -> None:
+    """Send morning health check at 10:00 AM ET after cooldown ends."""
+    now_et = datetime.now(ZoneInfo("America/New_York"))
+    today = now_et.strftime("%Y-%m-%d")
+
+    # Send once per day, between 10:00-10:05 AM ET
+    if not (dtime(10, 0) <= now_et.time() <= dtime(10, 5)):
+        return
+    if MORNING_CHECK_SENT.get(today):
+        return
+    MORNING_CHECK_SENT[today] = True
+
+    # Account info
+    try:
+        account = get_account_info()
+        equity = float(account["equity"])
+        cash = float(account["cash"])
+    except Exception:
+        equity = 0
+        cash = 0
+
+    # Cross-check internal state vs Alpaca
+    mismatches = []
+    try:
+        alpaca_positions = get_positions()
+        alpaca_symbols = {p["symbol"]: p for p in alpaca_positions}
+
+        # Check each pair
+        internal_symbols = set()
+        for pos in positions:
+            if pos.signal != 0:
+                internal_symbols.update([pos.ticker_a, pos.ticker_b])
+                # Verify Alpaca has these positions
+                if pos.ticker_a not in alpaca_symbols:
+                    mismatches.append(f"⚠️ {pos.ticker_a}: internal=active, Alpaca=missing")
+                if pos.ticker_b not in alpaca_symbols:
+                    mismatches.append(f"⚠️ {pos.ticker_b}: internal=active, Alpaca=missing")
+
+        # Check for orphaned Alpaca positions
+        orphaned = set(alpaca_symbols.keys()) - internal_symbols
+        for sym in orphaned:
+            p = alpaca_symbols[sym]
+            mismatches.append(f"⚠️ {sym}: Alpaca has {p['qty']} shares, internal=flat (orphaned)")
+    except Exception as e:
+        mismatches.append(f"⚠️ Could not check Alpaca: {e}")
+
+    # Position summary
+    active = [p for p in positions if p.signal != 0]
+    on_cooldown = [p for p in positions if p.signal == 0 and p.cooldown_remaining > 0]
+
+    msg = f"🌅 <b>MORNING CHECK — {today}</b>\n\n"
+    msg += f"Equity: ${equity:,.2f} | Cash: ${cash:,.2f}\n"
+    msg += f"Active: {len(active)} | Cooldown: {len(on_cooldown)} | Flat: {len(positions) - len(active) - len(on_cooldown)}\n\n"
+
+    if active:
+        msg += "<b>Active Positions</b>\n"
+        for pos in active:
+            label = f"{pos.ticker_a}/{pos.ticker_b}"
+            direction = "LONG" if pos.signal == 1 else "SHORT"
+            long_val = pos.entry_shares_a * pos.entry_price_a if pos.signal == 1 else pos.entry_shares_b * pos.entry_price_b
+            short_val = pos.entry_shares_b * pos.entry_price_b if pos.signal == 1 else pos.entry_shares_a * pos.entry_price_a
+            msg += f"  {label}: {direction} (z={pos.entry_z:+.2f}, bars={pos.bars_held})\n"
+            msg += f"    Long ${long_val:,.0f} / Short ${short_val:,.0f}\n"
+    else:
+        msg += "No active positions\n"
+
+    if on_cooldown:
+        msg += f"\n<b>On Cooldown</b>\n"
+        for pos in on_cooldown:
+            label = f"{pos.ticker_a}/{pos.ticker_b}"
+            bars_left = pos.cooldown_remaining
+            msg += f"  {label}: {bars_left} bars remaining\n"
+
+    if mismatches:
+        msg += f"\n<b>State Mismatches</b>\n"
+        for m in mismatches:
+            msg += f"  {m}\n"
+    else:
+        msg += "\n✅ Internal state matches Alpaca"
+
+    send_telegram(msg)
+
+
+def send_hourly_pulse(positions: list, z_scores: dict, latest_prices: dict) -> None:
+    """Send hourly one-line portfolio pulse during market hours."""
+    now_et = datetime.now(ZoneInfo("America/New_York"))
+
+    # Only during market hours, at the top of each hour (XX:00 - XX:02)
+    if not (dtime(10, 0) <= now_et.time() <= dtime(15, 45)):
+        return
+    if now_et.minute > 2:
+        return
+
+    hour_key = now_et.strftime("%Y-%m-%d-%H")
+    if HOURLY_PULSE_SENT.get(hour_key):
+        return
+    HOURLY_PULSE_SENT[hour_key] = True
+
+    active = [p for p in positions if p.signal != 0]
+    total_unrealized = 0.0
+    worst_pair = ""
+    worst_pnl = 0.0
+    best_pair = ""
+    best_pnl = 0.0
+
+    for pos in active:
+        label = f"{pos.ticker_a}/{pos.ticker_b}"
+        price_a = latest_prices.get(pos.ticker_a, 0)
+        price_b = latest_prices.get(pos.ticker_b, 0)
+        pnl = pos.compute_unrealized_pnl(price_a, price_b)
+        total_unrealized += pnl
+        if pnl < worst_pnl:
+            worst_pnl = pnl
+            worst_pair = label
+        if pnl > best_pnl:
+            best_pnl = pnl
+            best_pair = label
+
+    hour_label = now_et.strftime("%-I%p").lower()
+    pnl_emoji = "🟢" if total_unrealized >= 0 else "🔴"
+
+    msg = f"⏱ <b>{hour_label}</b> — {len(active)} active, {pnl_emoji} unrealized: ${total_unrealized:+,.2f}"
+
+    # Add today's realized from DAILY_TRADES
+    exits_today = [t for t in DAILY_TRADES if t["action"] == "EXIT" and t.get("pnl") is not None]
+    if exits_today:
+        realized = sum(t["pnl"] for t in exits_today)
+        msg += f" | realized: ${realized:+,.2f} ({len(exits_today)} trades)"
+
+    if worst_pair and worst_pnl < -20:
+        msg += f"\n  Worst: {worst_pair} ${worst_pnl:+,.2f}"
+    if best_pair and best_pnl > 20:
+        msg += f"\n  Best: {best_pair} ${best_pnl:+,.2f}"
+
+    send_telegram(msg)
+
+
+def send_weekly_report(positions: list) -> None:
+    """Send weekly performance report on Friday at 4:10 PM ET."""
+    now_et = datetime.now(ZoneInfo("America/New_York"))
+
+    # Friday only (weekday=4), between 4:10-4:15 PM ET (after daily recap)
+    if now_et.weekday() != 4:
+        return
+    if not (dtime(16, 10) <= now_et.time() <= dtime(16, 15)):
+        return
+
+    week_key = now_et.strftime("%Y-W%U")
+    if WEEKLY_REPORT_SENT.get(week_key):
+        return
+    WEEKLY_REPORT_SENT[week_key] = True
+
+    # Read signals.csv for this week's trades
+    if not SIGNALS_FILE.exists():
+        return
+
+    try:
+        sdf = pd.read_csv(SIGNALS_FILE)
+        if "timestamp" not in sdf.columns:
+            return
+
+        # Filter to this week (Monday through Friday)
+        monday = now_et - pd.Timedelta(days=now_et.weekday())
+        monday_str = monday.strftime("%Y-%m-%d")
+        week_trades = sdf[sdf["timestamp"] >= monday_str]
+
+        exits = week_trades[week_trades["action"] == "EXIT"]
+        entries = week_trades[week_trades["action"] != "EXIT"]
+
+        if exits.empty and entries.empty:
+            send_telegram(f"📊 <b>WEEKLY REPORT — {week_key}</b>\n\nNo trades this week.")
+            return
+
+        msg = f"📊 <b>WEEKLY REPORT — {week_key}</b>\n\n"
+
+        # Trade counts
+        msg += f"<b>Activity</b>\n"
+        msg += f"  Entries: {len(entries)} | Exits: {len(exits)}\n"
+
+        # Exit reason breakdown
+        if "exit_reason" in exits.columns and not exits.empty:
+            reason_counts = exits["exit_reason"].value_counts()
+            reasons = ", ".join(f"{r}: {c}" for r, c in reason_counts.items())
+            msg += f"  Exit types: {reasons}\n"
+
+        # Per-pair stats
+        if "pair" in exits.columns and not exits.empty:
+            msg += f"\n<b>Per-Pair (exits)</b>\n"
+            pair_groups = exits.groupby("pair")
+            for pair_name, group in pair_groups:
+                count = len(group)
+                # Count exit reasons for this pair
+                if "exit_reason" in group.columns:
+                    reasons = group["exit_reason"].value_counts()
+                    reason_str = ", ".join(f"{r}:{c}" for r, c in reasons.items())
+                else:
+                    reason_str = ""
+                avg_bars = group["bars_held"].mean() if "bars_held" in group.columns else 0
+                msg += f"  {pair_name}: {count} trades, avg hold {avg_bars:.0f} bars"
+                if reason_str:
+                    msg += f" ({reason_str})"
+                msg += "\n"
+
+        # Slippage summary for the week
+        if SLIPPAGE_FILE.exists():
+            try:
+                slip_df = pd.read_csv(SLIPPAGE_FILE)
+                week_slips = slip_df[slip_df["timestamp"] >= monday_str]
+                if not week_slips.empty:
+                    total_slip = week_slips[["slippage_a", "slippage_b"]].abs().sum().sum()
+                    avg_slip = week_slips[["slippage_a", "slippage_b"]].abs().mean().mean()
+                    msg += f"\n<b>Slippage</b>\n"
+                    msg += f"  Total: ${total_slip:,.2f} | Avg per leg: ${avg_slip:,.4f}\n"
+            except Exception:
+                pass
+
+        # Pair health: consecutive losses
+        msg += f"\n<b>Pair Health</b>\n"
+        for pos in positions:
+            label = f"{pos.ticker_a}/{pos.ticker_b}"
+            status = "🟢" if pos.consecutive_losses < LOSS_STREAK_CUTOFF else "🔴"
+            notes = []
+            if pos.consecutive_losses > 0:
+                notes.append(f"losses: {pos.consecutive_losses}")
+            if pos.cooldown_remaining > 0:
+                notes.append(f"cooldown: {pos.cooldown_remaining}")
+            if pos.consecutive_entry_failures > 0:
+                notes.append(f"entry fails: {pos.consecutive_entry_failures}")
+            note_str = f" ({', '.join(notes)})" if notes else ""
+            msg += f"  {status} {label}{note_str}\n"
+
+        # Account
+        try:
+            account = get_account_info()
+            equity = float(account["equity"])
+            msg += f"\nEquity: ${equity:,.2f}"
+        except Exception:
+            pass
+
+        send_telegram(msg)
+    except Exception as e:
+        print(f"  [WEEKLY] Failed to send report: {e}", flush=True)
 
 
 def format_signal_table(
@@ -1312,8 +1582,11 @@ def run_trader() -> None:
             table = format_signal_table(positions, z_scores, latest_prices)
             log(table)
 
-            # Send daily summary at market close
+            # Periodic Telegram alerts
+            send_morning_health_check(positions)
+            send_hourly_pulse(positions, z_scores, latest_prices)
             send_daily_summary(positions, z_scores, latest_prices)
+            send_weekly_report(positions)
 
             # Save current positions
             pos_data = []
