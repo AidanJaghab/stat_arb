@@ -18,8 +18,8 @@ from alpaca.data.enums import DataFeed  # IEX = free real-time, SIP = 15-min del
 from alpaca.data.requests import StockBarsRequest
 from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 from alpaca.trading.client import TradingClient
-from alpaca.trading.enums import OrderSide, TimeInForce
-from alpaca.trading.requests import MarketOrderRequest
+from alpaca.trading.enums import OrderSide, OrderStatus, TimeInForce
+from alpaca.trading.requests import LimitOrderRequest, MarketOrderRequest
 
 _trading_client = None
 _data_client = None
@@ -129,13 +129,18 @@ def execute_trade(action: dict) -> bool:
         short_ticker = action["short"]
         shares_long = action.get("shares_long", action.get("shares_a", 0))
         shares_short = action.get("shares_short", action.get("shares_b", 0))
+        # Get prices for limit orders
+        price_a = action.get("price_a", 0.0)
+        price_b = action.get("price_b", 0.0)
+        long_price = price_b if act == "ENTER_SHORT_SPREAD" else price_a
+        short_price = price_a if act == "ENTER_SHORT_SPREAD" else price_b
 
         ok_long = True
         ok_short = True
         if shares_long > 0:
-            ok_long = _submit_order(long_ticker, shares_long, OrderSide.BUY)
+            ok_long = _submit_order(long_ticker, shares_long, OrderSide.BUY, long_price)
         if shares_short > 0:
-            ok_short = _submit_order(short_ticker, shares_short, OrderSide.SELL)
+            ok_short = _submit_order(short_ticker, shares_short, OrderSide.SELL, short_price)
 
         success = ok_long and ok_short
         if success:
@@ -156,14 +161,16 @@ def execute_trade(action: dict) -> bool:
             signal = action.get("signal", 0)
 
             if shares_a > 0 and shares_b > 0 and signal != 0:
+                exit_price_a = action.get("price_a", 0.0)
+                exit_price_b = action.get("price_b", 0.0)
                 if signal == 1:
                     # Was long A, short B → sell A, buy-to-cover B
-                    ok_a = _submit_order(ticker_a, shares_a, OrderSide.SELL)
-                    ok_b = _submit_order(ticker_b, shares_b, OrderSide.BUY)
+                    ok_a = _submit_order(ticker_a, shares_a, OrderSide.SELL, exit_price_a)
+                    ok_b = _submit_order(ticker_b, shares_b, OrderSide.BUY, exit_price_b)
                 else:
                     # Was short A, long B → buy-to-cover A, sell B
-                    ok_a = _submit_order(ticker_a, shares_a, OrderSide.BUY)
-                    ok_b = _submit_order(ticker_b, shares_b, OrderSide.SELL)
+                    ok_a = _submit_order(ticker_a, shares_a, OrderSide.BUY, exit_price_a)
+                    ok_b = _submit_order(ticker_b, shares_b, OrderSide.SELL, exit_price_b)
                 print(f"  [ALPACA] Exited pair {pair}: reversed {shares_a} {ticker_a}, "
                       f"{shares_b} {ticker_b}", flush=True)
                 return ok_a and ok_b
@@ -180,8 +187,109 @@ def execute_trade(action: dict) -> bool:
         return False
 
 
-def _submit_order(ticker: str, qty: int, side: OrderSide) -> bool:
-    """Submit a market order. Returns True if order succeeded, False otherwise."""
+LIMIT_ORDER_BUFFER_PCT = 0.0005  # 0.05% buffer on limit price
+LIMIT_ORDER_TIMEOUT_SECS = 30   # wait this long for limit fill
+LIMIT_ORDER_POLL_SECS = 2       # poll interval for fill check
+
+
+def _submit_order(ticker: str, qty: int, side: OrderSide, price: float = 0.0) -> bool:
+    """
+    Submit a limit order with market fallback.
+
+    1. Submit limit order at current price + 0.05% buffer
+    2. Poll for up to 30 seconds for fill
+    3. If not filled, cancel and submit market order as fallback
+    4. If market order also fails, return False
+
+    If price is 0 or not provided, falls back to market order immediately.
+    """
+    if price <= 0:
+        return _submit_market_order(ticker, qty, side)
+
+    # Calculate limit price with buffer
+    if side == OrderSide.BUY:
+        limit_price = round(price * (1 + LIMIT_ORDER_BUFFER_PCT), 2)
+    else:
+        limit_price = round(price * (1 - LIMIT_ORDER_BUFFER_PCT), 2)
+
+    # Try limit order first
+    try:
+        order_req = LimitOrderRequest(
+            symbol=ticker,
+            qty=qty,
+            side=side,
+            time_in_force=TimeInForce.DAY,
+            limit_price=limit_price,
+        )
+        order = _get_trading_client().submit_order(order_req)
+        order_id = order.id
+
+        # Poll for fill
+        elapsed = 0
+        while elapsed < LIMIT_ORDER_TIMEOUT_SECS:
+            time.sleep(LIMIT_ORDER_POLL_SECS)
+            elapsed += LIMIT_ORDER_POLL_SECS
+            try:
+                updated = _get_trading_client().get_order_by_id(order_id)
+                if updated.status == OrderStatus.FILLED:
+                    fill = float(updated.filled_avg_price) if updated.filled_avg_price else limit_price
+                    saved = abs(fill - price) * qty
+                    print(f"  [ALPACA] Limit FILLED: {side.name} {qty} {ticker} @ ${fill:.2f} "
+                          f"(limit ${limit_price:.2f}, saved ~${saved:.2f})", flush=True)
+                    return True
+                if updated.status in (OrderStatus.CANCELED, OrderStatus.EXPIRED,
+                                      OrderStatus.REJECTED):
+                    print(f"  [ALPACA] Limit {updated.status.name}: {side.name} {qty} {ticker}, "
+                          f"falling back to market", flush=True)
+                    return _submit_market_order(ticker, qty, side)
+                if updated.status == OrderStatus.PARTIALLY_FILLED:
+                    filled_qty = int(float(updated.filled_qty)) if updated.filled_qty else 0
+                    remaining = qty - filled_qty
+                    if elapsed >= LIMIT_ORDER_TIMEOUT_SECS and remaining > 0:
+                        # Cancel remaining and fill rest at market
+                        try:
+                            _get_trading_client().cancel_order_by_id(order_id)
+                            time.sleep(1)
+                        except Exception:
+                            pass
+                        print(f"  [ALPACA] Limit partial fill: {filled_qty}/{qty} {ticker}, "
+                              f"sending market for remaining {remaining}", flush=True)
+                        return _submit_market_order(ticker, remaining, side)
+            except Exception as e:
+                print(f"  [ALPACA] Error checking order status: {e}", flush=True)
+
+        # Timeout — cancel limit order and fall back to market
+        try:
+            _get_trading_client().cancel_order_by_id(order_id)
+            time.sleep(1)
+            # Check if it filled during cancellation
+            final = _get_trading_client().get_order_by_id(order_id)
+            if final.status == OrderStatus.FILLED:
+                print(f"  [ALPACA] Limit FILLED (during cancel): {side.name} {qty} {ticker}", flush=True)
+                return True
+            filled_qty = int(float(final.filled_qty)) if final.filled_qty else 0
+            remaining = qty - filled_qty
+            if filled_qty > 0:
+                print(f"  [ALPACA] Limit partial: {filled_qty}/{qty} {ticker}, "
+                      f"market for remaining {remaining}", flush=True)
+            else:
+                print(f"  [ALPACA] Limit timeout ({LIMIT_ORDER_TIMEOUT_SECS}s): {side.name} {qty} {ticker}, "
+                      f"falling back to market", flush=True)
+            if remaining > 0:
+                return _submit_market_order(ticker, remaining, side)
+            return True
+        except Exception as e:
+            print(f"  [ALPACA] Error cancelling limit order: {e}, falling back to market", flush=True)
+            return _submit_market_order(ticker, qty, side)
+
+    except Exception as e:
+        print(f"  [ALPACA] Limit order submit failed ({side.name} {qty} {ticker}): {e}, "
+              f"falling back to market", flush=True)
+        return _submit_market_order(ticker, qty, side)
+
+
+def _submit_market_order(ticker: str, qty: int, side: OrderSide) -> bool:
+    """Submit a market order as fallback. Returns True if order succeeded."""
     try:
         order = MarketOrderRequest(
             symbol=ticker,
@@ -190,9 +298,10 @@ def _submit_order(ticker: str, qty: int, side: OrderSide) -> bool:
             time_in_force=TimeInForce.DAY,
         )
         _get_trading_client().submit_order(order)
+        print(f"  [ALPACA] Market order: {side.name} {qty} {ticker}", flush=True)
         return True
     except Exception as e:
-        print(f"  [ALPACA] Order failed ({side.name} {qty} {ticker}): {e}", flush=True)
+        print(f"  [ALPACA] Market order FAILED ({side.name} {qty} {ticker}): {e}", flush=True)
         return False
 
 
